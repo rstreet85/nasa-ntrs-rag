@@ -1,0 +1,20 @@
+[project]
+name = "nasa-ntrs-rag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Robert Streetman", email = "robert.streetman.engineer@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = []
+
+[project.scripts]
+nasa-nrts-rag = "nasa-ntrs-rag:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0","pymupdf4llm>=1.28.2","httpx>=0.28.1", "bm25s>=0.3.11"]
+build-backend = "uv_build"
+
+[tool.setuptools]
+packages = ["nasa_ntrs_rag"]
