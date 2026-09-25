@@ -1,6 +1,5 @@
 import bm25s
 import httpx
-#import json
 from pathlib import Path
 import pymupdf4llm
 import sqlite3
@@ -18,14 +17,14 @@ METADATA_REQ_PARAMS = {
     ]
 }
 
-TEST_QRY = 'what is dpod'
+TEST_QRY = 'size of keep-out-sphere'
 
 # Init the db for tracking article IDs and download status
 def init_download_db() -> None:
     with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
         cursor = conn.cursor()
         cursor.execute(DOWNLOAD_DB_SCHEMA)
-        print('Downloads database created')
+        print('Downloads database initialized')
 
 # Search all articles that both match requested category code and have PDF downloads. Save IDs in db
 def get_metadata(cursor: sqlite3.Cursor) -> None:
@@ -41,7 +40,7 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
                 id = int(pub['id'])
                 url = pub['downloads'][0]['links']['pdf']
                 
-                cursor.execute('INSERT INTO articles_status (id, status, url) VALUES (?, ?, ?);', (id, 'pending', url))
+                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url) VALUES (?, ?, ?);', (id, 'pending', url))
 
         print('Metadata response processed')
     except httpx.HTTPError as ex:
@@ -76,9 +75,8 @@ def download_pdf(cursor: sqlite3.cursor, id: int, url: str) -> None:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', id))
         print(f'{filename} download failed with error code {ex.response.status_code}')
 
-# Search a document's text for a query
-def search_doc(corpus: list, qry: str, k: int) -> None:
-    print('Searching document')
+# Search text for a query
+def search_docs(corpus: list, qry: str, k: int) -> None:
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
     retriever = bm25s.BM25(corpus=corpus)
     retriever.index(tokenized_corp)
@@ -100,16 +98,14 @@ with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
 downloaded_pdfs = list(Path(f'{DOWNLOAD_URL}').glob('*.pdf'))
 print('Extracting text from PDFs')
 
+combined_chunks = []
 for pdf in downloaded_pdfs:
-    #markdown = pymupdf4llm.to_markdown(pdf)
-    #print(f'Markdown: \n {markdown}')
-    print('Chunking and searching document')
+    print('Chunking document')
     chunks = pymupdf4llm.to_markdown(pdf, page_chunks=True)
+    combined_chunks.extend(chunks)
 
-    search_doc([chunk['text'] for chunk in chunks], TEST_QRY, 3)
-    '''for chunk in chunks:
-        print('=' * 80)
-        print(f'Page: {chunk['metadata']['page_number']}')
-        print(chunk['text'])'''
+# Search docs using test query
+print('Searching combined text')
+search_docs([chunk['text'] for chunk in combined_chunks], TEST_QRY, 3)
 
 print('All PDFs examined')
