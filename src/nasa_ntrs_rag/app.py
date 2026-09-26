@@ -9,7 +9,7 @@ DOWNLOAD_URL = 'pdf/'
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
 
-DOWNLOAD_DB_SCHEMA = 'CREATE TABLE IF NOT EXISTS articles_status (id INTEGER PRIMARY KEY, status TEXT NOT NULL, url TEXT NOT NULL);'
+DOWNLOAD_DB_SCHEMA = 'CREATE TABLE IF NOT EXISTS articles_status (id INTEGER PRIMARY KEY, status TEXT NOT NULL, url TEXT NOT NULL, filename TEXT NOT NULL);'
 
 METADATA_REQ_PARAMS = {
     'subjectCategory' : [
@@ -40,26 +40,25 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
                 id = int(pub['id'])
                 url = pub['downloads'][0]['links']['pdf']
                 
-                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url) VALUES (?, ?, ?);', (id, 'pending', url))
+                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url, filename) VALUES (?, ?, ?, ?);', (id, 'pending', url, url.split('/')[-1]))
 
         print('Metadata response processed')
     except httpx.HTTPError as ex:
         print(f'Error code {ex.response.status_code} while requesting metadata')
 
-# Read list of all files that haven't been downloaded yet
+# Read list of all files that haven't been downloaded and download them
 def download_files(cursor: sqlite3.cursor) -> None:
-    cursor.execute('SELECT id, status, url FROM articles_status WHERE status != ?', ('downloaded',))
+    cursor.execute('SELECT id, status, url, filename FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
     print(f'Beginning file downloads')
 
     for doc in docs:
-        download_pdf(cursor, doc[0], doc[2])
+        download_pdf(cursor, doc[0], doc[2], doc[3])
 
     print(f'Downloading files complete')
 
 # Download an individual PDF
-def download_pdf(cursor: sqlite3.cursor, id: int, url: str) -> None:
-    filename = url.split('/')[-1]
+def download_pdf(cursor: sqlite3.cursor, id: int, url: str, filename: str) -> None:
     print(f'Downloading file {filename}')
 
     try:
@@ -75,16 +74,44 @@ def download_pdf(cursor: sqlite3.cursor, id: int, url: str) -> None:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', id))
         print(f'{filename} download failed with error code {ex.response.status_code}')
 
-# Search text for a query
-def search_docs(corpus: list, qry: str, k: int) -> None:
-    tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
-    retriever = bm25s.BM25(corpus=corpus)
-    retriever.index(tokenized_corp)
+# Loop through downloaded files and extract text using PyMuPDF4lLM
+def extract_pdfs(cursor: sqlite3.cursor) -> list[dict]:
+    print('Extracting text from PDFs')
+    cursor.execute('SELECT id, status, url, filename FROM articles_status WHERE status = ?', ('downloaded',))
+    saved_docs = cursor.fetchall()
+    combined_chunks = []
 
+    for document in saved_docs:
+        filepath = Path(DOWNLOAD_URL) / document[3]
+        doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+
+        for chunk_number, chunk in enumerate(doc_chunks):
+            combined_chunks.append({
+                'chunk_id': f'{document[0]}-{chunk_number}',
+                'document_id': document[0],
+                'page_number': chunk['metadata']['page_number'],
+                'text': chunk['text']
+            })
+
+    return combined_chunks
+
+# Search all text for a query
+def search_docs(chunks: list[dict], qry: str, k: int) -> None:
+    print('Searching combined text')
+    corpus = [chunk['text'] for chunk in chunks]
+    tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
     tokenized_qry = bm25s.tokenize(TEST_QRY)
 
-    results, scores = retriever.retrieve(tokenized_qry, k=k)
-    print(f'The top result is \n{results[0]}')
+    retriever = bm25s.BM25()
+    retriever.index(tokenized_corp)
+    results, scores = retriever.retrieve(tokenized_qry, corpus=chunks, k=k)
+
+    for i in range(results.shape[1]):
+        result_chunk = results[0, i]
+        print(f'Chunk Score: {scores[0, i]}')
+        print(f'Chunk ID: {result_chunk['chunk_id']}')
+        print(f'Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}')
+        print(f'Chunk Text:\n\n{result_chunk['text']}')
 
 # Document ingestion
 init_download_db()
@@ -94,18 +121,8 @@ with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
     get_metadata(cursor)
     download_files(cursor)
 
-# Text extraction
-downloaded_pdfs = list(Path(f'{DOWNLOAD_URL}').glob('*.pdf'))
-print('Extracting text from PDFs')
+    combined_chunks = extract_pdfs(cursor)
 
-combined_chunks = []
-for pdf in downloaded_pdfs:
-    print('Chunking document')
-    chunks = pymupdf4llm.to_markdown(pdf, page_chunks=True)
-    combined_chunks.extend(chunks)
+    search_docs(combined_chunks, TEST_QRY, 3)
 
-# Search docs using test query
-print('Searching combined text')
-search_docs([chunk['text'] for chunk in combined_chunks], TEST_QRY, 3)
-
-print('All PDFs examined')
+    print('All PDFs examined')
