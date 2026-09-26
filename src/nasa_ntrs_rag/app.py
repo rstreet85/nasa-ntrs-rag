@@ -9,7 +9,7 @@ DOWNLOAD_URL = 'pdf/'
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
 
-DOWNLOAD_DB_SCHEMA = 'CREATE TABLE IF NOT EXISTS articles_status (id INTEGER PRIMARY KEY, status TEXT NOT NULL, url TEXT NOT NULL, filename TEXT NOT NULL);'
+DOWNLOAD_DB_SCHEMA = 'CREATE TABLE IF NOT EXISTS articles_status (id INTEGER PRIMARY KEY, status TEXT NOT NULL, url TEXT NOT NULL, filename TEXT NOT NULL, title TEXT NOT NULL);'
 
 METADATA_REQ_PARAMS = {
     'subjectCategory' : [
@@ -18,6 +18,7 @@ METADATA_REQ_PARAMS = {
 }
 
 TEST_QRY = 'size of keep-out-sphere'
+K = 3
 
 # Init the db for tracking article IDs and download status
 def init_download_db() -> None:
@@ -39,8 +40,9 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
             if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
                 id = int(pub['id'])
                 url = pub['downloads'][0]['links']['pdf']
+                title = pub['title']
                 
-                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url, filename) VALUES (?, ?, ?, ?);', (id, 'pending', url, url.split('/')[-1]))
+                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url, filename, title) VALUES (?, ?, ?, ?, ?);', (id, 'pending', url, url.split('/')[-1], title))
 
         print('Metadata response processed')
     except httpx.HTTPError as ex:
@@ -48,9 +50,9 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
 
 # Read list of all files that haven't been downloaded and download them
 def download_files(cursor: sqlite3.cursor) -> None:
-    cursor.execute('SELECT id, status, url, filename FROM articles_status WHERE status != ?', ('downloaded',))
-    docs = cursor.fetchall()
     print(f'Beginning file downloads')
+    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
+    docs = cursor.fetchall()
 
     for doc in docs:
         download_pdf(cursor, doc[0], doc[2], doc[3])
@@ -77,7 +79,7 @@ def download_pdf(cursor: sqlite3.cursor, id: int, url: str, filename: str) -> No
 # Loop through downloaded files and extract text using PyMuPDF4lLM
 def extract_pdfs(cursor: sqlite3.cursor) -> list[dict]:
     print('Extracting text from PDFs')
-    cursor.execute('SELECT id, status, url, filename FROM articles_status WHERE status = ?', ('downloaded',))
+    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
     combined_chunks = []
 
@@ -90,6 +92,8 @@ def extract_pdfs(cursor: sqlite3.cursor) -> list[dict]:
                 'chunk_id': f'{document[0]}-{chunk_number}',
                 'document_id': document[0],
                 'page_number': chunk['metadata']['page_number'],
+                'title': document[4],
+                'url': f'{NTRS_URL}{document[2]}',
                 'text': chunk['text']
             })
 
@@ -100,7 +104,7 @@ def search_docs(chunks: list[dict], qry: str, k: int) -> None:
     print('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
-    tokenized_qry = bm25s.tokenize(TEST_QRY)
+    tokenized_qry = bm25s.tokenize(qry)
 
     retriever = bm25s.BM25()
     retriever.index(tokenized_corp)
@@ -111,7 +115,9 @@ def search_docs(chunks: list[dict], qry: str, k: int) -> None:
         print(f'Chunk Score: {scores[0, i]}')
         print(f'Chunk ID: {result_chunk['chunk_id']}')
         print(f'Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}')
-        print(f'Chunk Text:\n\n{result_chunk['text']}')
+        print(f'Document Title: {result_chunk['title']}')
+        print(f'Document URL: {result_chunk['url']}')
+        print(f'Chunk Text:\n{result_chunk['text']}\n\n')
 
 # Document ingestion
 init_download_db()
@@ -123,6 +129,6 @@ with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
 
     combined_chunks = extract_pdfs(cursor)
 
-    search_docs(combined_chunks, TEST_QRY, 3)
+    search_docs(combined_chunks, TEST_QRY, K)
 
     print('All PDFs examined')
