@@ -1,5 +1,6 @@
 import bm25s
 import httpx
+import numpy as np
 from pathlib import Path
 import pymupdf4llm
 import sqlite3
@@ -117,7 +118,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[dict]:
     return combined_chunks
 
 # Search all text for a query
-def search_docs(chunks: list[dict], qry: str, k: int) -> None:
+def search_docs(chunks: list[dict], qry: str, k: int) -> tuple[np.ndarray, np.ndarray]:
     print('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
@@ -151,6 +152,7 @@ def main() -> None:
             print(f"Document URL: {result_chunk['url']}")
             print(f"Chunk Text:\n{result_chunk['text']}\n\n")
 
+        print(f"Results type - {type(results)}, Scores type - {type(scores)}")
         print('All PDFs examined')
 
 if __name__ == '__main__':
