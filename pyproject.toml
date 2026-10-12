@@ -7,13 +7,17 @@ authors = [
     { name = "Robert Streetman", email = "robert.streetman.engineer@gmail.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "bm25s>=0.3.11",
+    "httpx>=0.28.1",
+    "pymupdf4llm>=1.28.2"
+    ]
 
 [project.scripts]
-nasa-nrts-rag = "nasa-ntrs-rag:main"
+nasa-nrts-rag = "nasa_ntrs_rag:main"
 
 [build-system]
-requires = ["uv_build>=0.12.18,<0.13.0","pymupdf4llm>=1.28.2","httpx>=0.28.1", "bm25s>=0.3.11"]
+requires = ["uv_build>=0.12.18,<0.13.0"]
 build-backend = "uv_build"
 
 [tool.setuptools]

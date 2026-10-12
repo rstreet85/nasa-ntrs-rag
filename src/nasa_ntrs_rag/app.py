@@ -9,7 +9,14 @@ DOWNLOAD_URL = 'pdf/'
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
 
-DOWNLOAD_DB_SCHEMA = 'CREATE TABLE IF NOT EXISTS articles_status (id INTEGER PRIMARY KEY, status TEXT NOT NULL, url TEXT NOT NULL, filename TEXT NOT NULL, title TEXT NOT NULL);'
+DOWNLOAD_DB_SCHEMA = '''
+    CREATE TABLE IF NOT EXISTS articles_status (
+        id INTEGER PRIMARY KEY,
+        status TEXT NOT NULL,
+        url TEXT NOT NULL,
+        filename TEXT NOT NULL,
+        title TEXT NOT NULL
+        );'''
 
 METADATA_REQ_PARAMS = {
     'subjectCategory' : [
@@ -38,26 +45,35 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
         
         for pub in pub_list:
             if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
-                id = int(pub['id'])
+                article_id = int(pub['id'])
                 url = pub['downloads'][0]['links']['pdf']
                 title = pub['title']
                 
-                cursor.execute('INSERT OR IGNORE INTO articles_status (id, status, url, filename, title) VALUES (?, ?, ?, ?, ?);', (id, 'pending', url, url.split('/')[-1], title))
+                cursor.execute('''
+                    INSERT OR IGNORE INTO articles_status (
+                    id,
+                    status,
+                    url,
+                    filename,
+                    title
+                    )
+                    VALUES (?, ?, ?, ?, ?);''',
+                    (article_id, 'pending', url, url.split('/')[-1], title))
 
         print('Metadata response processed')
     except httpx.HTTPError as ex:
-        print(f'Error code {ex.response.status_code} while requesting metadata')
+        print(f"Error code {ex.response.status_code} while requesting metadata")
 
 # Read list of all files that haven't been downloaded and download them
 def download_files(cursor: sqlite3.Cursor) -> None:
-    print(f'Beginning file downloads')
+    print('Beginning file downloads')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
 
     for doc in docs:
         download_pdf(cursor, doc[0], doc[2], doc[3])
 
-    print(f'Downloading files complete')
+    print('Downloading files complete')
 
 # Download an individual PDF
 def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> None:
@@ -111,26 +127,30 @@ def search_docs(chunks: list[dict], qry: str, k: int) -> None:
     results, scores = retriever.retrieve(tokenized_qry, corpus=chunks, k=k)
     return results, scores
 
-# Document ingestion
-init_download_db()
+def main() -> None:
+    # Document ingestion
+    init_download_db()
 
-with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
-    cursor = conn.cursor()
-    get_metadata(cursor)
-    download_files(cursor)
+    with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
+        cursor = conn.cursor()
+        get_metadata(cursor)
+        download_files(cursor)
 
-    combined_chunks = extract_pdfs(cursor)
+        combined_chunks = extract_pdfs(cursor)
 
-    #search_docs(combined_chunks, TEST_QRY, K)
+        #search_docs(combined_chunks, TEST_QRY, K)
 
-    results, scores = search_docs(combined_chunks, TEST_QRY, K)
-    for i in range(results.shape[1]):
-        result_chunk = results[0, i]
-        print(f"Chunk Score: {scores[0, i]}")
-        print(f"Chunk ID: {result_chunk['chunk_id']}")
-        print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
-        print(f"Document Title: {result_chunk['title']}")
-        print(f"Document URL: {result_chunk['url']}")
-        print(f"Chunk Text:\n{result_chunk['text']}\n\n")
+        results, scores = search_docs(combined_chunks, TEST_QRY, K)
+        for i in range(results.shape[1]):
+            result_chunk = results[0, i]
+            print(f"Chunk Score: {scores[0, i]}")
+            print(f"Chunk ID: {result_chunk['chunk_id']}")
+            print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
+            print(f"Document Title: {result_chunk['title']}")
+            print(f"Document URL: {result_chunk['url']}")
+            print(f"Chunk Text:\n{result_chunk['text']}\n\n")
 
-    print('All PDFs examined')
+        print('All PDFs examined')
+
+if __name__ == '__main__':
+    main()
