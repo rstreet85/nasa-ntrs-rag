@@ -22,3 +22,7 @@ build-backend = "uv_build"
 
 [tool.setuptools]
 packages = ["nasa_ntrs_rag"]
+
+[tool.pytest.ini_options]
+pythonpath= ["src"]
+addopts = ["--import-mode=importlib"]
