@@ -28,15 +28,15 @@ METADATA_REQ_PARAMS = {
 TEST_QRY = 'size of keep-out-sphere'
 K = 3
 
-# Init the db for tracking article IDs and download status
 def init_download_db() -> None:
+    '''Initialize the article database.'''
     with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
         cursor = conn.cursor()
         cursor.execute(DOWNLOAD_DB_SCHEMA)
         print('Downloads database initialized')
 
-# Search all articles that both match requested category code and have PDF downloads. Save IDs in db
 def get_metadata(cursor: sqlite3.Cursor) -> None:
+    '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
     try:
         response = httpx.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
@@ -65,8 +65,8 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
     except httpx.HTTPError as exc:
         print(f"Metadata request failed - {exc}")
 
-# Read list of all files that haven't been downloaded and download them
 def download_files(cursor: sqlite3.Cursor) -> None:
+    '''Read list of all files undownloaded files and download them.'''
     print('Beginning file downloads')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
@@ -76,8 +76,8 @@ def download_files(cursor: sqlite3.Cursor) -> None:
 
     print('Downloading files complete')
 
-# Download an individual PDF
 def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> None:
+    '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
     print(f"Downloading file {filename}")
 
     try:
@@ -94,8 +94,8 @@ def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> No
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', id))
         print(f"{filename} download failed - {exc}")
 
-# Loop through downloaded files and extract text using PyMuPDF4lLM
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[dict]:
+    '''Create list of downloaded PDFs from the database, extract text from each.'''
     print('Extracting text from PDFs')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
@@ -117,8 +117,8 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[dict]:
 
     return combined_chunks
 
-# Search all text for a query
 def search_docs(chunks: list[dict], qry: str, k: int) -> tuple[np.ndarray, np.ndarray]:
+    '''Accept text corpus, search query, and number of top results, returns top k results and scores.'''
     print('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
@@ -139,8 +139,6 @@ def main() -> None:
         download_files(cursor)
 
         combined_chunks = extract_pdfs(cursor)
-
-        #search_docs(combined_chunks, TEST_QRY, K)
 
         results, scores = search_docs(combined_chunks, TEST_QRY, K)
         for i in range(results.shape[1]):
