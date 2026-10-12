@@ -61,8 +61,8 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
                     (article_id, 'pending', url, url.split('/')[-1], title))
 
         print('Metadata response processed')
-    except httpx.HTTPError as ex:
-        print(f"Error code {ex.response.status_code} while requesting metadata")
+    except httpx.HTTPError as exc:
+        print(f"Metadata request failed - {exc}")
 
 # Read list of all files that haven't been downloaded and download them
 def download_files(cursor: sqlite3.Cursor) -> None:
@@ -83,14 +83,15 @@ def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> No
         response = httpx.get(f"{NTRS_URL}{url}")
         response.raise_for_status()
 
-        with open(f"{DOWNLOAD_URL}{filename}", 'wb') as file:
+        download_filepath = Path(DOWNLOAD_URL) / filename
+        with download_filepath.open('wb') as file:
             file.write(response.content)
             cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', id))
             print(f"{filename} downloaded")
 
-    except httpx.HTTPError as ex:
+    except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', id))
-        print(f"{filename} download failed with error code {ex.response.status_code}")
+        print(f"{filename} download failed - {exc}")
 
 # Loop through downloaded files and extract text using PyMuPDF4lLM
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[dict]:
