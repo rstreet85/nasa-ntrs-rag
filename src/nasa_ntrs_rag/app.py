@@ -1,9 +1,10 @@
+import sqlite3
+from pathlib import Path
+
 import bm25s
 import httpx
 import numpy as np
-from pathlib import Path
 import pymupdf4llm
-import sqlite3
 
 DOWNLOAD_DB_URL = 'articles.db'
 DOWNLOAD_URL = 'pdf/'
