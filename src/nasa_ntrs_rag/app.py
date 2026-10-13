@@ -7,8 +7,8 @@ import httpx
 import numpy as np
 import pymupdf4llm
 
-DOWNLOAD_DB_URL = 'articles.db'
-DOWNLOAD_URL = 'pdf/'
+DOWNLOAD_DB_PATH = Path('articles.db')
+DOWNLOAD_PATH = Path('pdf')
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
 
@@ -42,7 +42,7 @@ class Chunk(TypedDict):
 
 def init_download_db() -> None:
     '''Initialize the article database.'''
-    with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
+    with sqlite3.connect(DOWNLOAD_DB_PATH) as conn:
         cursor = conn.cursor()
         cursor.execute(DOWNLOAD_DB_SCHEMA)
         print('Downloads database initialized')
@@ -103,7 +103,7 @@ def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> No
         response = httpx.get(f"{NTRS_URL}{url}")
         response.raise_for_status()
 
-        download_filepath = Path(DOWNLOAD_URL) / filename
+        download_filepath = DOWNLOAD_PATH / filename
         with download_filepath.open('wb') as file:
             file.write(response.content)
             cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', id))
@@ -122,7 +122,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     combined_chunks: list[Chunk] = []
 
     for document in saved_docs:
-        filepath = Path(DOWNLOAD_URL) / document[3]
+        filepath = DOWNLOAD_PATH / document[3]
         doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
         for chunk_number, chunk in enumerate(doc_chunks):
@@ -155,7 +155,7 @@ def main() -> None:
     # Document ingestion
     init_download_db()
 
-    with sqlite3.connect(DOWNLOAD_DB_URL) as conn:
+    with sqlite3.connect(DOWNLOAD_DB_PATH) as conn:
         cursor = conn.cursor()
         get_metadata(cursor)
         download_files(cursor)
