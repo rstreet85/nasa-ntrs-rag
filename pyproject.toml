@@ -10,18 +10,16 @@ requires-python = ">=3.14"
 dependencies = [
     "bm25s>=0.3.11",
     "httpx>=0.28.1",
+    "numpy>=2.5.3",
     "pymupdf4llm>=1.28.2"
     ]
 
 [project.scripts]
-nasa-nrts-rag = "nasa_ntrs_rag:main"
+nasa-ntrs-rag = "nasa_ntrs_rag.app:main"
 
 [build-system]
 requires = ["uv_build>=0.12.18,<0.13.0"]
 build-backend = "uv_build"
-
-[tool.setuptools]
-packages = ["nasa_ntrs_rag"]
 
 [tool.pytest.ini_options]
 pythonpath= ["src"]
