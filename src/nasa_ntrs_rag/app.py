@@ -27,13 +27,13 @@ METADATA_REQ_PARAMS = {
     ]
 }
 
-TEST_QRY = 'size of keep-out-sphere'
+TEST_QUERY = 'size of keep-out-sphere'
 K = 3
 
 class Chunk(TypedDict):
     '''Class to use a TypedDict to store chunk data.'''
     chunk_id: str
-    document_id: str
+    document_id: int
     page_number: int
     title: str
     url: str
@@ -138,16 +138,16 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     return combined_chunks
 
 
-def search_docs(chunks: list[Chunk], qry: str, k: int) -> tuple[np.ndarray, np.ndarray]:
+def search_docs(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
     '''Accept text corpus, search query, and number of top results, returns top k results and scores.'''
     print('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
-    tokenized_qry = bm25s.tokenize(qry)
+    tokenized_query = bm25s.tokenize(query)
 
     retriever = bm25s.BM25()
     retriever.index(tokenized_corp)
-    results, scores = retriever.retrieve(tokenized_qry, corpus=chunks, k=k)
+    results, scores = retriever.retrieve(tokenized_query, corpus=chunks, k=k)
     return results, scores
 
 
@@ -162,7 +162,7 @@ def main() -> None:
 
         combined_chunks = extract_pdfs(cursor)
 
-        results, scores = search_docs(combined_chunks, TEST_QRY, K)
+        results, scores = search_docs(combined_chunks, TEST_QUERY, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
             print(f"Chunk Score: {scores[0, i]}")
