@@ -20,12 +20,14 @@ Completed:
 - SQLite database to track downloads
 - PDF text extraction
 - Page-level segmentation
-- Test retrieval with BM25
+- Test lexical retrieval with BM25
 
 Pending:
 - Increase number of related subject categories
 - Multi-threaded downloads
+- Embedding
 - Embedding-based retrieval
 - LLM generation
 - Evaluation
 - UI
+- Split the Indexing and Query functions into separate APIs

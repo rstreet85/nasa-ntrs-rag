@@ -1,7 +1,7 @@
 [project]
 name = "nasa-ntrs-rag"
 version = "0.1.0"
-description = "Add your description here"
+description = "Experimental RAG stack for searching the NASA Technical Reports Server"
 readme = "README.md"
 authors = [
     { name = "Robert Streetman", email = "robert.streetman.engineer@gmail.com" }
@@ -12,7 +12,7 @@ dependencies = [
     "httpx>=0.28.1",
     "numpy>=2.5.3",
     "pymupdf4llm>=1.28.2"
-    ]
+]
 
 [project.scripts]
 nasa-ntrs-rag = "nasa_ntrs_rag.app:main"
@@ -22,5 +22,5 @@ requires = ["uv_build>=0.12.18,<0.13.0"]
 build-backend = "uv_build"
 
 [tool.pytest.ini_options]
-pythonpath= ["src"]
+pythonpath = ["src"]
 addopts = ["--import-mode=importlib"]
