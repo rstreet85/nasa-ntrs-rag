@@ -95,7 +95,7 @@ def download_files(cursor: sqlite3.Cursor) -> None:
     print('Downloading files complete')
 
 
-def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> None:
+def download_pdf(cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> None:
     '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
     print(f"Downloading file {filename}")
 
@@ -106,11 +106,11 @@ def download_pdf(cursor: sqlite3.Cursor, id: int, url: str, filename: str) -> No
         download_filepath = DOWNLOAD_PATH / filename
         with download_filepath.open('wb') as file:
             file.write(response.content)
-            cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', id))
+            cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
             print(f"{filename} downloaded")
 
     except httpx.HTTPError as exc:
-        cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', id))
+        cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
         print(f"{filename} download failed - {exc}")
 
 
@@ -138,7 +138,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     return combined_chunks
 
 
-def search_docs(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
+def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
     '''Accept text corpus, search query, and number of top results, returns top k results and scores.'''
     print('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
@@ -162,7 +162,7 @@ def main() -> None:
 
         combined_chunks = extract_pdfs(cursor)
 
-        results, scores = search_docs(combined_chunks, TEST_QUERY, K)
+        results, scores = doc_search_lexical(combined_chunks, TEST_QUERY, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
             print(f"Chunk Score: {scores[0, i]}")
