@@ -13,3 +13,4 @@ wheels/
 # Indexing/embedding artifacts
 *.pdf
 *.db
+*.log

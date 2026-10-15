@@ -1,3 +1,4 @@
+import logging
 import sqlite3
 from contextlib import closing
 from pathlib import Path
@@ -8,11 +9,11 @@ import httpx
 import numpy as np
 import pymupdf4llm
 
+LOG_FILENAME = 'test.log'
 DOWNLOAD_DB_PATH = Path('articles.db')
 DOWNLOAD_PATH = Path('pdf')
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
-
 DOWNLOAD_DB_SCHEMA = '''
     CREATE TABLE IF NOT EXISTS articles_status (
         id INTEGER PRIMARY KEY,
@@ -21,16 +22,15 @@ DOWNLOAD_DB_SCHEMA = '''
         filename TEXT NOT NULL,
         title TEXT NOT NULL
         );'''
-
 METADATA_REQ_PARAMS = {
     'subjectCategory': [
         'Space Communications, Spacecraft Communications, Command and Tracking'
     ]
 }
-
 TEST_QUERY = 'What factors affect satellite altimetry measurement quality'
-
 K = 3
+
+logger = logging.getLogger(__name__)
 
 class Chunk(TypedDict):
     '''Class to use a TypedDict to store chunk data.'''
@@ -155,6 +155,8 @@ def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndar
 
 
 def main() -> None:
+    logging.basicConfig(filename=LOG_FILENAME, encoding='utf-8', level=logging.DEBUG)
+
     # Document ingestion
     init_download_db()
 
@@ -171,12 +173,14 @@ def main() -> None:
                 result_chunk = results[0, i]
                 print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
                 print(f"Text:\n{result_chunk['text']}\n\n")
-                '''print(f"Chunk Score: {scores[0, i]}")
+                '''
+                print(f"Chunk Score: {scores[0, i]}")
                 print(f"Chunk ID: {result_chunk['chunk_id']}")
                 print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
                 print(f"Document Title: {result_chunk['title']}")
                 print(f"Document URL: {result_chunk['url']}")
-                print(f"Chunk Text:\n{result_chunk['text']}\n\n")'''
+                print(f"Chunk Text:\n{result_chunk['text']}\n\n")
+                '''
 
             print('All PDFs examined')
 
