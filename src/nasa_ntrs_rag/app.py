@@ -157,8 +157,9 @@ def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndar
 def main() -> None:
     logging.basicConfig(filename=LOG_FILENAME, encoding='utf-8', level=logging.DEBUG)
 
-    # Document ingestion
     init_download_db()
+
+    DOWNLOAD_PATH.mkdir(parents=True, exist_ok=True)
 
     with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
         with conn:
