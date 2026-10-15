@@ -21,6 +21,10 @@ The application iterates through each downloaded PDF, and uses PyMuPDF4LLM to ex
 
 The application uses BM25 (specifically the bm25s library) for keyword search, and returns the top K best matches.
 
+### User Query Embedding and Search
+
+### Prompt Engineering
+
 ### Semantic Search
 
 # Current Status
