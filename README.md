@@ -31,7 +31,7 @@ The application uses BM25 (specifically the bm25s library) for keyword search, a
 
 Ingestion Flow
 | Feature                           | Status    |
-| --------------------------------- | --------- |
+| :-------------------------------- | :-------: |
 | NTRS API integration              | Completed |
 | Publication filtering             | Completed |
 | Increase number of subjects       | Pending   |

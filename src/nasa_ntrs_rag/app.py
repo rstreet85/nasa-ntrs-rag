@@ -1,4 +1,5 @@
 import sqlite3
+from contextlib import closing
 from pathlib import Path
 from typing import TypedDict
 
@@ -27,7 +28,8 @@ METADATA_REQ_PARAMS = {
     ]
 }
 
-TEST_QUERY = 'size of keep-out-sphere'
+TEST_QUERY = 'What factors affect satellite altimetry measurement quality'
+
 K = 3
 
 class Chunk(TypedDict):
@@ -42,10 +44,11 @@ class Chunk(TypedDict):
 
 def init_download_db() -> None:
     '''Initialize the article database.'''
-    with sqlite3.connect(DOWNLOAD_DB_PATH) as conn:
-        cursor = conn.cursor()
-        cursor.execute(DOWNLOAD_DB_SCHEMA)
-        print('Downloads database initialized')
+    with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
+        with conn:
+            cursor = conn.cursor()
+            cursor.execute(DOWNLOAD_DB_SCHEMA)
+            print('Downloads database initialized')
 
 
 def get_metadata(cursor: sqlite3.Cursor) -> None:
@@ -155,24 +158,27 @@ def main() -> None:
     # Document ingestion
     init_download_db()
 
-    with sqlite3.connect(DOWNLOAD_DB_PATH) as conn:
-        cursor = conn.cursor()
-        get_metadata(cursor)
-        download_files(cursor)
+    with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
+        with conn:
+            cursor = conn.cursor()
+            get_metadata(cursor)
+            download_files(cursor)
 
-        combined_chunks = extract_pdfs(cursor)
+            combined_chunks = extract_pdfs(cursor)
 
-        results, scores = doc_search_lexical(combined_chunks, TEST_QUERY, K)
-        for i in range(results.shape[1]):
-            result_chunk = results[0, i]
-            print(f"Chunk Score: {scores[0, i]}")
-            print(f"Chunk ID: {result_chunk['chunk_id']}")
-            print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
-            print(f"Document Title: {result_chunk['title']}")
-            print(f"Document URL: {result_chunk['url']}")
-            print(f"Chunk Text:\n{result_chunk['text']}\n\n")
+            results, scores = doc_search_lexical(combined_chunks, TEST_QUERY, K)
+            for i in range(results.shape[1]):
+                result_chunk = results[0, i]
+                print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
+                print(f"Text:\n{result_chunk['text']}\n\n")
+                '''print(f"Chunk Score: {scores[0, i]}")
+                print(f"Chunk ID: {result_chunk['chunk_id']}")
+                print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
+                print(f"Document Title: {result_chunk['title']}")
+                print(f"Document URL: {result_chunk['url']}")
+                print(f"Chunk Text:\n{result_chunk['text']}\n\n")'''
 
-        print('All PDFs examined')
+            print('All PDFs examined')
 
 
 if __name__ == '__main__':
