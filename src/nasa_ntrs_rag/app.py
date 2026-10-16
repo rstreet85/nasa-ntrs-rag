@@ -12,6 +12,7 @@ import pymupdf4llm
 LOG_FILENAME = 'test.log'
 DOWNLOAD_DB_PATH = Path('articles.db')
 DOWNLOAD_PATH = Path('pdf')
+INDEX_PATH = Path('ntrs_index')
 NTRS_URL = 'https://ntrs.nasa.gov'
 NTRS_PUBSEARCH_URL = 'https://ntrs.nasa.gov/api/pubspace/search'
 DOWNLOAD_DB_SCHEMA = '''
@@ -28,7 +29,11 @@ METADATA_REQ_PARAMS = {
         'Space Communications, Spacecraft Communications, Command and Tracking'
     ]
 }
-TEST_QUERY = 'What factors affect satellite altimetry measurement quality'
+TEST_QUERIES = [
+    'What is the size of the keep out sphere',
+    'What are parameters of TIRS-2',
+    'What type of receiver antenna to use for satellite tracking'
+]
 K = 3
 
 logger = logging.getLogger(__name__)
@@ -142,15 +147,26 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     return combined_chunks
 
 
-def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
-    '''Accept text corpus, search query, and number of top results, returns top k results and scores.'''
-    logger.info('Searching combined text')
+def build_index(chunks: list[Chunk]) -> bm25s.BM25:
+    '''Build the BM25 index from extracted chunks'''
+    logger.info('Building BM25 index')
+
+    # Use only the chunnk text for the corpus
     corpus = [chunk['text'] for chunk in chunks]
-    tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
+    tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
+    retriever = bm25s.BM25(corpus=corpus)
+    retriever.index(tokenized_corpus)
+    retriever.save(INDEX_PATH)
+
+    logger.info('BM25 index built')
+    return retriever
+
+
+def doc_search_lexical(retriever: bm25s.BM25, chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
+    '''Accept the BM25 index, chunks, query, and k. Return seach results'''
+    logger.info('Searching combined text')
     tokenized_query = bm25s.tokenize(query)
 
-    retriever = bm25s.BM25()
-    retriever.index(tokenized_corp)
     results, scores = retriever.retrieve(tokenized_query, corpus=chunks, k=k)
     return results, scores
 
@@ -158,33 +174,49 @@ def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndar
 def main() -> None:
     logging.basicConfig(filename=LOG_FILENAME, encoding='utf-8', level=logging.DEBUG)
 
+    # Build download database
     init_download_db()
 
+    # Create download path if it doesn't exist
     DOWNLOAD_PATH.mkdir(parents=True, exist_ok=True)
 
+    # Populate the database with a list of available PDFs, then download them
     with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
         with conn:
             cursor = conn.cursor()
+
+            # Get a list of reports with availabel PDFS, save document IDs, URLs, etc.
             get_metadata(cursor)
+
+            # Loop through all PDFs once and attempt to download
             download_files(cursor)
 
+            # Create chunks by combining document metadata with extracted text
             combined_chunks = extract_pdfs(cursor)
 
-            results, scores = doc_search_lexical(combined_chunks, TEST_QUERY, K)
-            for i in range(results.shape[1]):
-                result_chunk = results[0, i]
-                print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
-                print(f"Text:\n{result_chunk['text']}\n\n")
-                '''
-                print(f"Chunk Score: {scores[0, i]}")
-                print(f"Chunk ID: {result_chunk['chunk_id']}")
-                print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
-                print(f"Document Title: {result_chunk['title']}")
-                print(f"Document URL: {result_chunk['url']}")
-                print(f"Chunk Text:\n{result_chunk['text']}\n\n")
-                '''
+    # Build the index and save it, return the built index
+    retriever = build_index(combined_chunks)
 
-            logger.info('All PDFs examined')
+    # Run eeach test query through the retriever and print the top K results
+    for query in TEST_QUERIES:
+        logger.info('Running query: %s', query)
+        
+        print(f"Query: {query}\nResults:\n")
+        results, scores = doc_search_lexical(retriever, combined_chunks, query, K)
+        for i in range(results.shape[1]):
+            result_chunk = results[0, i]
+            print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
+            print(f"Text:\n{result_chunk['text']}\n\n")
+            '''
+            print(f"Chunk Score: {scores[0, i]}")
+            print(f"Chunk ID: {result_chunk['chunk_id']}")
+            print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
+            print(f"Document Title: {result_chunk['title']}")
+            print(f"Document URL: {result_chunk['url']}")
+            print(f"Chunk Text:\n{result_chunk['text']}\n\n")
+            '''
+
+    logger.info('All PDFs examined')
 
 
 if __name__ == '__main__':
