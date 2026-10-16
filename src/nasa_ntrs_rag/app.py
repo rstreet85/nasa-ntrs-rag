@@ -200,21 +200,20 @@ def main() -> None:
     # Run eeach test query through the retriever and print the top K results
     for query in TEST_QUERIES:
         logger.info('Running query: %s', query)
-
         print(f"Query: {query}\nResults:\n")
+
         results, scores = doc_search_lexical(retriever, query, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
+
             print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
             print(f"Text:\n{result_chunk['text']}\n\n")
-            '''
-            print(f"Chunk Score: {scores[0, i]}")
-            print(f"Chunk ID: {result_chunk['chunk_id']}")
-            print(f"Document ID: {result_chunk['document_id']}, Page: {result_chunk['page_number']}")
-            print(f"Document Title: {result_chunk['title']}")
-            print(f"Document URL: {result_chunk['url']}")
-            print(f"Chunk Text:\n{result_chunk['text']}\n\n")
-            '''
+            logger.info('Chunk Result: ID - %s, Score - %f, Document Title - %s, Page - %i',
+                result_chunk['chunk_id'],
+                scores[0, i],
+                result_chunk['title'],
+                result_chunk['page_number']
+            )
 
     logger.info('All PDFs examined')
 
