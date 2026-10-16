@@ -57,10 +57,10 @@ def init_download_db() -> None:
             logger.info('Downloads database initialized')
 
 
-def get_metadata(cursor: sqlite3.Cursor) -> None:
+def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
     try:
-        response = httpx.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
+        response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
 
         pub_list = response.json()['results']
@@ -92,24 +92,24 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
         logger.error('Unexpected HTTP error %s', exc)
 
 
-def download_files(cursor: sqlite3.Cursor) -> None:
+def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Read list of all files undownloaded files and download them.'''
     logger.info('Beginning file downloads')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
 
     for doc in docs:
-        download_pdf(cursor, doc[0], doc[2], doc[3])
+        download_pdf(client, cursor, doc[0], doc[2], doc[3])
 
     logger.info('Downloading files complete')
 
 
-def download_pdf(cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> None:
+def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> None:
     '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
     logger.info('Downloading file %s', filename)
 
     try:
-        response = httpx.get(f"{NTRS_URL}{url}")
+        response = client.get(f"{NTRS_URL}{url}")
         response.raise_for_status()
 
         download_filepath = DOWNLOAD_PATH / filename
@@ -181,18 +181,19 @@ def main() -> None:
     DOWNLOAD_PATH.mkdir(parents=True, exist_ok=True)
 
     # Populate the database with a list of available PDFs, then download them
-    with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
-        with conn:
-            cursor = conn.cursor()
+    with httpx.Client(timeout=120.0) as client:
+        with closing(sqlite3.connect(DOWNLOAD_DB_PATH)) as conn:
+            with conn:
+                cursor = conn.cursor()
 
-            # Get a list of reports with availabel PDFS, save document IDs, URLs, etc.
-            get_metadata(cursor)
+                # Get a list of reports with availabel PDFS, save document IDs, URLs, etc.
+                get_metadata(client, cursor)
 
-            # Loop through all PDFs once and attempt to download
-            download_files(cursor)
+                # Loop through all PDFs once and attempt to download
+                download_files(client, cursor)
 
-            # Create chunks by combining document metadata with extracted text
-            combined_chunks = extract_pdfs(cursor)
+                # Create chunks by combining document metadata with extracted text
+                combined_chunks = extract_pdfs(cursor)
 
     # Build the index and save it, return the built index
     retriever = build_index(combined_chunks)
