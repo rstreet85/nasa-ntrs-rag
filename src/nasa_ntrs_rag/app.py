@@ -151,7 +151,6 @@ def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
     logger.info('Building BM25 index')
 
-    # Use only the chunnk text for the corpus
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
     retriever = bm25s.BM25(corpus=chunks)
