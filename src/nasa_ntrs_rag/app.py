@@ -154,20 +154,20 @@ def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     # Use only the chunnk text for the corpus
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
-    retriever = bm25s.BM25(corpus=corpus)
+    retriever = bm25s.BM25(corpus=chunks)
     retriever.index(tokenized_corpus)
-    retriever.save(INDEX_PATH)
+    retriever.save(INDEX_PATH, corpus=chunks)
 
     logger.info('BM25 index built')
     return retriever
 
 
-def doc_search_lexical(retriever: bm25s.BM25, chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
+def doc_search_lexical(retriever: bm25s.BM25, query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
     '''Accept the BM25 index, chunks, query, and k. Return seach results'''
     logger.info('Searching combined text')
-    tokenized_query = bm25s.tokenize(query)
+    tokenized_query = bm25s.tokenize(query, stopwords='english')
 
-    results, scores = retriever.retrieve(tokenized_query, corpus=chunks, k=k)
+    results, scores = retriever.retrieve(tokenized_query, k=k)
     return results, scores
 
 
@@ -200,9 +200,9 @@ def main() -> None:
     # Run eeach test query through the retriever and print the top K results
     for query in TEST_QUERIES:
         logger.info('Running query: %s', query)
-        
+
         print(f"Query: {query}\nResults:\n")
-        results, scores = doc_search_lexical(retriever, combined_chunks, query, K)
+        results, scores = doc_search_lexical(retriever, query, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
             print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
