@@ -21,7 +21,8 @@ DOWNLOAD_DB_SCHEMA = '''
         url TEXT NOT NULL,
         filename TEXT NOT NULL,
         title TEXT NOT NULL
-        );'''
+        );
+    '''
 METADATA_REQ_PARAMS = {
     'subjectCategory': [
         'Space Communications, Spacecraft Communications, Command and Tracking'
@@ -48,7 +49,7 @@ def init_download_db() -> None:
         with conn:
             cursor = conn.cursor()
             cursor.execute(DOWNLOAD_DB_SCHEMA)
-            print('Downloads database initialized')
+            logger.info('Downloads database initialized')
 
 
 def get_metadata(cursor: sqlite3.Cursor) -> None:
@@ -58,7 +59,7 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
         response.raise_for_status()
 
         pub_list = response.json()['results']
-        print('Metadata response received')
+        logger.info('Metadata response received')
         
         for pub in pub_list:
             if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
@@ -68,39 +69,39 @@ def get_metadata(cursor: sqlite3.Cursor) -> None:
                 
                 cursor.execute('''
                     INSERT OR IGNORE INTO articles_status (
-                    id,
-                    status,
-                    url,
-                    filename,
-                    title
+                        id,
+                        status,
+                        url,
+                        filename,
+                        title
                     )
                     VALUES (?, ?, ?, ?, ?);''',
                     (article_id, 'pending', url, url.split('/')[-1], title))
 
-        print('Metadata response processed')
+        logger.info('Metadata response processed')
     except httpx.HTTPStatusError as exc:
-        print(f"Error status {exc.response.status_code} received when requesting metadata")
+        logger.error('Error status %s received when requesting metadata', exc.response.status_code)
     except httpx.RequestError as exc:
-        print(f"Request error for metadata: {exc}")
+        logger.error('Request error for metadata: %s', exc)
     except httpx.HTTPError as exc:
-        print(f"Unexpected HTTP error: {exc}")
+        logger.error('Unexpected HTTP error %s', exc)
 
 
 def download_files(cursor: sqlite3.Cursor) -> None:
     '''Read list of all files undownloaded files and download them.'''
-    print('Beginning file downloads')
+    logger.info('Beginning file downloads')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
 
     for doc in docs:
         download_pdf(cursor, doc[0], doc[2], doc[3])
 
-    print('Downloading files complete')
+    logger.info('Downloading files complete')
 
 
 def download_pdf(cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> None:
     '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
-    print(f"Downloading file {filename}")
+    logger.info('Downloading file %s', filename)
 
     try:
         response = httpx.get(f"{NTRS_URL}{url}")
@@ -110,16 +111,16 @@ def download_pdf(cursor: sqlite3.Cursor, article_id: int, url: str, filename: st
         with download_filepath.open('wb') as file:
             file.write(response.content)
             cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
-            print(f"{filename} downloaded")
+            logger.info('File %s downloaded', filename)
 
     except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
-        print(f"{filename} download failed - {exc}")
+        logger.error('File %s download failed - %s', filename, exc)
 
 
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     '''Create list of downloaded PDFs from the database, extract text from each.'''
-    print('Extracting text from PDFs')
+    logger.info('Extracting text from PDFs')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
     combined_chunks: list[Chunk] = []
@@ -143,7 +144,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
 def doc_search_lexical(chunks: list[Chunk], query: str, k: int) -> tuple[np.ndarray, np.ndarray]:
     '''Accept text corpus, search query, and number of top results, returns top k results and scores.'''
-    print('Searching combined text')
+    logger.info('Searching combined text')
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corp = bm25s.tokenize(corpus, stopwords='english')
     tokenized_query = bm25s.tokenize(query)
@@ -183,7 +184,7 @@ def main() -> None:
                 print(f"Chunk Text:\n{result_chunk['text']}\n\n")
                 '''
 
-            print('All PDFs examined')
+            logger.info('All PDFs examined')
 
 
 if __name__ == '__main__':
