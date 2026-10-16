@@ -1,3 +1,4 @@
+import json
 import logging
 import sqlite3
 from contextlib import closing
@@ -201,14 +202,22 @@ def main() -> None:
     # Build the index and save it, return the built index
     retriever = build_index(combined_chunks)
 
-    # Run eeach test query through the retriever and print the top K results
+    # Run each test query through the retriever and print the top K results
+    run_results = []
     for query in TEST_QUERIES:
         logger.info('Running query: %s', query)
         print(f"Query: {query}\nResults:\n")
 
+        query_results = []
         results, scores = doc_search_lexical(retriever, query, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
+            query_results.append({f"chunk {i + 1}": {
+                'chunk_id': result_chunk['chunk_id'],
+                'document_id': result_chunk['document_id'],
+                'document_title': result_chunk['title'],
+                'page_number': result_chunk['page_number']
+            }})
 
             print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
             print(f"Text:\n{result_chunk['text']}\n\n")
@@ -218,6 +227,14 @@ def main() -> None:
                 result_chunk['title'],
                 result_chunk['page_number']
             )
+
+        run_results.append({'query': query,
+                            'results': query_results
+        })
+
+    # Print results to JSON file
+    with open('run_results.json', mode='w', encoding='utf-8') as results_file:
+        json.dump(run_results, results_file)
 
     logger.info('All PDFs examined')
 
