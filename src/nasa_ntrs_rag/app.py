@@ -39,7 +39,7 @@ TEST_QUERIES = [
     'Where is the DSS-25 station located',
     'What factors affect the quality of satellite altimetry measurements'
 ]
-K = 3
+K = 5
 
 logger = logging.getLogger(__name__)
 
@@ -203,7 +203,10 @@ def main() -> None:
     retriever = build_index(combined_chunks)
 
     # Run each test query through the retriever and print the top K results
-    run_results = []
+    run_results = {
+        'k': K,
+        'queries': []
+    }
     for query in TEST_QUERIES:
         logger.info('Running query: %s', query)
         print(f"Query: {query}\nResults:\n")
@@ -212,12 +215,14 @@ def main() -> None:
         results, scores = doc_search_lexical(retriever, query, K)
         for i in range(results.shape[1]):
             result_chunk = results[0, i]
-            query_results.append({f"chunk {i + 1}": {
+            query_results.append({
+                'rank': i + 1,
+                'score': float(scores[0, i]),
                 'chunk_id': result_chunk['chunk_id'],
                 'document_id': result_chunk['document_id'],
                 'document_title': result_chunk['title'],
                 'page_number': result_chunk['page_number']
-            }})
+            })
 
             print(f"Document Title: {result_chunk['title']}, Page {result_chunk['page_number']}")
             print(f"Text:\n{result_chunk['text']}\n\n")
@@ -228,7 +233,7 @@ def main() -> None:
                 result_chunk['page_number']
             )
 
-        run_results.append({'query': query,
+        run_results['queries'].append({'query': query,
                             'results': query_results
         })
 
