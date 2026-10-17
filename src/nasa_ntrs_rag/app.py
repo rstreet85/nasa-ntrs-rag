@@ -32,12 +32,12 @@ METADATA_REQ_PARAMS = {
 }
 TEST_QUERIES = [
     'What is the size of the keep out sphere',
-    'What are parameters of TIRS-2',
-    'What type of receiver antenna to use for satellite tracking',
+    'What are the parameters of TIRS-2',
+    'What type of receiver antenna to use for satellite tracking base',
     'What is the relationship between input and output file size in DTN',
-    'Best performing centrality measure of node clusters',
-    'Where is DSS-25 station',
-    'What factors affect satellite altimetry measurement quality'
+    'What is the best performing centrality measure of node clusters',
+    'Where is the DSS-25 station located',
+    'What factors affect the quality of satellite altimetry measurements'
 ]
 K = 3
 
