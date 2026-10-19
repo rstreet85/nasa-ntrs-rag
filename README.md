@@ -30,7 +30,7 @@ The application uses BM25 (specifically the bm25s library) for keyword search, a
 # Benchmarks
 
 ## Document-level Recall@K with BM25
-Recall@K results for a limited dataset of 11 PDfs with the subject code 'Space Communications, Spacecraft Communications, Command and Tracking'. 
+Recall@K results for a limited dataset of 11 PDFs with the subject code 'Space Communications, Spacecraft Communications, Command and Tracking'. 
 
 | Query | Relevant Document IDs | Recall@1 | Recall@3 | Recall@5 |
 | :---- | :-------------------- | :------: | :------: | :------: |
