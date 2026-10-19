@@ -39,7 +39,7 @@ TEST_QUERIES = [
     'Where is the DSS-25 station located',
     'What is the role of polyvinyl alcohol in Bi electroplating'
 ]
-K = 5
+K = 3
 
 logger = logging.getLogger(__name__)
 

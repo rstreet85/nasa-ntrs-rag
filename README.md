@@ -29,12 +29,21 @@ The application uses BM25 (specifically the bm25s library) for keyword search, a
 
 # Benchmarks
 
-## Recall@K with BM25
+## Document-level Recall@K with BM25
+Recall@K results for a limited dataset of 11 PDfs with the subject code 'Space Communications, Spacecraft Communications, Command and Tracking'. 
 
+| Query | Relevant Document IDs | Recall@1 | Recall@3 | Recall@5 |
+| :---- | :-------------------- | :------: | :------: | :------: |
+| Is the Morse-Lyapunov controller fuel optimal | 20250003112| 1.0 | 1.0 | 1.0 |
+| What are the parameters of TIRS-2 | 20210012997 | 1.0 | 1.0 | 1.0 |
+| What class receivers are DORIS satellites equipped with | 20230014981 | 1.0 | 1.0 | 1.0 |
+| What is a Luby transform | 20230007643 | 1.0 | 1.0 | 1.0 |
+| What is the best performing centrality measure of node clusters | 20240014692 | 1.0 | 1.0 | 1.0 |
+| Where is the DSS-25 station located | 20230010185 |  1.0 | 1.0 | 1.0 |
+| What is the role of polyvinyl alcohol in Bi electroplating | 20260002377 | 1.0 | 1.0 | 1.0 |
 
 # Current Status
 
-Ingestion Flow
 | Feature                             | Status    |
 | :---------------------------------- | :-------: |
 | NTRS API integration                | Completed |
@@ -45,7 +54,7 @@ Ingestion Flow
 | PDF text extraction                 | Completed |
 | Text chunking, basic                | Completed |
 | Top K keyword retrieval, basic      | Completed |
-| Recall@K benchmark for BM25 results | Pending   |
+| Recall@K benchmark for BM25 results | Completed |
 | Text embedding                      | Pending   |
 | Embedding-based retrieval, basic    | Pending   |
 | User query embedding                | Pending   |
