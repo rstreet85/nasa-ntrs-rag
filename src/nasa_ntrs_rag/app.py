@@ -64,8 +64,8 @@ def init_download_db() -> None:
 
 def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
-    success_count = 0
-    fail_count = 0
+    insert_count = 0
+    skip_count = 0
     try:
         response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
@@ -81,7 +81,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
                 try: 
                     cursor.execute('''
-                        INSERT INTO articles_status (
+                        INSERT OR IGNORE INTO articles_status (
                             id,
                             status,
                             url,
@@ -91,15 +91,18 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                         VALUES (?, ?, ?, ?, ?);''',
                         (article_id, 'pending', url, url.split('/')[-1], title))
                     
-                    success_count += 1
                     logger.info('Updated file metadata')
                 except sqlite3.IntegrityError as exc:
-                    fail_count += 1
+                    skip_count += 1
                     logger.error('Failed to update file metadata')
-                    
+
+                if cursor.rowcount == 1:
+                    insert_count += 1
+                else:
+                    skip_count += 1
 
         logger.info('Metadata response processed for %i files. Updated metadata for %i files, failed to update %i files',
-                    success_count + fail_count, success_count, fail_count)
+                    insert_count + skip_count, insert_count, skip_count)
     except httpx.HTTPStatusError as exc:
         logger.error('Error status %s received when requesting metadata', exc.response.status_code)
         raise
