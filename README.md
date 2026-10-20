@@ -2,6 +2,9 @@
 
 Experimental retrieval augmented generation system built on NASA's NTRS collection. The application queries the NTRS API for relevant documents, tracks document downloads, and uses PyMuPDF4LLM for text extraction. 
 
+# Usage
+
+
 # Pipeline
 
 ## Ingestion Flow
@@ -74,3 +77,4 @@ Recall@K results for a limited dataset of 11 PDFs with the subject code 'Space C
 | Prompt construction                 | Pending   |
 | LLM response generation             | Pending   |
 | Split into Indexing API/Query API   | Pending   |
+| pytest - Basic retrieval            | Completed |

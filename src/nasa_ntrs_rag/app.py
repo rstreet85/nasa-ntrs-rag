@@ -64,13 +64,14 @@ def init_download_db() -> None:
 
 def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
+    success_count = 0
     try:
         response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
 
         pub_list = response.json()['results']
         logger.info('Metadata response received')
-        
+
         for pub in pub_list:
             if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
                 article_id = int(pub['id'])
@@ -87,6 +88,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     )
                     VALUES (?, ?, ?, ?, ?);''',
                     (article_id, 'pending', url, url.split('/')[-1], title))
+                success_count += 1
 
         logger.info('Metadata response processed')
     except httpx.HTTPStatusError as exc:
@@ -96,6 +98,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     except httpx.HTTPError as exc:
         logger.error('Unexpected HTTP error %s', exc)
 
+    logger.info('Successfully extracted metadata for %i articles', success_count)
 
 def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Read list of all files undownloaded files and download them.'''
@@ -133,8 +136,10 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     logger.info('Extracting text from PDFs')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
+    logger.info('Attempting to extract %i PDFs', len(saved_docs))
     combined_chunks: list[Chunk] = []
 
+    extracted_documents = 0
     for document in saved_docs:
         filepath = DOWNLOAD_PATH / document[3]
         doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
@@ -148,7 +153,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                 'url': f"{NTRS_URL}{document[2]}",
                 'text': chunk['text']
             })
+        extracted_documents += 1
 
+    logger.info('Extracted text from %i documents', extracted_documents)
     return combined_chunks
 
 
