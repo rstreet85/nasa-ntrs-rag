@@ -10,7 +10,7 @@ import httpx
 import numpy as np
 import pymupdf4llm
 
-LOG_FILENAME = 'test.log'
+LOG_FILENAME = Path('test.log')
 DOWNLOAD_DB_PATH = Path('articles.db')
 DOWNLOAD_PATH = Path('pdf')
 INDEX_PATH = Path('ntrs_index')
@@ -64,8 +64,9 @@ def init_download_db() -> None:
 
 def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
-    success_count = 0
     try:
+        success_count = 0
+        fail_count = 0
         response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
 
@@ -77,20 +78,28 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 article_id = int(pub['id'])
                 url = pub['downloads'][0]['links']['pdf']
                 title = pub['title']
-                
-                cursor.execute('''
-                    INSERT OR IGNORE INTO articles_status (
-                        id,
-                        status,
-                        url,
-                        filename,
-                        title
-                    )
-                    VALUES (?, ?, ?, ?, ?);''',
-                    (article_id, 'pending', url, url.split('/')[-1], title))
-                success_count += 1
 
-        logger.info('Metadata response processed')
+                try: 
+                    cursor.execute('''
+                        INSERT INTO articles_status (
+                            id,
+                            status,
+                            url,
+                            filename,
+                            title
+                        )
+                        VALUES (?, ?, ?, ?, ?);''',
+                        (article_id, 'pending', url, url.split('/')[-1], title))
+                    
+                    success_count += 1
+                    logger.info('Updated file metadata')
+                except sqlite3.IntegrityError as exc:
+                    fail_count += 0
+                    logger.error('Failed to update file metadata')
+                    
+
+        logger.info('Metadata response processed for %i files. Updated metadata for %i files, failed to update %i files',
+                    success_count + fail_count, success_count, fail_count)
     except httpx.HTTPStatusError as exc:
         logger.error('Error status %s received when requesting metadata', exc.response.status_code)
     except httpx.RequestError as exc:
@@ -106,13 +115,20 @@ def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
     docs = cursor.fetchall()
 
+    download_count = 0
+    failed_count = 0
     for doc in docs:
-        download_pdf(client, cursor, doc[0], doc[2], doc[3])
+        if download_pdf(client, cursor, doc[0], doc[2], doc[3]):
+            download_count += 1
+        else:
+            failed_count += 1
 
     logger.info('Downloading files complete')
+    logger.info('%i total files. Downloaded %i files, failed to download %i files',
+                download_count + failed_count, download_count, failed_count)
 
 
-def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> None:
+def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> bool:
     '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
     logger.info('Downloading file %s', filename)
 
@@ -124,11 +140,15 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
         with download_filepath.open('wb') as file:
             file.write(response.content)
             cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
-            logger.info('File %s downloaded', filename)
+        
+        logger.info('File %s downloaded', filename)
+        return True
 
     except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
         logger.error('File %s download failed - %s', filename, exc)
+
+        return False
 
 
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
