@@ -70,7 +70,15 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
 
-        pub_list = response.json()['results']
+        # Validate JSON from NTRS metadata service here
+        try:
+            metadata_payload = response.json()
+        except ValueError as exc:
+            raise RuntimeError('Metadata request failed - Invalid JSON: ') from exc
+
+        
+        # Parse results if valid JSON is received
+        pub_list = metadata_payload['results']
         logger.info('Metadata response received')
 
         for pub in pub_list:
@@ -148,13 +156,14 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
         
         logger.info('File %s downloaded', filename)
-        return True
 
     except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
         logger.error('File %s download failed - %s', filename, exc)
 
         return False
+
+    return True
 
 
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
