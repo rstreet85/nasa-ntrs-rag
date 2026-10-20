@@ -64,9 +64,9 @@ def init_download_db() -> None:
 
 def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Search all articles that match requested category code and have PDF downloads. Save IDs in db.'''
+    success_count = 0
+    fail_count = 0
     try:
-        success_count = 0
-        fail_count = 0
         response = client.post(NTRS_PUBSEARCH_URL, json=METADATA_REQ_PARAMS)
         response.raise_for_status()
 
@@ -94,7 +94,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     success_count += 1
                     logger.info('Updated file metadata')
                 except sqlite3.IntegrityError as exc:
-                    fail_count += 0
+                    fail_count += 1
                     logger.error('Failed to update file metadata')
                     
 
@@ -102,12 +102,14 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     success_count + fail_count, success_count, fail_count)
     except httpx.HTTPStatusError as exc:
         logger.error('Error status %s received when requesting metadata', exc.response.status_code)
+        raise
     except httpx.RequestError as exc:
         logger.error('Request error for metadata: %s', exc)
+        raise
     except httpx.HTTPError as exc:
         logger.error('Unexpected HTTP error %s', exc)
+        raise
 
-    logger.info('Successfully extracted metadata for %i articles', success_count)
 
 def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Read list of all files undownloaded files and download them.'''
@@ -139,7 +141,8 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
         download_filepath = DOWNLOAD_PATH / filename
         with download_filepath.open('wb') as file:
             file.write(response.content)
-            cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
+        
+        cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
         
         logger.info('File %s downloaded', filename)
         return True
