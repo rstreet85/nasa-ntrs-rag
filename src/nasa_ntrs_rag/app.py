@@ -76,10 +76,13 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         except ValueError as exc:
             raise RuntimeError('Metadata request failed - Invalid JSON: ') from exc
 
+        if 'results' not in metadata_payload:
+            raise RuntimeError('Metadata response is missing valid results list')
+
         
         # Parse results if valid JSON is received
         pub_list = metadata_payload['results']
-        logger.info('Metadata response received')
+        logger.info('Metadata response received, %i articles found', len(pub_list))
 
         for pub in pub_list:
             if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
@@ -109,7 +112,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 else:
                     skip_count += 1
 
-        logger.info('Metadata response processed for %i files. Updated metadata for %i files, failed to update %i files',
+        logger.info('Found %i files available for download. Updated download status for %i files, failed to update status for %i files',
                     insert_count + skip_count, insert_count, skip_count)
     except httpx.HTTPStatusError as exc:
         logger.error('Error status %s received when requesting metadata', exc.response.status_code)
@@ -163,18 +166,26 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
 
         return False
 
+    except (OSError, PermissionError) as exc:
+        cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
+        logger.error('File %s download failed due to system issue - %s', filename, exc)
+
+        return False
+
     return True
 
 
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     '''Create list of downloaded PDFs from the database, extract text from each.'''
-    logger.info('Extracting text from PDFs')
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
-    logger.info('Attempting to extract %i PDFs', len(saved_docs))
     combined_chunks: list[Chunk] = []
+    extracted_count = 0
+    failed_count = 0
 
-    extracted_documents = 0
+    logger.info('Extracting text from PDFs')
+    logger.info('Attempting to extract %i PDFs', len(saved_docs))
+
     for document in saved_docs:
         filepath = DOWNLOAD_PATH / document[3]
         doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
@@ -188,9 +199,10 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                 'url': f"{NTRS_URL}{document[2]}",
                 'text': chunk['text']
             })
-        extracted_documents += 1
 
-    logger.info('Extracted text from %i documents', extracted_documents)
+        extracted_count += 1
+
+    logger.info('Extracted text from %i documents', extracted_count)
     return combined_chunks
 
 
