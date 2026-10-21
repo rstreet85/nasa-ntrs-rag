@@ -124,8 +124,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     
                     logger.info('Updated file metadata')
                 except sqlite3.IntegrityError as exc:
-                    skip_count += 1
-                    logger.error('Failed to update file metadata')
+                    logger.error('Failed to update file metadata: %s', exc)
 
                 if cursor.rowcount == 1:
                     insert_count += 1
