@@ -147,7 +147,8 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
     '''Read list of all files undownloaded files and download them.'''
     logger.info('Beginning file downloads')
-    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?', ('downloaded',))
+    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status != ?',
+                ('downloaded',))
     docs = cursor.fetchall()
 
     download_count = 0
@@ -234,8 +235,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
 def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
-    logger.info('Building BM25 index from %i chunks', len(chunks))
-
+    
     # Check that there exists at least one chunk before building
     if not chunks:
         raise ValueError('Cannot build index from empty corpus')
@@ -245,6 +245,7 @@ def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     chunks = [chunk for chunk in chunks if chunk['text'].strip()]
     logger.info('Removed %i chunks before building index', raw_chunk_count - len(chunks))
 
+    logger.info('Building BM25 index from %i chunks', len(chunks))
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
     retriever = bm25s.BM25(corpus=chunks)
