@@ -90,18 +90,31 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
         for pub in pub_list:
 
+            # Validate document metadata
+            if not isinstance(pub, dict):
+                raise TypeError('Document metadata is not in valid JSON format')
+
+            if 'downloadsAvailable' not in pub or 'downloads' not in pub:
+                raise ValueError('Document metadata missing download information')
+
+            if not isinstance(pub['downloads'], list):
+                raise TypeError('Document download metadata is not in expected format')
+
             # Confirm that article has downloads and that download list is not empty
             if pub['downloadsAvailable'] and pub['downloads']:
-                article_id, url, title = None, None, None
+                article_id, url, filename, title = None, None, None, None
 
                 # Check that article has all relevant fields.
                 try:
                     article_id = int(pub['id'])
                 except KeyError:
                     logger.error('Article metadata missing field article_id')
+                except ValueError:
+                    logger.error('Article ID in metadata cannot be converteed to integer. Value=%s', pub['id'])
 
                 try:
                     url = pub['downloads'][0]['links']['pdf']
+                    filename = url.split('/')[-1]
                 except KeyError:
                     logger.error('Article metadata missing field url')
 
@@ -111,26 +124,29 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article metadata missing field title')
 
                 # Add required document fields to the status table
-                try: 
-                    cursor.execute('''
-                        INSERT OR IGNORE INTO articles_status (
-                            id,
-                            status,
-                            url,
-                            filename,
-                            title
-                        )
-                        VALUES (?, ?, ?, ?, ?);''',
-                        (article_id, 'pending', url, url.split('/')[-1], title))
+                if article_id and url and filename and title:
+                    try: 
+                        cursor.execute('''
+                            INSERT OR IGNORE INTO articles_status (
+                                id,
+                                status,
+                                url,
+                                filename,
+                                title
+                            )
+                            VALUES (?, ?, ?, ?, ?);''',
+                            (article_id, 'pending', url, filename, title))
                     
-                    logger.info('Updated metadata for document ID: %i', article_id)
-                except sqlite3.IntegrityError:
-                    logger.exception('Failed to update metadata for document ID: %i', article_id)
+                        logger.info('Updated metadata for document ID: %i', article_id)
+                    except sqlite3.IntegrityError:
+                        logger.exception('Failed to update metadata for document ID: %i', article_id)
 
-                if cursor.rowcount == 1:
-                    insert_count += 1
+                    if cursor.rowcount == 1:
+                        insert_count += 1
+                    else:
+                        skip_count += 1
                 else:
-                    skip_count += 1
+                    raise ValueError('Invalid values for article metadata. Article skipped')
 
         logger.info('Found %i files available for download. Updated download status for %i files, %i files not updated',
                     insert_count + skip_count, insert_count, skip_count)
