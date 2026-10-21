@@ -91,7 +91,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
             # Confirm that article has downloads and that download list is not empty
             if pub['downloadsAvailable'] and pub['downloads']:
-                article_id, url, title
+                article_id, url, title = None, None, None
 
                 # Check that article has all relevant fields.
                 try:
@@ -124,7 +124,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     
                     logger.info('Updated file metadata')
                 except sqlite3.IntegrityError as exc:
-                    logger.error('Failed to update file metadata: %s', exc)
+                    logger.exception('Failed to update file metadata')
 
                 if cursor.rowcount == 1:
                     insert_count += 1
@@ -134,13 +134,13 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         logger.info('Found %i files available for download. Updated download status for %i files, failed to update status for %i files',
                     insert_count + skip_count, insert_count, skip_count)
     except httpx.HTTPStatusError as exc:
-        logger.error('Error status %s received when requesting metadata', exc.response.status_code)
+        logger.exception('Error status %s received when requesting metadata', exc.response.status_code)
         raise
     except httpx.RequestError as exc:
-        logger.error('Request error for metadata: %s', exc)
+        logger.exception('Request error for metadata')
         raise
     except httpx.HTTPError as exc:
-        logger.error('Unexpected HTTP error %s', exc)
+        logger.exception('Unexpected HTTP error')
         raise
 
 
@@ -181,13 +181,13 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
 
     except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
-        logger.error('File %s download failed - %s', filename, exc)
+        logger.exception('File %s download failed', filename)
 
         return False
 
     except (OSError, PermissionError) as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
-        logger.error('File %s download failed due to system issue - %s', filename, exc)
+        logger.exception('File %s download failed due to system error', filename)
 
         return False
 
@@ -224,7 +224,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             logger.info('Extracted text from file %s', document[3])
         except OSError as exc:
             failed_count += 1
-            logger.error('Failed to extract text for file %s - %s', document[3], exc)
+            logger.exception('Failed to extract text for file %s', document[3])
     
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
@@ -234,7 +234,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
 def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
-    logger.info('Building BM25 index')
+    logger.info('Building BM25 index from %i chunks', len(chunks))
 
     # Check that there exists at leaast one chunk before building
     if not chunks:
