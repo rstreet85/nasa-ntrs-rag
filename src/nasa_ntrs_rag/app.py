@@ -8,7 +8,9 @@ from typing import TypedDict
 import bm25s
 import httpx
 import numpy as np
+import pymupdf
 import pymupdf4llm
+
 
 LOG_FILENAME = Path('test.log')
 DOWNLOAD_DB_PATH = Path('articles.db')
@@ -123,7 +125,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                         (article_id, 'pending', url, url.split('/')[-1], title))
                     
                     logger.info('Updated file metadata')
-                except sqlite3.IntegrityError as exc:
+                except sqlite3.IntegrityError:
                     logger.exception('Failed to update file metadata')
 
                 if cursor.rowcount == 1:
@@ -131,7 +133,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 else:
                     skip_count += 1
 
-        logger.info('Found %i files available for download. Updated download status for %i files, failed to update status for %i files',
+        logger.info('Found %i files available for download. Updated download status for %i files, %i files not updated',
                     insert_count + skip_count, insert_count, skip_count)
     except httpx.HTTPStatusError as exc:
         logger.exception('Error status %s received when requesting metadata', exc.response.status_code)
@@ -223,10 +225,18 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
             extracted_count += 1
             logger.info('Extracted text from file %s', document[3])
-        except OSError as exc:
+        except OSError:
             failed_count += 1
-            logger.exception('Failed to extract text for file %s', document[3])
-    
+            logger.exception('Failed to access file %s', document[3])
+        except pymupdf.FileNotFoundError:
+            failed_count += 1
+            logger.exception('Failed to find file %s', document[3])
+        except pymupdf.EmptyFileError:
+            failed_count += 1
+            logger.exception('File %s is empty', document[3])
+        except pymupdf.FileDataError:
+            failed_count += 1
+            logger.exception('Unable to read file %s', document[3])
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
                 extracted_count, failed_count)
