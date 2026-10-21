@@ -240,6 +240,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         except TypeError:
             failed_count += 1
             logger.exception('Unable to read file %s, it could be encrypted', document[3])
+        except Exception:
+            failed_count += 1
+            logger.exception('Unexpected exception while reading file %s', document[3])
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
                 extracted_count, failed_count)
@@ -249,14 +252,14 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
     
-    # Check that there exists at least one chunk before building
-    if not chunks:
-        raise ValueError('Cannot build index from empty corpus')
-
     # Remove chunks with empty text
     raw_chunk_count = len(chunks)
     chunks = [chunk for chunk in chunks if chunk['text'].strip()]
     logger.info('Removed %i chunks before building index', raw_chunk_count - len(chunks))
+
+    # Check that there exists at least one chunk before building
+    if not chunks:
+        raise ValueError('Cannot build index from empty corpus')
 
     logger.info('Building BM25 index from %i chunks', len(chunks))
     corpus = [chunk['text'] for chunk in chunks]
