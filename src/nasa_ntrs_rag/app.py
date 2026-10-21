@@ -138,14 +138,15 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 if article_id and url and filename and title:
                     try: 
                         cursor.execute('''
-                            INSERT OR IGNORE INTO articles_status (
+                            INSERT INTO articles_status (
                                 id,
                                 status,
                                 url,
                                 filename,
                                 title
                             )
-                            VALUES (?, ?, ?, ?, ?);''',
+                            VALUES (?, ?, ?, ?, ?)
+                            ON CONFLICT(id) DO NOTHING;''',
                             (article_id, 'pending', url, filename, title))
                     
                         logger.info('Updated metadata for document ID: %i', article_id)
