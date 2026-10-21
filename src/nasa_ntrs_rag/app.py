@@ -209,22 +209,32 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     logger.info('Attempting to extract %i PDFs', len(saved_docs))
 
     for document in saved_docs:
+        doc_chunks = None
+        
+        # Extract chunks from the PDF
         try:
             filepath = DOWNLOAD_PATH / document[3]
             doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+            logger.info('Extracted chunks from file %s', document[3])
+        except TypeError:
+            logger.exception('Failed to extract text from file %s', document[3])
 
-            for chunk_number, chunk in enumerate(doc_chunks):
-                combined_chunks.append({
-                    'chunk_id': f"{document[0]}-{chunk_number}",
-                    'document_id': document[0],
-                    'page_number': chunk['metadata']['page_number'],
-                    'title': document[4],
-                    'url': f"{NTRS_URL}{document[2]}",
-                    'text': chunk['text']
-                })
+        # Add chunks and required metadata to list of combined chunks
+        try:
+            if doc_chunks is not None:
 
-            extracted_count += 1
-            logger.info('Extracted text from file %s', document[3])
+                for chunk_number, chunk in enumerate(doc_chunks):
+                    combined_chunks.append({
+                        'chunk_id': f"{document[0]}-{chunk_number}",
+                        'document_id': document[0],
+                        'page_number': chunk['metadata']['page_number'],
+                        'title': document[4],
+                        'url': f"{NTRS_URL}{document[2]}",
+                        'text': chunk['text']
+                    })
+
+                extracted_count += 1
+                logger.info('Added chunks from file %s', document[3])
         except OSError:
             failed_count += 1
             logger.exception('Failed to access file %s', document[3])
