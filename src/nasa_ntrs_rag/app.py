@@ -83,6 +83,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         if 'results' not in metadata_payload or not isinstance(metadata_payload['results'], list):
             raise RuntimeError('Metadata response is missing valid results list')
 
+        logger.info(json.dumps(metadata_payload, indent=2))
         
         # Parse results if valid JSON is received
         pub_list = metadata_payload['results']
@@ -92,17 +93,23 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
             # Validate document metadata
             if not isinstance(pub, dict):
-                raise TypeError('Document metadata is not in valid JSON format')
+                logger.error('Document metadata is not in valid JSON format')
 
             if 'downloadsAvailable' not in pub or 'downloads' not in pub:
-                raise ValueError('Document metadata missing download information')
+                logger.error('Document metadata missing download information')
 
             if not isinstance(pub['downloads'], list):
-                raise TypeError('Document download metadata is not in expected format')
+                logger.error('Document download metadata is not in expected format')
 
             # Confirm that article has downloads and that download list is not empty
-            if pub['downloadsAvailable'] and pub['downloads']:
-                article_id, url, filename, title = None, None, None, None
+            if pub['downloadsAvailable']:
+                download_list, article_id, url, filename, title = None, None, None, None, None
+
+                # Check for empty list after checking if the service indicates downloads are available
+                try:
+                    download_list = pub['downloads']
+                except ValueError:
+                    logger.error('Article metadata missing list of downloads')
 
                 # Check that article has all relevant fields.
                 try:
@@ -113,8 +120,10 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article ID in metadata cannot be converteed to integer. Value=%s', pub['id'])
 
                 try:
-                    url = pub['downloads'][0]['links']['pdf']
+                    url = download_list[0]['links']['pdf']
                     filename = url.split('/')[-1]
+                except IndexError:
+                    logger.error('article metadata has empty downloads list')
                 except KeyError:
                     logger.error('Article metadata missing field url')
 
@@ -143,10 +152,10 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
                     if cursor.rowcount == 1:
                         insert_count += 1
-                    else:
+                    elif cursor.rowcount == 0:
                         skip_count += 1
                 else:
-                    raise ValueError('Invalid values for article metadata. Article skipped')
+                    logger.error('Invalid values for article metadata. Article skipped')
 
         logger.info('Found %i files available for download. Updated download status for %i files, %i files not updated',
                     insert_count + skip_count, insert_count, skip_count)
