@@ -76,7 +76,10 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         except ValueError as exc:
             raise RuntimeError('Metadata request failed - Invalid JSON: ') from exc
 
-        if 'results' not in metadata_payload:
+        if not isinstance(metadata_payload, dict):
+            raise RuntimeError('Metadata request is not JSON')
+
+        if 'results' not in metadata_payload or not isinstance(metadata_payload['results'], list):
             raise RuntimeError('Metadata response is missing valid results list')
 
         
@@ -85,11 +88,28 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         logger.info('Metadata response received, %i articles found', len(pub_list))
 
         for pub in pub_list:
-            if pub['downloadsAvailable'] and pub['downloads']: # There are edge cases where downloads = true and list of downloads is empty
-                article_id = int(pub['id'])
-                url = pub['downloads'][0]['links']['pdf']
-                title = pub['title']
 
+            # Confirm that article has downloads and that download list is not empty
+            if pub['downloadsAvailable'] and pub['downloads']:
+                article_id, url, title
+
+                # Check that article has all relevant fields.
+                try:
+                    article_id = int(pub['id'])
+                except KeyError:
+                    logger.error('Article metadata missing field article_id')
+
+                try:
+                    url = pub['downloads'][0]['links']['pdf']
+                except KeyError:
+                    logger.error('Article metadata missing field url')
+
+                try:
+                    title = pub['title']
+                except KeyError:
+                    logger.error('Article metadata missing field title')
+
+                # Add required document fields to the status table
                 try: 
                     cursor.execute('''
                         INSERT OR IGNORE INTO articles_status (
