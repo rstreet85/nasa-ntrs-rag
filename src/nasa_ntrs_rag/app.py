@@ -83,8 +83,6 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         if 'results' not in metadata_payload or not isinstance(metadata_payload['results'], list):
             raise RuntimeError('Metadata response is missing valid results list')
 
-        logger.info(json.dumps(metadata_payload, indent=2))
-        
         # Parse results if valid JSON is received
         pub_list = metadata_payload['results']
         logger.info('Metadata response received, %i articles found', len(pub_list))
@@ -94,12 +92,15 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
             # Validate document metadata
             if not isinstance(pub, dict):
                 logger.error('Document metadata is not in valid JSON format')
+                continue
 
             if 'downloadsAvailable' not in pub or 'downloads' not in pub:
                 logger.error('Document metadata missing download information')
+                continue
 
             if not isinstance(pub['downloads'], list):
                 logger.error('Document download metadata is not in expected format')
+                continue
 
             # Confirm that article has downloads and that download list is not empty
             if pub['downloadsAvailable']:
@@ -110,6 +111,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     download_list = pub['downloads']
                 except ValueError:
                     logger.error('Article metadata missing list of downloads')
+                    continue
 
                 # Check that article has all relevant fields.
                 try:
@@ -123,7 +125,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     url = download_list[0]['links']['pdf']
                     filename = url.split('/')[-1]
                 except IndexError:
-                    logger.error('article metadata has empty downloads list')
+                    logger.error('Article metadata has empty downloads list')
                 except KeyError:
                     logger.error('Article metadata missing field url')
 
