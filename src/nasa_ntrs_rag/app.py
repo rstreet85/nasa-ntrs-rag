@@ -222,12 +222,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
             extracted_count += 1
             logger.info('Extracted text from file %s', document[3])
-        except FileNotFoundError as exc:
+        except OSError as exc:
             failed_count += 1
-            logger.error('Failed to extract text for file %s - file not found', document[3])
-        except ValueError as exc:
-            failed_count += 1
-            logger.error('Failed to extract text for file %s - invalid input', document[3])
+            logger.error('Failed to extract text for file %s - %s', document[3], exc)
     
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
@@ -238,6 +235,10 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
     logger.info('Building BM25 index')
+
+    # Check that there exists at leaast one chunk before building
+    if not chunks:
+        raise ValueError('Cannot build index from empty corpus')
 
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
