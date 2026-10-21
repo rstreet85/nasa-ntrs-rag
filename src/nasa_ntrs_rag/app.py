@@ -187,22 +187,32 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     logger.info('Attempting to extract %i PDFs', len(saved_docs))
 
     for document in saved_docs:
-        filepath = DOWNLOAD_PATH / document[3]
-        doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+        try:
+            filepath = DOWNLOAD_PATH / document[3]
+            doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
-        for chunk_number, chunk in enumerate(doc_chunks):
-            combined_chunks.append({
-                'chunk_id': f"{document[0]}-{chunk_number}",
-                'document_id': document[0],
-                'page_number': chunk['metadata']['page_number'],
-                'title': document[4],
-                'url': f"{NTRS_URL}{document[2]}",
-                'text': chunk['text']
-            })
+            for chunk_number, chunk in enumerate(doc_chunks):
+                combined_chunks.append({
+                    'chunk_id': f"{document[0]}-{chunk_number}",
+                    'document_id': document[0],
+                    'page_number': chunk['metadata']['page_number'],
+                    'title': document[4],
+                    'url': f"{NTRS_URL}{document[2]}",
+                    'text': chunk['text']
+                })
 
-        extracted_count += 1
+            extracted_count += 1
+            logger.info('Extracted text from file %s', document[3])
+        except FileNotFoundError as exc:
+            failed_count += 1
+            logger.error('Failed to extract text for file %s - file not found', document[3])
+        except ValueError as exc:
+            failed_count += 1
+            logger.error('Failed to extract text for file %s - invalid input', document[3])
+    
 
-    logger.info('Extracted text from %i documents', extracted_count)
+    logger.info('Extracted text from %i documents, failed to extract text from %i documents',
+                extracted_count, failed_count)
     return combined_chunks
 
 
