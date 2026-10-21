@@ -236,9 +236,14 @@ def build_index(chunks: list[Chunk]) -> bm25s.BM25:
     '''Build the BM25 index from extracted chunks'''
     logger.info('Building BM25 index from %i chunks', len(chunks))
 
-    # Check that there exists at leaast one chunk before building
+    # Check that there exists at least one chunk before building
     if not chunks:
         raise ValueError('Cannot build index from empty corpus')
+
+    # Remove chunks with empty text
+    raw_chunk_count = len(chunks)
+    chunks = [chunk for chunk in chunks if chunk['text'].strip()]
+    logger.info('Removed %i chunks before building index', raw_chunk_count - len(chunks))
 
     corpus = [chunk['text'] for chunk in chunks]
     tokenized_corpus = bm25s.tokenize(corpus, stopwords='english')
