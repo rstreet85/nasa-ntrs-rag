@@ -148,15 +148,17 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                             VALUES (?, ?, ?, ?, ?)
                             ON CONFLICT(id) DO NOTHING;''',
                             (article_id, 'pending', url, filename, title))
-                    
-                        logger.info('Updated metadata for document ID: %i', article_id)
-                    except sqlite3.IntegrityError:
-                        logger.exception('Failed to update metadata for document ID: %i', article_id)
 
-                    if cursor.rowcount == 1:
-                        insert_count += 1
-                    elif cursor.rowcount == 0:
-                        skip_count += 1
+                        if cursor.rowcount == 1:
+                            insert_count += 1
+                            logger.info('Updated metadata for document ID: %i', article_id)
+                        elif cursor.rowcount == 0:
+                            skip_count += 1
+                            logger.info('Skipped updating metadata for document ID: %i', article_id)
+
+                    except sqlite3.Error:
+                        logger.exception('Unexpected failure to update metadata for document ID: %i', article_id)
+
                 else:
                     logger.error('Invalid values for article metadata. Article skipped')
 
