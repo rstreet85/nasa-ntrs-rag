@@ -1,0 +1,3271 @@
+{
+  "stats": {
+    "took": 36,
+    "total": 12,
+    "estimate": false,
+    "maxScore": 0
+  },
+  "results": [
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": true,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "licenseType": "NO",
+        "submissionId": 20230010185,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "07519e0d869144aaa651b0fe922c5e2e",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking",
+        "Instrumentation and Photography"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20230010185,
+        "ear": "NO",
+        "id": "dce9b60e1f0a46ec99bac888ee530272",
+        "itar": "NO"
+      },
+      "distributionDate": "2023-06-13T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "684499.04.02.04",
+          "submissionId": 20230010185,
+          "id": "6fd367721e784b85b53bf07e11541c57",
+          "type": "WBS"
+        },
+        {
+          "number": "80NM0018D0004",
+          "submissionId": 20230010185,
+          "id": "a309ec2d0acd4cddb59aa3eb629fec4e",
+          "type": "CONTRACT_GRANT"
+        },
+        {
+          "number": "J-090023",
+          "submissionId": 20230010185,
+          "id": "484d519f1c2842e99efac7b582854a71",
+          "type": "CONTRACT_GRANT"
+        }
+      ],
+      "title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2023-07-12T16:05:20.3267780+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 0,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-2888-5918",
+              "name": "D. R. Buccino"
+            },
+            "organization": {
+              "name": "Jet Propulsion Lab",
+              "location": "La Ca\u00f1ada Flintridge, California, United States"
+            }
+          },
+          "id": "2ae36cf60ad6459db24ea5d6c9771b53",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "74c75a37a6ae47f899c5808b62457c81"
+        },
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 1,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "K. Oudrhiri"
+            },
+            "organization": {
+              "name": "Jet Propulsion Lab",
+              "location": "La Ca\u00f1ada Flintridge, California, United States"
+            }
+          },
+          "id": "5058ae8c5df940949cc9a2e80dbd0016",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "d0e3c12600d7484593b560277ffa4161"
+        },
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 2,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-4064-6634",
+              "name": "M. Parisi"
+            },
+            "organization": {
+              "name": "Jet Propulsion Lab",
+              "location": "La Ca\u00f1ada Flintridge, California, United States"
+            }
+          },
+          "id": "b8f05311ae80441b977d7957a1f46b94",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "c0d4f79aea70422287db2cad47bbf7bb"
+        },
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 3,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-9896-4585",
+              "name": "R. S. Park"
+            },
+            "organization": {
+              "name": "Jet Propulsion Lab",
+              "location": "La Ca\u00f1ada Flintridge, California, United States"
+            }
+          },
+          "id": "66532a4742bf4bb79f1b19d0315736bf",
+          "userId": "d3abc599a87545c2acabe5a0c7fb60f9"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 4,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-3456-427X",
+              "name": "E. Mazarico"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, Maryland, United States"
+            }
+          },
+          "id": "5c91f4cf3e0e4eb38a12d5a748c28733",
+          "userType": "CIVIL",
+          "userId": "a4e79bd2ea1d4a18a680079007ca1827"
+        },
+        {
+          "organizationId": "7bcf58ad15a754e188895eb6425d8323",
+          "sequence": 5,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-9259-7673",
+              "name": "P. Tortora"
+            },
+            "organization": {
+              "name": "University of Bologna",
+              "location": "Bologna, Emilia-Romagna, Italy"
+            }
+          },
+          "id": "47db63283d8e44a09ab80cc7a28d2b0a",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "c3ede036ac9848298d94844c0b7e4c9e"
+        },
+        {
+          "organizationId": "b296e22caed55b2b8ba48f367900521b",
+          "sequence": 6,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-3084-4581",
+              "name": "P. Withers"
+            },
+            "organization": {
+              "name": "Boston University",
+              "location": "Boston, Massachusetts, United States"
+            }
+          },
+          "id": "35b3e466961844579ef2b0a23e98a792",
+          "userId": "673627cb20e046ea9f05660e9e17de14"
+        },
+        {
+          "organizationId": "c54bd23c1c1f535fad34d710d677caf5",
+          "sequence": 7,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-5584-492X",
+              "name": "A. Genova"
+            },
+            "organization": {
+              "name": "Sapienza University of Rome",
+              "location": "Rome, Lazio, Italy"
+            }
+          },
+          "id": "d3775c552b2b4d5d8f93900f32fffe78",
+          "userId": "14d06e7070a54613b6f8f92d7a44559f"
+        },
+        {
+          "organizationId": "7bcf58ad15a754e188895eb6425d8323",
+          "sequence": 8,
+          "submissionId": 20230010185,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-4151-9656",
+              "name": "M. Zannoni"
+            },
+            "organization": {
+              "name": "University of Bologna",
+              "location": "Bologna, Emilia-Romagna, Italy"
+            }
+          },
+          "id": "11bdc401dd7244e4960dd3bddc43c980",
+          "userType": "OTHER",
+          "userId": "65df18feda034ab1ae7468d1440f1c5a"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "NASA_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20230010185,
+      "created": "2023-07-12T16:02:06.6133850+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The signal-to-noise ratio received at Earth is typically larger than 10 dB-Hz for radio tracking of a spacecraft in deep space, allowing a phase-locked loop to execute reliable carrier tracking. Recently, missions have been proposed to utilize low-gain antennas for Doppler tracking where the signal-to-noise ratio may be at the single-digit (dB-Hz) level. In this work, we discuss spacecraft Doppler tracking at these low signal-to-noise ratios through an analysis of thermal noise on the radio link, results from ground testing with the Deep Space Network, and demonstrations with an active spacecraft. We show that by utilizing an open-loop receiver to capture the carrier signal and by applying post-processing techniques, radio data with the signal-to-noise ratio as low as 4 dB-Hz can be used to derive Doppler data with precision sufficient for tracking a spacecraft in deep space.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20230010185,
+        "id": "728af93de93843baa31ce625fbf0218d"
+      },
+      "publications": [
+        {
+          "volume": "58",
+          "submissionId": 20230010185,
+          "issue": "7",
+          "issn": "0048-6604",
+          "publisher": "American Geophysical Union",
+          "eissn": "1944-799X",
+          "id": "581cdb67358143adbafeec9681d83f68",
+          "publicationName": "Radio Science",
+          "publicationDate": "2023-06-13T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2023-07-01T04:00:00.0000000+00:00",
+          "doi": "10.1029/2023RS007703"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "Mazarico.precision.STI.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20230010185/downloads/Mazarico.precision.STI.pdf",
+            "pdf": "/api/citations/20230010185/downloads/Mazarico.precision.STI.pdf",
+            "fulltext": "/api/citations/20230010185/downloads/Mazarico.precision.STI.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "submissionId": 20240007403,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "5a71ca1f30074019a6b168d7bc4dbdaf",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "interoperability",
+        "LunaNet",
+        "Artemis"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20240007403,
+        "ear": "NO",
+        "id": "21e553727d1b405e805762a22d60a4d5",
+        "itar": "NO"
+      },
+      "distributionDate": "2024-06-28T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "NASA",
+          "submissionId": 20240007403,
+          "id": "be25723beeb44c8495c618d55f282d7b",
+          "type": "CONTRACT_GRANT"
+        }
+      ],
+      "title": "Deeper Dive into Interoperability and Its Implications for LunaNet Communications and Navigation Services",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2024-06-10T19:00:12.9952880+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "e53641f275f15469a1b19a8980e09171",
+          "sequence": 0,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "James Schier"
+            },
+            "organization": {
+              "name": "National Aeronautics and Space Administration",
+              "location": "Washington, United States"
+            }
+          },
+          "id": "6e81071717a647f7b268e0abeff8373f",
+          "userType": "CIVIL",
+          "userId": "4505ce79a9ac40db9a87abec184f5b7f"
+        },
+        {
+          "organizationId": "e53641f275f15469a1b19a8980e09171",
+          "sequence": 1,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Corali Roura"
+            },
+            "organization": {
+              "name": "National Aeronautics and Space Administration",
+              "location": "Washington, United States"
+            }
+          },
+          "id": "630e62e841ce419e83a853ad2ea6d187",
+          "userType": "CIVIL",
+          "userId": "8edef65261874a4598c1e97e55fadb17"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 2,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Phillip Paulsen"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, United States"
+            }
+          },
+          "id": "4dbe23f6bd814d448b11e657c02c3a2d",
+          "userType": "CIVIL",
+          "userId": "b299bb2996bf41beb07531420e72ec3c"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 3,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Karl Vaden"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, United States"
+            }
+          },
+          "id": "34a669c2573647149595b177d1d7c150",
+          "userType": "CIVIL",
+          "userId": "bc4d0de33fbe451d8d47458eae4e4cbc"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 4,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Jennifer Rock"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, United States"
+            }
+          },
+          "id": "f02752c1e2ba4897ab96e3ebb4eeb877",
+          "userType": "CIVIL",
+          "userId": "afad5b85cfac48a786ce92469b90aa5c"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 5,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Charles Sheehe"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, United States"
+            }
+          },
+          "id": "dedaca3302284016b0dc3c9d7781a739",
+          "userType": "CIVIL",
+          "userId": "7498e5f083c341a9aa7971e7c673b701"
+        },
+        {
+          "sequence": 6,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Angela Peura "
+            },
+            "organization": {
+              "name": "Agile Decision Sciences"
+            }
+          },
+          "id": "5d2a45a54b504f9fb2d93227a1622d3f",
+          "userType": "OTHER"
+        },
+        {
+          "sequence": 7,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Marc Seibert "
+            },
+            "organization": {
+              "name": "Agile Decision Sciences"
+            }
+          },
+          "id": "e18ce7d80f7246eb9ad1aedf3223399d",
+          "userType": "OTHER"
+        },
+        {
+          "sequence": 8,
+          "submissionId": 20240007403,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Erica Weir "
+            },
+            "organization": {
+              "name": "Teltrium Inc."
+            }
+          },
+          "id": "cc66b7a689e24749b03aada7c7016e37",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "NASA_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20240007403,
+      "created": "2024-06-10T18:13:30.2400910+00:00",
+      "center": {
+        "code": "HQ",
+        "name": "Headquarters",
+        "id": "f0865a34ba1f474d865ab51f212fc69f"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The Artemis program being developed by United States\u2019 (US) National Aeronautics and Space Administration (NASA) is developing the capabilities to return humans to the Moon and establish an initial base camp and associated infrastructure with extensive contributions from international and commercial partners. In planning for cislunar exploration and science missions, space agencies are collaborating to enable communications, networking, and Positioning, Navigation, and Timing (PNT) systems\u2014called LunaNet\u2014to exchange information and provide services to cislunar spacecraft and space systems, thus helping \neach other to achieve their shared goals. To achieve commonality and lower cost for mutual benefit, the strategy of interoperability is being adopted to help fit all the pieces together and function smoothly. Facilitating interoperability should benefit lunar missions by providing the ability to operate in a collaborative environment similar to the terrestrial Internet.\nInteroperability allows them to share information, navigate safely despite increasing radio frequency congestion, and follow common processes and procedures for effective joint operations. Unlike prior government-dominated efforts, this ecosystem is expected to include and benefit for-profit (commercial) businesses, non-profit organizations, and academic institutions as active stakeholders. Ultimately, the goal is to enable a cislunar ecosystem of service providers and users to contribute to and/or utilize infrastructure and capabilities to achieve mission objectives that span the full range of human endeavors while supporting a \nvariety of business models. This approach enables a Systems of Systems (SoS), such as a Network-of-Networks, to be sustainable in the context of the LunaNet ecosystem as systems evolve over time in technologies, standards, components, and user applications. This paper reports on the results of an effort to help frame the development of the international LunaNet \narchitecture by providing a canonical definition of interoperability broad enough to meet these needs, examining architectural and operational implications of the definition, and exploring interoperability strategies and tactics to deploy and evolve the services proposed for cislunar exploration and science missions. ",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20240007403,
+        "id": "ffac774d9ca54e928ce1a3e22cf3b9b6"
+      },
+      "publications": [
+        {
+          "submissionId": 20240007403,
+          "issue": "Special Issue",
+          "publisher": "John Wiley & Sons (United Kingdom)",
+          "id": "6733d0a63c844642b052c8e53bbd5006",
+          "publicationName": "International Journal of Satellite Communications and Networking",
+          "publicationDate": "2024-06-28T04:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "Interoperability for LunaNet Services.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20240007403/downloads/Interoperability%20for%20LunaNet%20Services.pdf",
+            "pdf": "/api/citations/20240007403/downloads/Interoperability%20for%20LunaNet%20Services.pdf",
+            "fulltext": "/api/citations/20240007403/downloads/Interoperability%20for%20LunaNet%20Services.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "disclosedInvention": false,
+        "submissionId": 20260008881,
+        "containsThirdPartyMaterial": false,
+        "containsIndication": true,
+        "id": "e2b075cd79e948578e3b90a4ae17c0ce",
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToAuthors": true
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20260008881,
+        "ear": "NO",
+        "id": "f0fd2db612744ee2b032525e8a1c5213",
+        "category": [
+          {
+            "submissionExportControlId": "f0fd2db612744ee2b032525e8a1c5213",
+            "id": "936ee9a230f14b7abef16bd52cf35dce",
+            "category": 0
+          }
+        ],
+        "itar": "NO"
+      },
+      "distributionDate": "2026-09-14T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "981698.01.02.51.08.10.05",
+          "submissionId": 20260008881,
+          "id": "9e0dafdc1164449994711e80fcd99a55",
+          "type": "WBS"
+        }
+      ],
+      "title": "Process-Constrained Modelling of Inkjet-Printed Additively Manufactured Antennas",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2026-09-14T20:04:43.3135270+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "54c72687f6765050b5d52bca86beb2e8",
+          "sequence": 0,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "orcidId": "0009-0006-7896-6798",
+              "name": "Peter Moschetti"
+            },
+            "organization": {
+              "name": "Colorado School of Mines",
+              "location": "Golden, United States"
+            }
+          },
+          "id": "8e420eaf145c4630b072bb97a4d936e6",
+          "userId": "19835c6535134bd9b38898e7147edb91"
+        },
+        {
+          "organizationId": "605d366346b25929923d73289c628a20",
+          "sequence": 1,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "name": "Alex Moricette"
+            },
+            "organization": {
+              "name": "Florida A&M University - Florida State University College of Engineering",
+              "location": "Tallahassee, United States"
+            }
+          },
+          "id": "8453b89b9ec546cebb657481fac64c82",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "54c72687f6765050b5d52bca86beb2e8",
+          "sequence": 2,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "name": "Jackson Willner"
+            },
+            "organization": {
+              "name": "Colorado School of Mines",
+              "location": "Golden, United States"
+            }
+          },
+          "id": "043a63c5d7b841c8acaac086f1ce26cf",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 3,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Tristan T Epp Schmidt"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "a07a31e723ef42abb2937ce30d1ad581",
+          "userType": "CIVIL",
+          "userId": "19cafa57a81447d58c83083197522cfc"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 4,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Margaret H Samuels"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "0068d652e2ee438f99fa247eea4623ff",
+          "userType": "CIVIL",
+          "userId": "4034ca7fe5014a7eaf2cad6ba229cdba"
+        },
+        {
+          "sequence": 5,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "name": "Verena Gargitter"
+            },
+            "organization": {
+              "name": "Fortify",
+              "location": "Golden, United States"
+            }
+          },
+          "id": "451cb2fed8524b67803870fa7290d71a",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "54c72687f6765050b5d52bca86beb2e8",
+          "sequence": 6,
+          "submissionId": 20260008881,
+          "meta": {
+            "author": {
+              "name": "Peter Aaen"
+            },
+            "organization": {
+              "name": "Colorado School of Mines",
+              "location": "Golden, United States"
+            }
+          },
+          "id": "f86b952987c94442afc5f7008d619443",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "SINGLE_EXPERT",
+      "modified": "2026-09-16T20:02:05.1122020+00:00",
+      "id": 20260008881,
+      "created": "2026-09-14T19:23:27.9131820+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Predictive full-wave modelling of additively manufactured (AM) antennas is limited by uncertainty in printed-conductor loss, metallization thickness, surface morphology and nonuniform dielectric properties. This letter presents a process-constrained modelling workflow for inkjet-metallized antennas fabricated on additively manufactured dielectrics. Material properties extracted from coplanar waveguide (CPWG) structures, resonators and test coupons provide useful electrical-property inputs, but do not by themselves verify transfer to the printed antenna geometry. This work addresses that geometry-transfer problem by combining extracted material-property information with antenna-specific process metrology and validating the resulting model against measured electromagnetic response. The approach is demonstrated using a magneto-electric dipole. Four-point-probe sheet resistance, profilometry-derived thickness and roughness, cross-sectional scanning electron microscopy (SEM) and dielectric characterization provide quantitative HFSS inputs, while surface SEM observations identify cracking, granular morphology and apparent porosity that support the reduced-conductivity representation. The process-constrained model reproduces measured input-match behaviour, radiation-pattern trends and transverse near-field distribution without post-hoc fitting. Relative to the idealized HFSS model, near-field correlation improves by 46.8%. The principal novelty is a physically traceable AM characterization framework linking geometry-specific conductor metrology to spatial electromagnetic validation, overcoming geometry-transfer ambiguity inherent when coupon, CPWG or resonator-derived effective properties are used alone.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20260008881,
+        "id": "bb6802d6383746f593dd435c3e25b170"
+      },
+      "publications": [
+        {
+          "volume": "62",
+          "submissionId": 20260008881,
+          "issue": "1",
+          "issn": "0013-5194",
+          "publisher": "The Institution of Engineering and Technology",
+          "eissn": "1350-911X",
+          "id": "b5529686029d4d5d9c184c521417b4b7",
+          "publicationName": "Electronics Letters",
+          "publicationDate": "2026-09-05T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2026-01-01T05:00:00.0000000+00:00",
+          "url": "",
+          "doi": "10.1049/ell2.70714"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "Electronics Letters 2026 - Moschetti V260812.pdf",
+          "notes": "False hits",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20260008881/downloads/Electronics%20Letters%202026%20-%20Moschetti%20V260812.pdf",
+            "pdf": "/api/citations/20260008881/downloads/Electronics%20Letters%202026%20-%20Moschetti%20V260812.pdf",
+            "fulltext": "/api/citations/20260008881/downloads/Electronics%20Letters%202026%20-%20Moschetti%20V260812.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "licenseType": "NO",
+        "submissionId": 20230014981,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "a2e2c571a87e4aa0b13026c946b1a532",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Instrumentation and Photography",
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "DORIS",
+        "Intra-technique combination",
+        "Coordinate time series",
+        "Precise Orbit Determination"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20230014981,
+        "ear": "NO",
+        "id": "0ba71d6e48894cb4a912fcf35f5df6f7",
+        "itar": "NO"
+      },
+      "distributionDate": "2023-10-17T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "351080.02.06.01.01.12.01",
+          "submissionId": 20230014981,
+          "id": "a3b3027e96c24ef2b2121f99a8cbee41",
+          "type": "WBS"
+        },
+        {
+          "number": "80NSSC23M0011",
+          "submissionId": 20230014981,
+          "id": "b5436e746099453a8498e1c2215e7a77",
+          "type": "CONTRACT_GRANT"
+        }
+      ],
+      "title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2023-10-17T18:25:56.9513640+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "fad026b71e3055908e57c619d4870f18",
+          "sequence": 0,
+          "submissionId": 20230014981,
+          "meta": {
+            "author": {
+              "name": "Guilhem Moreaux"
+            },
+            "organization": {
+              "name": "Collecte Localisation Satellites (France)",
+              "location": "Ramonville-Saint-Agne, France"
+            }
+          },
+          "id": "5caf20c7394344f59309ce035d95c29d",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 1,
+          "submissionId": 20230014981,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Frank G. Lemoine"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, Maryland, United States"
+            }
+          },
+          "id": "cbd7c7750c61453180a7ecd63e2d5769",
+          "userType": "CIVIL",
+          "userId": "76e2073029154de1b21e383b850f4e8f"
+        },
+        {
+          "organizationId": "eeed7f9426495806b2a33dc2a92800f5",
+          "sequence": 2,
+          "submissionId": 20230014981,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Nikita P. Zelensky"
+            },
+            "organization": {
+              "name": "University of Maryland, College Park",
+              "location": "College Park, Maryland, United States"
+            }
+          },
+          "id": "4bc4adfca27d41258d200185d48eaa6d",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "93a21297ea6a4f8b9b16d662a3883f3f"
+        },
+        {
+          "organizationId": "b0221f1ce1ef51ee8a631a09496c2364",
+          "sequence": 3,
+          "submissionId": 20230014981,
+          "meta": {
+            "author": {
+              "name": "John Moyard"
+            },
+            "organization": {
+              "name": "Centre National D'Etudes Spatiales",
+              "location": "Paris, France"
+            }
+          },
+          "id": "77622623971142e2b33e040547574d29",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "b0221f1ce1ef51ee8a631a09496c2364",
+          "sequence": 4,
+          "submissionId": 20230014981,
+          "meta": {
+            "author": {
+              "name": "Alexandre Couhert"
+            },
+            "organization": {
+              "name": "Centre National D'Etudes Spatiales",
+              "location": "Paris, France"
+            }
+          },
+          "id": "8bb11538b57b44e5a48bc3489af55025",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "EXTERNAL_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20230014981,
+      "created": "2023-10-17T18:02:58.5652320+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "As one of the tracking systems used to determine orbits of the altimeter mission satellites (such as TOPEX/Poseidon, Envisat, Jason-1/-2/-3, CryoSat-2, Saral/Altika, Sentinel-3A/-3B, HY-2A/C/D, Jason-CS/Sentinel-6A, SWOT), DORIS (Doppler Orbitography Radiopositionning Integrated by Satellite) allows to determine positions and velocities of tracking stations that define a stable reference for the estimation of the precise orbits and thus are fundamental for the quality of the altimeter data and derived mean sea level products. Due to the time evolution of the DORIS ground network, some stations included in the 2020 realization of the International Terrestrial Reference Frame (ITRF2020) have been decommissioned and since 2021.0 a few new stations were added to the tracking network. Therefore, to satisfy operational requirements for POD (Precise Orbit Determination) and routine delivery of geodetic products, the International DORIS Service (IDS) regularly updates the DPOD (DORIS terrestrial reference frame for Precise Orbit Determination). The DPOD solutions include mean positions and velocities of all the DORIS stations since 1993.0 derived from the stacking of the latest IDS weekly combined series aligned to the current ITRF. In this paper, we first present the stacking process of the DPOD2020 version 1.0. Then, we address the validation procedure of the DPO2020 including comparison with ITRF2020 and POD tests. For eighty percent of all the time segments of all the DORIS stations, the station position differences between DPOD2020 version 1.0 and ITRF2020 are smaller than ten millimeters. The major position differences between these two solutions are associated with the DORIS sites either localized in the South Atlantic Anomaly region or with time spans smaller than one year. Compared to DPOD2014, the DPOD2020 shows reduction of the main statistics of the DORIS-to-DORIS tie residuals (differences between the estimated and measured ties). The POD tests showed similar results for DPOD2020 and DPOD2014 for most of the altimetric satellites (TOPEX/Poseidon, Jason-1, CryoSat-2, Jason-3). In addition, we observed better POD results with DPOD2020 for the latest altimetric satellite Sentinel-3A as well as a slight degradation for Jason-2. That degradation was fully explained by slightly worst results for the stations localized in the South Atlantic Anomaly region.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20230014981,
+        "id": "77ab00d656fa4029b8ed01e3e45fd808"
+      },
+      "publications": [
+        {
+          "volume": "72",
+          "submissionId": 20230014981,
+          "issue": "11",
+          "issn": "0273-1177",
+          "publisher": "Elsevier ",
+          "id": "d1eeb67be9224c1a8cd0877893bbec7f",
+          "publicationName": "Advances in Space Research",
+          "publicationDate": "2023-10-11T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2023-12-01T05:00:00.0000000+00:00",
+          "url": "",
+          "doi": "10.1016/j.asr.2023.10.006"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "DPOD2020_v4_final.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20230014981/downloads/DPOD2020_v4_final.pdf",
+            "pdf": "/api/citations/20230014981/downloads/DPOD2020_v4_final.pdf",
+            "fulltext": "/api/citations/20230014981/downloads/DPOD2020_v4_final.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "disclosedInvention": false,
+        "submissionId": 20240014692,
+        "containsThirdPartyMaterial": false,
+        "containsIndication": false,
+        "belongsToPublisher": false,
+        "id": "f590fc7c03044118a330f21b2a93f416",
+        "belongsToUsGov": false,
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Mathematical and Computer Sciences (General)",
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "Network",
+        " dominating set",
+        "Shapley"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20240014692,
+        "ear": "NO",
+        "id": "a20f0acb82f447dcaac4453d6376296b",
+        "itar": "NO"
+      },
+      "distributionDate": "2024-12-22T05:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "278371.01.06",
+          "submissionId": 20240014692,
+          "id": "90596aab5f01491dbaa5931df66bf747",
+          "type": "WBS"
+        }
+      ],
+      "title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2024-11-19T15:10:24.8932680+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "44b59c87ea2f42cb961e74070737a164",
+          "sequence": 0,
+          "submissionId": 20240014692,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-1284-2032",
+              "name": "Hunter Rehm"
+            },
+            "organization": {
+              "name": "HX5, LLC",
+              "location": ""
+            }
+          },
+          "id": "dd282464dca9474eafe5f5b822930367",
+          "userType": "OTHER",
+          "userId": "c7c67bfc2fbf4983bd32040e94cf7832"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 1,
+          "submissionId": 20240014692,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-2087-5528",
+              "name": "Robert Kassouf-Short"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, United States"
+            }
+          },
+          "id": "408f6a9f54dc4084ad187025a2b7a461",
+          "userType": "CIVIL",
+          "userId": "fd79e3ba22304d68acb4b48d3a4ef8e0"
+        },
+        {
+          "organizationId": "b83c2ff6dae15875b852a14e501480fd",
+          "sequence": 2,
+          "submissionId": 20240014692,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-8374-0797",
+              "name": "Puck Rombach"
+            },
+            "organization": {
+              "name": "University of Vermont",
+              "location": "Burlington, United States"
+            }
+          },
+          "id": "ffb7021c16894185b268be6c012de599",
+          "userId": "1e7ea78e2f454edaa57e24876aa8d0f7"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "SINGLE_EXPERT",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20240014692,
+      "created": "2024-11-18T21:58:31.0720870+00:00",
+      "center": {
+        "code": "GRC",
+        "name": "Glenn Research Center",
+        "id": "19eeb25fa404421d9eaa5f876e853e3c"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The dominating set problem has many practical applications but is well-known to be NP-hard. Therefore, there is a need for efficient heuristic algorithms, especially in applications such as ad hoc wireless networks.  Most distributed algorithms proposed in the literature assume that each node has knowledge of the network structure.  We propose a distributed heuristic algorithm that uses  two rounds of communication, and where each node has only local information, both in terms of network structure and dominating set assignment.  First, each node calculates a local centrality measure to determine whether it is part of the dominating set D.  The  second round guarantees D is a dominating set by adding any non-dominated nodes.  We compare several centrality measures and show that the Shapley centrality, derived from the Shapley value in game theory, is theoretically motivated and performs well in practice on several synthetic and real-world networks.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20240014692,
+        "id": "7cff7b17284d4e3094638164d19ae804"
+      },
+      "publications": [
+        {
+          "submissionId": 20240014692,
+          "publisher": "Institute of Electrical and Electronics Engineers (IEEE)",
+          "eissn": "1558-2566",
+          "id": "3ac5b2b65495438d90b8c9544161691e",
+          "publicationName": "IEEE/ACM Transactions on Networking",
+          "publicationDate": "2024-12-22T05:00:00.0000000+00:00",
+          "url": "",
+          "doi": "10.48550/arXiv.2305.08218"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "Local_Degree_Centrality_Measures_STI_Final.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20240014692/downloads/Local_Degree_Centrality_Measures_STI_Final.pdf",
+            "pdf": "/api/citations/20240014692/downloads/Local_Degree_Centrality_Measures_STI_Final.pdf",
+            "fulltext": "/api/citations/20240014692/downloads/Local_Degree_Centrality_Measures_STI_Final.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": true,
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "GOV_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "licenseType": "CCBY",
+        "submissionId": 20210012997,
+        "containsThirdPartyMaterial": true,
+        "belongsToPublisher": false,
+        "id": "033a6f240d044455a527001aa6956cf1",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20210012997,
+        "ear": "NO",
+        "id": "21059cd622254e6f9319075b030b9814",
+        "itar": "NO"
+      },
+      "distributionDate": "2021-04-01T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "372720",
+          "submissionId": 20210012997,
+          "id": "9367891639be47ddaff984c7117f219f",
+          "type": "WBS"
+        }
+      ],
+      "title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2021-04-01T20:26:22.3850400+00:00",
+      "authorAffiliations": [
+        {
+          "sequence": 0,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-4498-2208",
+              "name": "Aaron Pearlman"
+            },
+            "organization": {
+              "name": "Geo ThinkTank"
+            }
+          },
+          "id": "5ffd33d3c9a14f4cb05ca2f607b14b70",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "98ea3d9595cf4836866e3b88c3819a5a"
+        },
+        {
+          "organizationId": "b961c02119325d2e9613cd3986ce6d51",
+          "sequence": 1,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-7616-3664",
+              "name": "Matthew Montanaro"
+            },
+            "organization": {
+              "name": "Rochester Institute of Technology",
+              "location": "Rochester, New York, United States"
+            }
+          },
+          "id": "8025242919e14143a08330c2a0702b22",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "d2ea2494ae854532a9fd558db3d285c4"
+        },
+        {
+          "organizationId": "1b522fc6ef7e422189d884f6808097b3",
+          "sequence": 2,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Boryana Efremova"
+            },
+            "organization": {
+              "name": "GeoThinkTank LLC",
+              "location": "Washington DC, United States"
+            }
+          },
+          "id": "d088fd5afff54629b6b5439b1e6a65d8",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "c2ffc487dc8a469cb60ffc87c12438ee"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 3,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Joel McCorkel"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, Maryland, United States"
+            }
+          },
+          "id": "47269fa17f7149ad812f85dda50f95e4",
+          "userType": "CIVIL",
+          "userId": "63d7b86653844e3584656bb8e0181503"
+        },
+        {
+          "organizationId": "efb1c389f6e95ddd810caa5fdc1060ad",
+          "sequence": 4,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-4352-757X",
+              "name": "Brian Wenny"
+            },
+            "organization": {
+              "name": "Science Systems and Applications (United States)",
+              "location": "Lanham, Maryland, United States"
+            }
+          },
+          "id": "4727ab925f744767a4d9d9c7b933926d",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "b5e1fbb42f11405eb17bc4e6be4a8781"
+        },
+        {
+          "organizationId": "78bb90dc9a695fdb80d3188ce5c29aef",
+          "sequence": 5,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Allen Lunsford"
+            },
+            "organization": {
+              "name": "American University",
+              "location": "Washington D.C., District of Columbia, United States"
+            }
+          },
+          "id": "b34eb7b3d1084160bc054c1ed4903b3b",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "75052013179c431c953b30ef0a774425"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 6,
+          "submissionId": 20210012997,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Dennis Reuter"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, Maryland, United States"
+            }
+          },
+          "id": "d19af0fdcf544a64af1e361be4a61dcc",
+          "userType": "CIVIL",
+          "userId": "466b8e31a5f043279d99f3d78549133f"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "SINGLE_EXPERT",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20210012997,
+      "created": "2021-04-01T20:23:12.2860260+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The Thermal Infrared Sensor-2 (TIRS-2) that will be onboard Landsat 9 has undergone a prelaunch testing campaign to characterize its radiometric, spectral, and spatial performances and demonstrate compliance to its requirements. This work reviews the key elements of the instrument-level radiometric testing using an SI-traceable source to derive its uncertainties. Those arising from on-orbit calibration using the TIRS-2 onboard blackbody are also discussed. We use a Monte Carlo approach to propagate the uncertainties through a nonlinear calibration equation and address both random and systematic uncertainty terms. Achieving the required performance demonstrates the instrument's potential for enhancing our understanding of the Earth's environment.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20210012997,
+        "id": "33115bbc7fef4ea8ac9bb78e311d0c95"
+      },
+      "publications": [
+        {
+          "volume": "59",
+          "submissionId": 20210012997,
+          "issue": "4",
+          "issn": "0196-2892",
+          "publisher": "IEEE",
+          "eissn": " 1558-0644",
+          "id": "27d7eec087304a5798a8c53736ff216a",
+          "publicationName": "IEEE Transactions on Geoscience and Remote Sensing",
+          "publicationDate": "2020-07-24T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2021-01-01T05:00:00.0000000+00:00",
+          "doi": "10.1109/TGRS.2020.3008655"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "21-23.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20210012997/downloads/21-23.pdf",
+            "pdf": "/api/citations/20210012997/downloads/21-23.pdf",
+            "fulltext": "/api/citations/20210012997/downloads/21-23.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": true,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": true,
+        "disclosedInvention": false,
+        "licenseType": "CCBY",
+        "submissionId": 20210014524,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "4b7f761a680444d2865a1c62b2240b98",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20210014524,
+        "ear": "NO",
+        "id": "6ebfddc4dfbf40b59a2741b4a8b16a97",
+        "itar": "NO"
+      },
+      "distributionDate": "2021-04-30T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "378289.04.05.02",
+          "submissionId": 20210014524,
+          "id": "5975e93a1292482ea328fee84a635a8e",
+          "type": "WBS"
+        }
+      ],
+      "title": "The GPM Validation Network and Evaluation of Satellite-Based Retrievals of the Rain Drop Size Distribution",
+      "stiType": "REPRINT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2021-04-26T13:19:39.2121060+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "ff293352e05b51ca965411fc94f5e325",
+          "sequence": 0,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Patrick Noel Gatlin"
+            },
+            "organization": {
+              "name": "Marshall Space Flight Center",
+              "location": "Redstone Arsenal, Alabama, United States"
+            }
+          },
+          "id": "81c6760d25214ea3a07712f8445405ae",
+          "userType": "CIVIL",
+          "userId": "237e10881ae740908edf56d3c54281c9"
+        },
+        {
+          "organizationId": "ff293352e05b51ca965411fc94f5e325",
+          "sequence": 1,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Walter A Petersen"
+            },
+            "organization": {
+              "name": "Marshall Space Flight Center",
+              "location": "Redstone Arsenal, Alabama, United States"
+            }
+          },
+          "id": "fe63f68ca2cb471fa52d0fdbf4e1d4e8",
+          "userType": "CIVIL",
+          "userId": "679835817f52412b808a71bc9675934c"
+        },
+        {
+          "organizationId": "efb1c389f6e95ddd810caa5fdc1060ad",
+          "sequence": 2,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Jason L Pippitt"
+            },
+            "organization": {
+              "name": "Science Systems and Applications (United States)",
+              "location": "Lanham, Maryland, United States"
+            }
+          },
+          "id": "45b2587e4b9349eea7c6efe4ef4ab9d3",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "ae3a0db0beba417bbd780f6a76a15713"
+        },
+        {
+          "organizationId": "b7be9b4e93d25710ab4a774878d2a641",
+          "sequence": 3,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Todd Alan Berendes"
+            },
+            "organization": {
+              "name": "University of Alabama in Huntsville",
+              "location": "Huntsville, Alabama, United States"
+            }
+          },
+          "id": "6f5b858a5e4b4eae930105a0bffe75c2",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "e15768ab55594111b0801f9ea23ae7a5"
+        },
+        {
+          "organizationId": "b4f51373707255ed9028de4f5c5f5499",
+          "sequence": 4,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "David Billings Wolff"
+            },
+            "organization": {
+              "name": "Wallops Flight Facility",
+              "location": "Wattsville, Virginia, United States"
+            }
+          },
+          "id": "76fd2245eb1b40b6bf7551932ec80d7f",
+          "userType": "CIVIL",
+          "userId": "2319ff6150304181af8b62fc3d37bfdd"
+        },
+        {
+          "organizationId": "627f0016b5ec58d5ab150cb9a6759b32",
+          "sequence": 5,
+          "submissionId": 20210014524,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Ali Tokay"
+            },
+            "organization": {
+              "name": "University of Maryland, Baltimore County",
+              "location": "Baltimore, Maryland, United States"
+            }
+          },
+          "id": "57a64599b8e543f5ad7eb7462683d1d5",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "73019b40cab240f6bb01c064bc8d77a2"
+        }
+      ],
+      "stiTypeDetails": "Reprint (Version printed in journal)",
+      "technicalReviewType": "PROFESSIONAL_REVIEW",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20210014524,
+      "created": "2021-04-26T13:12:33.1725260+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20210014524,
+        "id": "29df3d2bfbdd4975989c69bfd8afd091"
+      },
+      "publications": [
+        {
+          "volume": "11",
+          "submissionId": 20210014524,
+          "publisher": "MDPI",
+          "id": "1195b752233647609858bac809304924",
+          "publicationName": "Atmospheres",
+          "publicationDate": "2020-09-21T04:00:00.0000000+00:00",
+          "url": "http://www.mdpi.com/journal/atmosphere"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "GOV_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "licenseType": "NO",
+        "submissionId": 20230007643,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "61de8c2e676049ac852233dfb2465c2f",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking",
+        "Computer Programming and Software"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20230007643,
+        "ear": "NO",
+        "id": "8a3bef4a414542e580229cfa5c376565",
+        "itar": "NO"
+      },
+      "distributionDate": "2023-09-14T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "278371.01.06",
+          "submissionId": 20230007643,
+          "id": "2bf3bb9fda304d879d3fb910a2c81da3",
+          "type": "WBS"
+        }
+      ],
+      "title": "Application of Fountain Code to High-Rate Delay Tolerant Networks",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2023-05-16T14:36:03.6781850+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "c6a7e2f3c7cf5277ba8466b1685c2ae4",
+          "sequence": 0,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "name": "Noah Douglass"
+            },
+            "organization": {
+              "name": "Cleveland State University",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "18ed364bf9774b44a3618b46e6ce6d27",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "c6a7e2f3c7cf5277ba8466b1685c2ae4",
+          "sequence": 1,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "orcidId": "0009-0006-3689-3279",
+              "name": "John Langel"
+            },
+            "organization": {
+              "name": "Cleveland State University",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "1701a8c173df4200919dffd77cfa35fe",
+          "userId": "517c6fb9d4144ca4a6929c838be2a058"
+        },
+        {
+          "organizationId": "c6a7e2f3c7cf5277ba8466b1685c2ae4",
+          "sequence": 2,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "name": "Weiland Moore"
+            },
+            "organization": {
+              "name": "Cleveland State University",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "8353950392e7440eae2c9d7018f4af14",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "c6a7e2f3c7cf5277ba8466b1685c2ae4",
+          "sequence": 3,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "name": "Lawrence Ng"
+            },
+            "organization": {
+              "name": "Cleveland State University",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "38687c759ab54a6785fb4ea5c4e30c82",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "fdea3daf3b5156699f511edf3e9b9ec4",
+          "sequence": 4,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-7305-0688",
+              "name": "Rachel M. Dudukovich"
+            },
+            "organization": {
+              "name": "Glenn Research Center",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "2aaa852a006741dd8d117c1ae1ebe01e",
+          "userType": "CIVIL",
+          "userId": "380ad233e332401690979f3cb80bd44b"
+        },
+        {
+          "organizationId": "c6a7e2f3c7cf5277ba8466b1685c2ae4",
+          "sequence": 5,
+          "submissionId": 20230007643,
+          "meta": {
+            "author": {
+              "name": "Sanchita Mal-Sarkar"
+            },
+            "organization": {
+              "name": "Cleveland State University",
+              "location": "Cleveland, Ohio, United States"
+            }
+          },
+          "id": "ab24d18ecde84a15b7d2a1e22408bc80",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "NASA_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20230007643,
+      "created": "2023-05-16T14:27:03.3988640+00:00",
+      "center": {
+        "code": "GRC",
+        "name": "Glenn Research Center",
+        "id": "19eeb25fa404421d9eaa5f876e853e3c"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Space communication poses several unique challenges that are not always present in typical terrestrial communications. Currently, communication with satellites is based on point-to-point links, and development of an interplanetary internet is an active research area. Delay Tolerant Networking (DTN) has been proposed as a way to mitigate the long delays and disruptions found in deep space. A specialized version of DTN, called High-rate Delay Tolerant Networking (HDTN), has been developed by NASA to support a variety of missions requiring store-and-forward capability. However, there are still several features that are desired for HDTN including data fragmentation, multicast, and anycast. This project proposes the application of fountain code in HDTN as a means of fragmenting, distributing, and reassembling data (in the form of bundles) across multiple nodes (i.e. satellites) to any number of receivers (i.e. ground stations). Fountain code is shown to be a promising encoding method for use with the HDTN protocol suite due to its short runtimes, small encoded file sizes, and loss tolerance.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20230007643,
+        "id": "7b6b6460587e4d6cb3572d6a8d87b144"
+      },
+      "publications": [
+        {
+          "volume": "11",
+          "submissionId": 20230007643,
+          "publisher": "Institute of Electrical and Electronics Engineers",
+          "eissn": "2169-3536",
+          "id": "28d659ff0e834318b32e2667dfa28589",
+          "publicationName": "IEEE Access",
+          "publicationDate": "2023-09-14T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2023-09-14T04:00:00.0000000+00:00",
+          "doi": "10.1109/ACCESS.2023.3315659"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "IEEE_Access_CSU_HDTN_2023_submission.pdf",
+          "notes": "cui in word, no issue",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20230007643/downloads/IEEE_Access_CSU_HDTN_2023_submission.pdf",
+            "pdf": "/api/citations/20230007643/downloads/IEEE_Access_CSU_HDTN_2023_submission.pdf",
+            "fulltext": "/api/citations/20230007643/downloads/IEEE_Access_CSU_HDTN_2023_submission.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "submissionId": 20240005067,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "2c5a11e826bd4cbf8c662c861d0fee8c",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Geosciences (General)",
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "TOPEX/Poseidon",
+        "quaternions",
+        "precise orbit determination",
+        "satellite attitude",
+        "Nominal attitude",
+        "Quaternion attitude"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20240005067,
+        "ear": "NO",
+        "id": "33350ce72b004f15aef152e49b0c10c3",
+        "itar": "NO"
+      },
+      "distributionDate": "2024-03-18T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "351080.02.06.01.01.12.01",
+          "submissionId": 20240005067,
+          "id": "4546ea684d2144689c5e79799e5fcd06",
+          "type": "WBS"
+        }
+      ],
+      "title": "Quality Assessment of the Nominal Attitude Model of TOPEX/Poseidon Using Quaternion Data\t",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2024-04-23T17:02:13.0738050+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "2100bc4c79965b549a3c83eca2fd8171",
+          "sequence": 0,
+          "submissionId": 20240005067,
+          "meta": {
+            "author": {
+              "name": "Julian Zeitlh\u00f6fler\t"
+            },
+            "organization": {
+              "name": "Frauenklinik der Technischen Universit\u00e4t M\u00fcnchen",
+              "location": "Munich, Germany"
+            }
+          },
+          "id": "6d8d78c24cc2464e904033f983601703",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "2100bc4c79965b549a3c83eca2fd8171",
+          "sequence": 1,
+          "submissionId": 20240005067,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-1579-0511",
+              "name": "Mathis Blo\u00dffeld\t"
+            },
+            "organization": {
+              "name": "Frauenklinik der Technischen Universit\u00e4t M\u00fcnchen",
+              "location": "Munich, Germany"
+            }
+          },
+          "id": "8d76b24ff08348bc9d724597a0bde88c",
+          "userId": "05d8bdd29e7547c9bbf70a97ced08a90"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 2,
+          "submissionId": 20240005067,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Frank G Lemoine"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "40e45904dccf42b5a049c69a1be63d38",
+          "userType": "CIVIL",
+          "userId": "76e2073029154de1b21e383b850f4e8f"
+        },
+        {
+          "organizationId": "2100bc4c79965b549a3c83eca2fd8171",
+          "sequence": 3,
+          "submissionId": 20240005067,
+          "meta": {
+            "author": {
+              "name": "Florian Seitz\t"
+            },
+            "organization": {
+              "name": "Frauenklinik der Technischen Universit\u00e4t M\u00fcnchen",
+              "location": "Munich, Germany"
+            }
+          },
+          "id": "7606c2596b334cba8a9a603edc788d35",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "EXTERNAL_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20240005067,
+      "sourceIdentifiers": [
+        {
+          "number": "10.5281/zenodo.10795818",
+          "submissionId": 20240005067,
+          "id": "570fced47eed43829347eac361963cf5",
+          "descriptor": "Supplemental Data",
+          "type": "DOI"
+        }
+      ],
+      "created": "2024-04-23T16:54:53.2483020+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The altimetry mission TOPEX/Poseidon was operational between 1992 and 2005 and provided innovative insight into global and regional sea level changes and their variability. The correct modelling of the spacecraft orbit in precise orbit determination requires detailed information on the attitude of the spacecraft body and the solar array. Since the availability of attitude observations in form of quaternion data for this mission is limited, the nominal orientation model has to be used mainly. In this study, we compare the nominal and quaternion-based approaches of the TOPEX/Poseidon attitude realisation and validate the nominal model w.r.t. the observed attitude. We found good agreement between both approaches in the spacecraft-related roll, pitch, yaw, and solar array angles with slight differences of up to 0.31\u25e6 on average. The best accordance is obtained in the yaw angles. A general angular offset of 0.12\u25e6 and \u22120.19\u25e6 on average is found in the pitch and solar array angle differences, respectively. Parameters estimated in the orbit computation process also reflect the good agreement between both orientation models with slightly better results when using the observed attitude. However, in some intervals, the nominal model lacks detailed information about the correct attitude. These can be adjusted using the information from the quaternion data. Such intervals indicate off-nominal spacecraft attitude events like drifts or offsets. Purely geometrically analysed, mispointing in the roll and pitch components of about 0.25\u25e6 results in a change of the altimeter phase centre position in the radial direction of about 7 mm, which directly impacts the sea-level heights determined from altimetry measurements.\t",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20240005067,
+        "id": "d3b8372a95454a0baf085ca46f7a1138"
+      },
+      "publications": [
+        {
+          "volume": "73",
+          "submissionId": 20240005067,
+          "issue": "12\t",
+          "issn": "0273-1177",
+          "publisher": "Elsevier\t",
+          "id": "beec604f880d468aa0817964117939ac",
+          "publicationName": "Advances in Space Research\t",
+          "publicationDate": "2024-03-18T04:00:00.0000000+00:00",
+          "issuePublicationDate": "2024-06-15T04:00:00.0000000+00:00",
+          "url": "",
+          "doi": "10.1016/j.asr.2024.03.031"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "Paper_TPX_Quaternions_NASA.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20240005067/downloads/Paper_TPX_Quaternions_NASA.pdf",
+            "pdf": "/api/citations/20240005067/downloads/Paper_TPX_Quaternions_NASA.pdf",
+            "fulltext": "/api/citations/20240005067/downloads/Paper_TPX_Quaternions_NASA.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "thirdPartyPermissionsProduced": false,
+        "disclosedToPublic": false,
+        "containsIndication": false,
+        "publisherPermissionOrRightsToDistribute": false,
+        "belongsToUsGov": false,
+        "determinationType": "PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "disclosedInvention": false,
+        "submissionId": 19650068530,
+        "containsThirdPartyMaterial": false,
+        "belongsToPublisher": false,
+        "id": "ce3c98462e724004b13417b55b180747",
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "Earth Satellites",
+        "Omnidirectional Antennas",
+        "Radio Transmitter",
+        "Satellite Tracking",
+        "Temperature Control",
+        "Rocket Vehicle",
+        "Pilot",
+        "Electronic Component",
+        "Phase Locked Loop",
+        "Ground Station"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 19650068530,
+        "ear": "NO",
+        "id": "0525555f477a41daa812ca86b3cccad4",
+        "itar": "NO"
+      },
+      "distributionDate": "1996-02-28T05:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "DA-04-495-ORD-18",
+          "submissionId": 19650068530,
+          "id": "03e6179f70fa4232b73e709844628e45",
+          "type": "CONTRACT_GRANT"
+        }
+      ],
+      "title": "Microlock-  a minimum weight radio instrumentation system for a satellite",
+      "stiType": "REPRINT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2013-08-02T14:23:00.0000000+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 0,
+          "submissionId": 19650068530,
+          "meta": {
+            "author": {
+              "name": "Henry L Richter, Jr"
+            },
+            "organization": {
+              "name": "Jet Propulsion Laboratory",
+              "location": "La Ca\u00f1ada Flintridge, United States"
+            }
+          },
+          "id": "81f701f448e2402daa752c45836c18a5",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 1,
+          "submissionId": 19650068530,
+          "meta": {
+            "author": {
+              "name": "William F Sampson"
+            },
+            "organization": {
+              "name": "Jet Propulsion Laboratory",
+              "location": "La Ca\u00f1ada Flintridge, United States"
+            }
+          },
+          "id": "165cf63027bf4dce93fe81b35cc20d2a",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "f93929fef1eb5d9bb0bc1f566ba28e6f",
+          "sequence": 2,
+          "submissionId": 19650068530,
+          "meta": {
+            "author": {
+              "name": "Robertson Stevens"
+            },
+            "organization": {
+              "name": "Jet Propulsion Laboratory",
+              "location": "La Ca\u00f1ada Flintridge, United States"
+            }
+          },
+          "id": "638e51ebf24040318d00dbf623c5a4bb",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Reprint (Version printed in journal)",
+      "technicalReviewType": "TECHNICAL_REVIEW_TYPE_NONE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 19650068530,
+      "legacyMeta": {
+        "__type": "LegacyMetaIndex, StrivesApi.ServiceModel",
+        "accessionNumber": "65N80931"
+      },
+      "created": "2013-08-02T14:23:00.0000000+00:00",
+      "center": {
+        "code": "JPL",
+        "name": "Jet Propulsion Laboratory",
+        "id": "efbc9c123a0f47caafa95d99b7d2e1a1"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "The design, construction and laboratory testing of a satellite tracking system are described. The tracking mechanism employs a low power, lightweight flight transmitter in conjunction with a receiving system of advanced design. The flight transmitter will radiate 3 mw for three months and will provide two narrow hand telemetering channels in a unit having a total weight of 2 lb. The ground receiving equipment is capable of acquiring and tracking the beacon signal at a line-of-sight distance of 3000 miles and at any azimuth and elevation angle. Interferometer antennas could he used to determine the angular position of the satellite with an accuracy of one milliradian, which is equivalent to approximately \u00b10.04 sec in the determination of the period.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 19650068530,
+        "id": "513c023cb36a42868d2dd0f22d1beb1d"
+      },
+      "publications": [
+        {
+          "volume": "28",
+          "submissionId": 19650068530,
+          "issue": "8",
+          "publisher": "American Institute of Aeronautics and Astronautics",
+          "eissn": "1936-9980",
+          "id": "e0b1164874ad431090f92919e70bbaa5",
+          "publicationName": "Journal of Jet Propulsion",
+          "publicationDate": "1958-08-01T04:00:00.0000000+00:00",
+          "issuePublicationDate": "1958-08-01T04:00:00.0000000+00:00",
+          "doi": "10.2514/8.7377"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "19650068530.pdf",
+          "notes": "False positives",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/19650068530/downloads/19650068530.pdf",
+            "pdf": "/api/citations/19650068530/downloads/19650068530.pdf",
+            "fulltext": "/api/citations/19650068530/downloads/19650068530.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "disclosedInvention": false,
+        "submissionId": 20250003112,
+        "containsThirdPartyMaterial": false,
+        "containsIndication": false,
+        "belongsToPublisher": false,
+        "id": "6e3080c8558c44e4a5a4de897d3eea24",
+        "belongsToUsGov": false,
+        "determinationType": "PUBLIC_USE_PERMITTED",
+        "thirdPartyContentCondition": "NOT_SET",
+        "belongsToContractor": false,
+        "belongsToAuthors": false
+      },
+      "subjectCategories": [
+        "Spacecraft Propulsion and Power",
+        "Spacecraft Design, Testing and Performance",
+        "Space Communications, Spacecraft Communications, Command and Tracking",
+        "Statistics and Probability"
+      ],
+      "keywords": [
+        "GN&C",
+        "Navigation",
+        "Control",
+        "Guidance",
+        "Autonomy"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20250003112,
+        "ear": "NO",
+        "id": "bed1b3f9e3894b16a2f9e3917d25ea45",
+        "itar": "NO"
+      },
+      "distributionDate": "2025-07-30T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "AIS-E3-22-005",
+          "submissionId": 20250003112,
+          "id": "0663c95a3c4441aa84a9d08b431f8bb9",
+          "type": "CONTRACT_GRANT"
+        },
+        {
+          "number": "80KSC021F0014",
+          "submissionId": 20250003112,
+          "id": "000ef43fb7cf46c7a7ae26cf4a9b8461",
+          "type": "CONTRACT_GRANT"
+        },
+        {
+          "number": "372315.01.01.11",
+          "submissionId": 20250003112,
+          "id": "83987568980d43c4ad7c5d9d55671278",
+          "type": "WBS"
+        }
+      ],
+      "title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2025-03-27T15:46:39.5091150+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "5c929cce29b0585fb37efe77c6e9d156",
+          "sequence": 0,
+          "submissionId": 20250003112,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Matthew M Wittal"
+            },
+            "organization": {
+              "name": "Kennedy Space Center",
+              "location": "Merritt Island, Florida, United States"
+            }
+          },
+          "id": "9fcb45b591f54d98b3167ff715fc03b5",
+          "userType": "CIVIL",
+          "userId": "f51e4c898ca44a2bbef1594371fcc515"
+        },
+        {
+          "organizationId": "68c7ff195be14c9a9987fd9b107196e3",
+          "sequence": 1,
+          "submissionId": 20250003112,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "Benjamin W Asher"
+            },
+            "organization": {
+              "name": "Aegis Aerospace",
+              "location": "Houston, TX"
+            }
+          },
+          "id": "b587483c13724fc3979b08129b8c7f9a",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "7622e69945414f559abead9cfd8df6ea"
+        },
+        {
+          "organizationId": "d38ba90ea768549393e965cf74c2b98f",
+          "sequence": 2,
+          "submissionId": 20250003112,
+          "meta": {
+            "author": {
+              "name": "Morad Nazari"
+            },
+            "organization": {
+              "name": "Embry\u2013Riddle Aeronautical University",
+              "location": "Daytona Beach, Florida, United States"
+            }
+          },
+          "id": "c0e986f7fc67485c9b19c0627cf443b0",
+          "userType": "OTHER"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "NASA_PEER_COMMITTEE",
+      "modified": "2025-08-31T18:39:21.7150190+00:00",
+      "id": 20250003112,
+      "created": "2025-03-27T15:41:08.2076300+00:00",
+      "center": {
+        "code": "KSC",
+        "name": "Kennedy Space Center",
+        "id": "a74d241e0e974719b03cb45cbace6b20"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "Current spacecraft control methods rely on explicit, predetermined commands, making them computationally intensive and inflexible for vehicles with mass properties and thruster con\u0002figurations that change over time due to changing cargo configurations or thruster malfunctions. This work introduces a methodology within special Euclidean group SE(3) to autonomously control any spacecraft with constrained thruster configurations to enable autonomous spacecraft control under uncertainty. The approach integrates an unscented Kalman filter (UKF) on tangent bundle of SE(3), i.e. TSE(3), and a Morse-Lyapunov controller to determine optimal thruster firing sequences while overcoming state, measurement, and process uncertainties. Simulations demonstrate successful stationkeeping under randomized thruster layouts and mass distributions, successfully enabling stationkeeping for any configuration of mass properties and thrusters. Autonomous docking is successfully performed in simulations under sensor and dynamic uncertainties, including state estimation errors, measurement noise and alignment errors, and thruster misalignment. Results validate the robustness of the method in mitigating state, actuator, and sensor uncertainties, with applications to autonomous GN&C of constrained spacecraft configurations considering saturation limits.",
+      "isLessonsLearned": false,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20250003112,
+        "id": "d61ea2f8be154f19a1b9338ccd0b4eac"
+      },
+      "publications": [
+        {
+          "submissionId": 20250003112,
+          "issn": "0731-5090",
+          "publisher": "American Institute of Aeronautics and Astronautics",
+          "eissn": "1533-3884",
+          "id": "9fd38b9d76a74b74823fdc563084eb2b",
+          "publicationName": "Journal of Guidance, Control, and Dynamics",
+          "publicationDate": "2025-05-30T04:00:00.0000000+00:00"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "2025_JGCD_Autonomous_Control_Arb_Config.pdf",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20250003112/downloads/2025_JGCD_Autonomous_Control_Arb_Config.pdf",
+            "pdf": "/api/citations/20250003112/downloads/2025_JGCD_Autonomous_Control_Arb_Config.pdf",
+            "fulltext": "/api/citations/20250003112/downloads/2025_JGCD_Autonomous_Control_Arb_Config.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    },
+    {
+      "_meta": {
+        "score": 0
+      },
+      "copyright": {
+        "disclosedInvention": false,
+        "licenseType": "OPEN_ACCESS",
+        "submissionId": 20260002377,
+        "containsThirdPartyMaterial": false,
+        "containsIndication": false,
+        "id": "89e25173190d4a64be99cdc0b9984178",
+        "belongsToUsGov": true,
+        "determinationType": "MAY_INCLUDE_COPYRIGHT_MATERIAL",
+        "thirdPartyContentCondition": "NOT_SET"
+      },
+      "subjectCategories": [
+        "Space Communications, Spacecraft Communications, Command and Tracking"
+      ],
+      "keywords": [
+        "Absorber",
+        "bismuth",
+        "electroplating",
+        "X-ray",
+        "TES detectors",
+        "PVA"
+      ],
+      "exportControl": {
+        "isExportControl": "NO",
+        "submissionId": 20260002377,
+        "ear": "NO",
+        "id": "e0c9bbe560394694bdeeea3afd777ef4",
+        "category": [
+          {
+            "submissionExportControlId": "e0c9bbe560394694bdeeea3afd777ef4",
+            "id": "0dc08a9af62b4d0187bf2d53a62c2759",
+            "category": 0
+          }
+        ],
+        "itar": "NO"
+      },
+      "distributionDate": "2026-03-18T04:00:00.0000000+00:00",
+      "fundingNumbers": [
+        {
+          "number": "80GSFC24M0006",
+          "submissionId": 20260002377,
+          "id": "22ed2cca158048a3871f677f6f46624c",
+          "type": "CONTRACT_GRANT"
+        },
+        {
+          "number": "80GSFC23CA040",
+          "submissionId": 20260002377,
+          "id": "dc2634f282d44c54b6d463ef6a1be98e",
+          "type": "CONTRACT_GRANT"
+        }
+      ],
+      "title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+      "stiType": "ACCEPTED_MANUSCRIPT",
+      "distribution": "PUBLIC",
+      "submittedDate": "2026-03-22T22:32:48.8800830+00:00",
+      "authorAffiliations": [
+        {
+          "organizationId": "e3d19c77c3b94fc5a4a27819668e90ef",
+          "sequence": 0,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-2814-3631",
+              "name": "T Farrahi"
+            },
+            "organization": {
+              "name": "Adnet Systems, Inc."
+            }
+          },
+          "id": "c7a467d40cd146a8b286e76fd78bb272",
+          "userId": "614f8de95d1646d4a03f2d80456746c9"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 1,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-3380-7540",
+              "name": "E J Wassell"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "8815a9a29b874a248a1462a604a54717",
+          "userType": "CIVIL",
+          "userId": "ef5c9e3501e14e33a2c328afababcc1c"
+        },
+        {
+          "organizationId": "627f0016b5ec58d5ab150cb9a6759b32",
+          "sequence": 2,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "J S Adams"
+            },
+            "organization": {
+              "name": "University of Maryland, Baltimore County",
+              "location": "Baltimore, United States"
+            }
+          },
+          "id": "0c2937b67ca44548ac49bfbdff05d66a",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "3a48ec66b6934d5a871b89bcfeca3a06"
+        },
+        {
+          "organizationId": "eeed7f9426495806b2a33dc2a92800f5",
+          "sequence": 3,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-0056-5514",
+              "name": "C V Ambarish"
+            },
+            "organization": {
+              "name": "University of Maryland, College Park",
+              "location": "College Park, United States"
+            }
+          },
+          "id": "34b8c823d3584c079002960d181e62a5",
+          "userId": "2972514017684e94adad932f4ea67fc9"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 4,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "S R Bandler"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "90e3e44bfee3494faa9a1b46ec7562c8",
+          "userType": "CIVIL",
+          "userId": "d512a38f3ca748d1b91bc964ee42a887"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 5,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-6346-7124",
+              "name": "R B Borrelli "
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "2c6b0bfafd394de986929e110c7a3859",
+          "userId": "ebf0625a017e434d8a1332cfe42619d0"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 6,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-2450-8055",
+              "name": "J A Chervenak"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "27e72f7f1d8a4e96af7a09b87372b0cc",
+          "userType": "CIVIL",
+          "userId": "bfbe8bdf48124c43b58ee129b569d2f6"
+        },
+        {
+          "sequence": 7,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "name": "F A Colazo Petit"
+            },
+            "organization": {
+              "name": "Teltrium Inc"
+            }
+          },
+          "id": "98b464623bb84240b72e3b80c8a6e991",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "eeed7f9426495806b2a33dc2a92800f5",
+          "sequence": 8,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "R S Cumbee"
+            },
+            "organization": {
+              "name": "University of Maryland, College Park",
+              "location": "College Park, United States"
+            }
+          },
+          "id": "b35f7f7bd5864e38a26e70127f5df409",
+          "userType": "CIVIL",
+          "userId": "f9aee26f246d4485a1e2dc3c14282023"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 9,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "N S DeNigris"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "118141ecea3d4eb69ab8a06d6777f6d1",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "d967e00c34ac55509eb471b45878317c",
+          "sequence": 10,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-6842-0544",
+              "name": "F M Finkbeiner"
+            },
+            "organization": {
+              "name": "Sigma Space (United States)",
+              "location": "Lanham, United States"
+            }
+          },
+          "id": "969f3a4de4ef488eb0545a1088b582e3",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "fe62e59bf1594c509bb67599f0c0c82e"
+        },
+        {
+          "organizationId": "627f0016b5ec58d5ab150cb9a6759b32",
+          "sequence": 11,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-9159-6561",
+              "name": "J D Fuhrman"
+            },
+            "organization": {
+              "name": "University of Maryland, Baltimore County",
+              "location": "Baltimore, United States"
+            }
+          },
+          "id": "5b29303d0be84766957eb73477955c12",
+          "userType": "OTHER",
+          "userId": "ddd37a0f26734fdab8bb46301682d960"
+        },
+        {
+          "organizationId": "eeed7f9426495806b2a33dc2a92800f5",
+          "sequence": 12,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-3132-0536",
+              "name": "S V Hull"
+            },
+            "organization": {
+              "name": "University of Maryland, College Park",
+              "location": "College Park, United States"
+            }
+          },
+          "id": "507c473ffb8841cc92196fe3710c3df2",
+          "userType": "OTHER",
+          "userId": "8c5594d6521a407294644d4992e31ae2"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 13,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "R L Kelley"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "f28c0c2eebea43a6ab459d5ea8de089b",
+          "userType": "CIVIL",
+          "userId": "54844177fd584daca896e72c1a6606dd"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 14,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "C A Kilbourne"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "854b53f6b2d0460d9e4f7b55c2704da5",
+          "userType": "CIVIL",
+          "userId": "eef29452328a453c87d44afb1c6455f7"
+        },
+        {
+          "organizationId": "6cf3f949a7665f4e8446330e18b2253b",
+          "sequence": 15,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-7980-3559",
+              "name": "H Muramatsu"
+            },
+            "organization": {
+              "name": "Catholic University of America",
+              "location": "Washington, United States"
+            }
+          },
+          "id": "338e32747f46470d9516274a67dc1c60",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "a1bd0d85a9f7442e8cdf1230ea41e83d"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 16,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-6374-1119",
+              "name": "F S Porter"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "9a7cb29e4e4641e498a08840462039ad",
+          "userType": "CIVIL",
+          "userId": "7473480717fb44d6bfe12adfc116a61e"
+        },
+        {
+          "sequence": 17,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-7782-8362",
+              "name": "A Rani"
+            },
+            "organization": {
+              "name": "Newton LLC"
+            }
+          },
+          "id": "4a9c723137a74458a44c998639717fdb",
+          "userType": "OTHER"
+        },
+        {
+          "organizationId": "627f0016b5ec58d5ab150cb9a6759b32",
+          "sequence": 18,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0002-9247-3010",
+              "name": "K Sakai"
+            },
+            "organization": {
+              "name": "University of Maryland, Baltimore County",
+              "location": "Baltimore, United States"
+            }
+          },
+          "id": "61721c3b0de8486b86534ab10e1e3d7c",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "ed9f1d3199d642d6b60bcf8029715bd2"
+        },
+        {
+          "organizationId": "e081fcbdcd5059fa8fa7b6c5c6a2c483",
+          "sequence": 19,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0003-4096-4675",
+              "name": "S J Smith"
+            },
+            "organization": {
+              "name": "Goddard Space Flight Center",
+              "location": "Greenbelt, United States"
+            }
+          },
+          "id": "db0950c760a747b68e0c89fc3b7071e1",
+          "userType": "OTHER",
+          "userId": "b9c3f28e99c846aa8a81186dcb92d7b9"
+        },
+        {
+          "organizationId": "627f0016b5ec58d5ab150cb9a6759b32",
+          "sequence": 20,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-8397-9338",
+              "name": "N A Wakeham"
+            },
+            "organization": {
+              "name": "University of Maryland, Baltimore County",
+              "location": "Baltimore, United States"
+            }
+          },
+          "id": "81a5cfa2b2404df89316760d9c71932d",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "21c0f231906d412e8899655c326fc147"
+        },
+        {
+          "organizationId": "cbc1ba85fa8a5e58b1ef71c05b39e77f",
+          "sequence": 21,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "0000-0001-6237-7776",
+              "name": "M C Witthoeft"
+            },
+            "organization": {
+              "name": "Adnet Systems (United States)",
+              "location": "Bethesda, United States"
+            }
+          },
+          "id": "d4789c7bca894fc59251ffaa648aa616",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "13224b871e8e44918720aa684abf2808"
+        },
+        {
+          "organizationId": "8e94a5c8af7c5c2cb9121ce64e585a17",
+          "sequence": 22,
+          "submissionId": 20260002377,
+          "meta": {
+            "author": {
+              "orcidId": "",
+              "name": "S H Yoon"
+            },
+            "organization": {
+              "name": "Columbus Technologies and Services (United States)",
+              "location": "El Segundo, United States"
+            }
+          },
+          "id": "6c74a16b48584b649fb532b7f5068c7e",
+          "userType": "CONTRACTOR_GRANTEE",
+          "userId": "ad0159bb85b04a65a823f9ac91617332"
+        }
+      ],
+      "stiTypeDetails": "Accepted Manuscript (Version with final changes)",
+      "technicalReviewType": "EXTERNAL_PEER_COMMITTEE",
+      "modified": "2026-04-30T18:22:37.1877720+00:00",
+      "id": 20260002377,
+      "created": "2026-03-20T14:56:13.6954480+00:00",
+      "center": {
+        "code": "GSFC",
+        "name": "Goddard Space Flight Center",
+        "id": "973fae00c3584b9fb4c762ae9870d0f6"
+      },
+      "onlyAbstract": false,
+      "sensitiveInformation": 2,
+      "abstract": "NewATHENA\u2019s X-ray Integral Field Unit (X-IFU) uses a large-format array of Transition Edge Sensor (TES) microcalorimeters coupled with absorbers made of gold and bismuth providing 4 eV FWHM resolution up to 7 keV in the 0.2- 12 keV band. X-ray absorbers must be thick enough for photon absorption, maintain low heat capacity for energy resolution, and have good thermalization properties. The X-IFU requires total Quantum Efficiency (QE) of 96%, 87%, and 63% at 1, 7, and 9.5 keV, respectively. Optimal thicknesses are 1.05 \u00b5m gold and 5.5 \u00b5m bismuth to achieve 0.731 pJ/K at 90 mK and 87% QE at 7 keV. While typical TES absorbers are 3-4 \u00b5m thick, producing the required 5.5 \u00b5m Bi absorbers via standard electroplating creates enlarged grains and surface roughness. The increased roughness and grain size variability produced with our standard recipe have resulted in instances of 1) low energy spectral tails 2) spectral broadening of the energy resolution and 3) thermal shorts between pixels when a large grain bridges the gap between absorbers. In this study, we have introduced a new fabrication process and altered the morphology of the thick Bi through changes in the electroplating process. The process changes are intended to address all three issues as well as reduce particulate contamination observed on the finished detector arrays.",
+      "isLessonsLearned": true,
+      "disseminated": "DOCUMENT_AND_METADATA",
+      "cui": {
+        "isCui": false,
+        "submissionId": 20260002377,
+        "id": "11319ff96f024c3dba8ea1376f323c60"
+      },
+      "publications": [
+        {
+          "volume": "36",
+          "submissionId": 20260002377,
+          "issue": "6",
+          "issn": "1051-8223",
+          "publisher": "Institute of Electrical and Electronics Engineers",
+          "eissn": " 1558-2515",
+          "id": "b0606c81f8c7445b84a84abdd7eba431",
+          "publicationName": "IEEE Transactions on Applied Superconductivity",
+          "publicationDate": "2026-03-18T04:00:00.0000000+00:00",
+          "doi": "10.1109/TASC.2026.3675618"
+        }
+      ],
+      "status": "CURATED",
+      "related": [],
+      "downloads": [
+        {
+          "draft": false,
+          "mimetype": "application/pdf",
+          "name": "unmarked-version.pdf",
+          "notes": "see red note on STI about author R S Cumbee.  Form and STI affiliation matches. ",
+          "type": "STI",
+          "links": {
+            "original": "/api/citations/20260002377/downloads/unmarked-version.pdf",
+            "pdf": "/api/citations/20260002377/downloads/unmarked-version.pdf",
+            "fulltext": "/api/citations/20260002377/downloads/unmarked-version.pdf.txt"
+          }
+        }
+      ],
+      "downloadsAvailable": true,
+      "index": "submissions-2026-10-15-05-24"
+    }
+  ],
+  "aggregations": {
+    "created": {
+      "buckets": [
+        {
+          "key_as_string": "2023",
+          "key": 1672531200000,
+          "doc_count": 3
+        },
+        {
+          "key_as_string": "2024",
+          "key": 1704067200000,
+          "doc_count": 3
+        },
+        {
+          "key_as_string": "2021",
+          "key": 1609459200000,
+          "doc_count": 2
+        },
+        {
+          "key_as_string": "2026",
+          "key": 1767225600000,
+          "doc_count": 2
+        },
+        {
+          "key_as_string": "2013",
+          "key": 1356998400000,
+          "doc_count": 1
+        },
+        {
+          "key_as_string": "2025",
+          "key": 1735689600000,
+          "doc_count": 1
+        }
+      ]
+    },
+    "author": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 65,
+      "buckets": [
+        {
+          "key": "A Rani",
+          "doc_count": 1
+        },
+        {
+          "key": "A. Genova",
+          "doc_count": 1
+        },
+        {
+          "key": "Aaron Pearlman",
+          "doc_count": 1
+        },
+        {
+          "key": "Alex Moricette",
+          "doc_count": 1
+        },
+        {
+          "key": "Alexandre Couhert",
+          "doc_count": 1
+        },
+        {
+          "key": "Ali Tokay",
+          "doc_count": 1
+        },
+        {
+          "key": "Allen Lunsford",
+          "doc_count": 1
+        },
+        {
+          "key": "Angela Peura ",
+          "doc_count": 1
+        },
+        {
+          "key": "Benjamin W Asher",
+          "doc_count": 1
+        },
+        {
+          "key": "Boryana Efremova",
+          "doc_count": 1
+        },
+        {
+          "key": "Brian Wenny",
+          "doc_count": 1
+        },
+        {
+          "key": "C A Kilbourne",
+          "doc_count": 1
+        },
+        {
+          "key": "C V Ambarish",
+          "doc_count": 1
+        },
+        {
+          "key": "Charles Sheehe",
+          "doc_count": 1
+        },
+        {
+          "key": "Corali Roura",
+          "doc_count": 1
+        },
+        {
+          "key": "D. R. Buccino",
+          "doc_count": 1
+        },
+        {
+          "key": "David Billings Wolff",
+          "doc_count": 1
+        },
+        {
+          "key": "Dennis Reuter",
+          "doc_count": 1
+        },
+        {
+          "key": "E J Wassell",
+          "doc_count": 1
+        },
+        {
+          "key": "E. Mazarico",
+          "doc_count": 1
+        }
+      ]
+    },
+    "reportNumber": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "center": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "GSFC",
+          "doc_count": 7
+        },
+        {
+          "key": "GRC",
+          "doc_count": 2
+        },
+        {
+          "key": "HQ",
+          "doc_count": 1
+        },
+        {
+          "key": "JPL",
+          "doc_count": 1
+        },
+        {
+          "key": "KSC",
+          "doc_count": 1
+        }
+      ]
+    },
+    "index": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "submissions-2026-10-15-05-24",
+          "doc_count": 12
+        }
+      ]
+    },
+    "fundingNumber": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "278371.01.06",
+          "doc_count": 2
+        },
+        {
+          "key": "351080.02.06.01.01.12.01",
+          "doc_count": 2
+        },
+        {
+          "key": "372315.01.01.11",
+          "doc_count": 1
+        },
+        {
+          "key": "372720",
+          "doc_count": 1
+        },
+        {
+          "key": "378289.04.05.02",
+          "doc_count": 1
+        },
+        {
+          "key": "684499.04.02.04",
+          "doc_count": 1
+        },
+        {
+          "key": "80GSFC23CA040",
+          "doc_count": 1
+        },
+        {
+          "key": "80GSFC24M0006",
+          "doc_count": 1
+        },
+        {
+          "key": "80KSC021F0014",
+          "doc_count": 1
+        },
+        {
+          "key": "80NM0018D0004",
+          "doc_count": 1
+        },
+        {
+          "key": "80NSSC23M0011",
+          "doc_count": 1
+        },
+        {
+          "key": "981698.01.02.51.08.10.05",
+          "doc_count": 1
+        },
+        {
+          "key": "AIS-E3-22-005",
+          "doc_count": 1
+        },
+        {
+          "key": "DA-04-495-ORD-18",
+          "doc_count": 1
+        },
+        {
+          "key": "J-090023",
+          "doc_count": 1
+        },
+        {
+          "key": "NASA",
+          "doc_count": 1
+        }
+      ]
+    },
+    "published": {
+      "buckets": [
+        {
+          "key_as_string": "2023",
+          "key": 1672531200000,
+          "doc_count": 3
+        },
+        {
+          "key_as_string": "2024",
+          "key": 1704067200000,
+          "doc_count": 3
+        },
+        {
+          "key_as_string": "2020",
+          "key": 1577836800000,
+          "doc_count": 2
+        },
+        {
+          "key_as_string": "2026",
+          "key": 1767225600000,
+          "doc_count": 2
+        },
+        {
+          "key_as_string": "1958",
+          "key": -378691200000,
+          "doc_count": 1
+        },
+        {
+          "key_as_string": "2025",
+          "key": 1735689600000,
+          "doc_count": 1
+        }
+      ]
+    },
+    "distribution": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "PUBLIC",
+          "doc_count": 12
+        }
+      ]
+    },
+    "stiType": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "ACCEPTED_MANUSCRIPT",
+          "doc_count": 10
+        },
+        {
+          "key": "REPRINT",
+          "doc_count": 2
+        }
+      ]
+    },
+    "subjectCategory": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Space Communications, Spacecraft Communications, Command and Tracking",
+          "doc_count": 12
+        },
+        {
+          "key": "Instrumentation and Photography",
+          "doc_count": 2
+        },
+        {
+          "key": "Computer Programming and Software",
+          "doc_count": 1
+        },
+        {
+          "key": "Geosciences (General)",
+          "doc_count": 1
+        },
+        {
+          "key": "Mathematical and Computer Sciences (General)",
+          "doc_count": 1
+        },
+        {
+          "key": "Spacecraft Design, Testing and Performance",
+          "doc_count": 1
+        },
+        {
+          "key": "Spacecraft Propulsion and Power",
+          "doc_count": 1
+        },
+        {
+          "key": "Statistics and Probability",
+          "doc_count": 1
+        }
+      ]
+    },
+    "disseminated": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "DOCUMENT_AND_METADATA",
+          "doc_count": 12
+        }
+      ]
+    },
+    "stiTypeDetails": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "Accepted Manuscript (Version with final changes)",
+          "doc_count": 10
+        },
+        {
+          "key": "Reprint (Version printed in journal)",
+          "doc_count": 2
+        }
+      ]
+    },
+    "organization": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 19,
+      "buckets": [
+        {
+          "key": "Goddard Space Flight Center",
+          "doc_count": 6
+        },
+        {
+          "key": "Glenn Research Center",
+          "doc_count": 3
+        },
+        {
+          "key": "Science Systems and Applications (United States)",
+          "doc_count": 2
+        },
+        {
+          "key": "University of Maryland, Baltimore County",
+          "doc_count": 2
+        },
+        {
+          "key": "University of Maryland, College Park",
+          "doc_count": 2
+        },
+        {
+          "key": "Adnet Systems (United States)",
+          "doc_count": 1
+        },
+        {
+          "key": "Adnet Systems, Inc.",
+          "doc_count": 1
+        },
+        {
+          "key": "Aegis Aerospace",
+          "doc_count": 1
+        },
+        {
+          "key": "Agile Decision Sciences",
+          "doc_count": 1
+        },
+        {
+          "key": "American University",
+          "doc_count": 1
+        },
+        {
+          "key": "Boston University",
+          "doc_count": 1
+        },
+        {
+          "key": "Catholic University of America",
+          "doc_count": 1
+        },
+        {
+          "key": "Centre National D'Etudes Spatiales",
+          "doc_count": 1
+        },
+        {
+          "key": "Cleveland State University",
+          "doc_count": 1
+        },
+        {
+          "key": "Collecte Localisation Satellites (France)",
+          "doc_count": 1
+        },
+        {
+          "key": "Colorado School of Mines",
+          "doc_count": 1
+        },
+        {
+          "key": "Columbus Technologies and Services (United States)",
+          "doc_count": 1
+        },
+        {
+          "key": "Embry\u2013Riddle Aeronautical University",
+          "doc_count": 1
+        },
+        {
+          "key": "Florida A&M University - Florida State University College of Engineering",
+          "doc_count": 1
+        },
+        {
+          "key": "Fortify",
+          "doc_count": 1
+        }
+      ]
+    },
+    "modified": {
+      "buckets": [
+        {
+          "key_as_string": "2025",
+          "key": 1735689600000,
+          "doc_count": 10
+        },
+        {
+          "key_as_string": "2026",
+          "key": 1767225600000,
+          "doc_count": 2
+        }
+      ]
+    },
+    "keyword": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 17,
+      "buckets": [
+        {
+          "key": " dominating set",
+          "doc_count": 1
+        },
+        {
+          "key": "Absorber",
+          "doc_count": 1
+        },
+        {
+          "key": "Artemis",
+          "doc_count": 1
+        },
+        {
+          "key": "Autonomy",
+          "doc_count": 1
+        },
+        {
+          "key": "Control",
+          "doc_count": 1
+        },
+        {
+          "key": "Coordinate time series",
+          "doc_count": 1
+        },
+        {
+          "key": "DORIS",
+          "doc_count": 1
+        },
+        {
+          "key": "Earth Satellites",
+          "doc_count": 1
+        },
+        {
+          "key": "Electronic Component",
+          "doc_count": 1
+        },
+        {
+          "key": "GN&C",
+          "doc_count": 1
+        },
+        {
+          "key": "Ground Station",
+          "doc_count": 1
+        },
+        {
+          "key": "Guidance",
+          "doc_count": 1
+        },
+        {
+          "key": "Intra-technique combination",
+          "doc_count": 1
+        },
+        {
+          "key": "LunaNet",
+          "doc_count": 1
+        },
+        {
+          "key": "Navigation",
+          "doc_count": 1
+        },
+        {
+          "key": "Network",
+          "doc_count": 1
+        },
+        {
+          "key": "Nominal attitude",
+          "doc_count": 1
+        },
+        {
+          "key": "Omnidirectional Antennas",
+          "doc_count": 1
+        },
+        {
+          "key": "PVA",
+          "doc_count": 1
+        },
+        {
+          "key": "Phase Locked Loop",
+          "doc_count": 1
+        }
+      ]
+    }
+  }
+}
