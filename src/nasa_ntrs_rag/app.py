@@ -11,7 +11,6 @@ import numpy as np
 import pymupdf
 import pymupdf4llm
 
-
 LOG_FILENAME = Path('test.log')
 DOWNLOAD_DB_PATH = Path('articles.db')
 DOWNLOAD_PATH = Path('pdf')
@@ -124,9 +123,9 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                         VALUES (?, ?, ?, ?, ?);''',
                         (article_id, 'pending', url, url.split('/')[-1], title))
                     
-                    logger.info('Updated file metadata')
+                    logger.info('Updated metadata for document ID: %i', article_id)
                 except sqlite3.IntegrityError:
-                    logger.exception('Failed to update file metadata')
+                    logger.exception('Failed to update metadata for document ID: %i', article_id)
 
                 if cursor.rowcount == 1:
                     insert_count += 1
@@ -168,7 +167,7 @@ def download_files(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
 def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, url: str, filename: str) -> bool:
     '''Take article ID, url, and filename and download the PDF, update the status in the database.'''
-    logger.info('Downloading file %s', filename)
+    logger.info('Downloading file ID: %i', article_id)
 
     try:
         response = client.get(f"{NTRS_URL}{url}")
@@ -180,17 +179,17 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
         
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('downloaded', article_id))
         
-        logger.info('File %s downloaded', filename)
+        logger.info('File ID: %i downloaded', article_id)
 
     except httpx.HTTPError as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
-        logger.exception('File %s download failed', filename)
+        logger.exception('File ID: %i download failed', article_id)
 
         return False
 
     except (OSError, PermissionError) as exc:
         cursor.execute('UPDATE articles_status SET status = ? WHERE id = ?', ('failed', article_id))
-        logger.exception('File %s download failed due to system error', filename)
+        logger.exception('File ID: %i download failed due to system error', article_id)
 
         return False
 
@@ -215,9 +214,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         try:
             filepath = DOWNLOAD_PATH / document[3]
             doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
-            logger.info('Extracted chunks from file %s', document[3])
+            logger.info('Extracted chunks from file ID: %i', document[0])
         except TypeError:
-            logger.exception('Failed to extract text from file %s', document[3])
+            logger.exception('Failed to extract text from file ID: %i', document[0])
 
         # Add chunks and required metadata to list of combined chunks
         try:
@@ -234,25 +233,25 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                     })
 
                 extracted_count += 1
-                logger.info('Added chunks from file %s', document[3])
+                logger.info('Added chunks from file ID: %i', document[0])
         except OSError:
             failed_count += 1
-            logger.exception('Failed to access file %s', document[3])
+            logger.exception('Failed to access file ID: %i', document[0])
         except pymupdf.FileNotFoundError:
             failed_count += 1
-            logger.exception('Failed to find file %s', document[3])
+            logger.exception('Failed to find file ID: %i', document[0])
         except pymupdf.EmptyFileError:
             failed_count += 1
-            logger.exception('File %s is empty', document[3])
+            logger.exception('File ID: %i is empty', document[0])
         except pymupdf.FileDataError:
             failed_count += 1
-            logger.exception('Unable to read file %s', document[3])
+            logger.exception('Unable to read file ID: %i', document[0])
         except TypeError:
             failed_count += 1
-            logger.exception('Unable to read file %s, it could be encrypted', document[3])
+            logger.exception('Unable to read file ID: %i, it could be encrypted', document[0])
         except Exception:
             failed_count += 1
-            logger.exception('Unexpected exception while reading file %s', document[3])
+            logger.exception('Unexpected exception while reading file ID: %i', document[0])
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
                 extracted_count, failed_count)
