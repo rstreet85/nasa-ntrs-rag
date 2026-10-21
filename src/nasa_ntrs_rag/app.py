@@ -237,6 +237,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         except pymupdf.FileDataError:
             failed_count += 1
             logger.exception('Unable to read file %s', document[3])
+        except TypeError:
+            failed_count += 1
+            logger.exception('Unable to read file %s, it could be encrypted', document[3])
 
     logger.info('Extracted text from %i documents, failed to extract text from %i documents',
                 extracted_count, failed_count)
