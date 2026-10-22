@@ -231,13 +231,17 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
     saved_docs = cursor.fetchall()
     combined_chunks: list[Chunk] = []
+    attempted_doc_count = 0
     extracted_count = 0
+    empty_doc_count = 0
     failed_count = 0
+    total_chunk_count = 0
 
     logger.info('Extracting text from PDFs')
     logger.info('Attempting to extract %i PDFs', len(saved_docs))
 
     for document in saved_docs:
+        attempted_doc_count += 1
         doc_chunks = None
         
         # Extract chunks from the PDF
@@ -261,9 +265,13 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                         'url': f"{NTRS_URL}{document[2]}",
                         'text': chunk['text']
                     })
+                    total_chunk_count +=1
 
                 extracted_count += 1
                 logger.info('Added chunks from file ID: %i', document[0])
+            else:
+                empty_doc_count +=1
+                logger.info('No chunks added from file ID: %i', document[0])
         except OSError:
             failed_count += 1
             logger.exception('Failed to access file ID: %i', document[0])
@@ -283,8 +291,10 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             failed_count += 1
             logger.exception('Unexpected exception while reading file ID: %i', document[0])
 
-    logger.info('Extracted text from %i documents, failed to extract text from %i documents',
-                extracted_count, failed_count)
+    logger.info('Attempted to extract text from %i documents', attempted_doc_count)
+    logger.info('Extracted text from %i documents, %i documents were blank, %i documents failed extraction',
+                extracted_count, empty_doc_count, failed_count)
+    logger.info('Extracted a total of %i chunks from documents', total_chunk_count)
     return combined_chunks
 
 
