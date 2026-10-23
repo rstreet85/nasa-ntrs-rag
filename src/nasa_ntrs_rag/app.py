@@ -113,6 +113,22 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article metadata missing list of downloads')
                     continue
 
+                # Check the format of the downloads and hyperlinks lists
+                first_entry = download_list[0]
+                if not isinstance(first_entry, dict):
+                    logger.error('Article downloads list has unrecognized format')
+                    continue
+
+                links = first_entry.get('links')
+                if not isinstance(links, dict):
+                    logger.error('Article links list has unrecognized format')
+                    continue
+
+                pdf_url = links.get('pdf')
+                if not isinstance(url, str) or not pdf_url.strip():
+                    logger.error('Article PDF URL has unrecognized format')
+                    continue
+
                 # Check that article has all relevant fields.
                 try:
                     article_id = int(pub['id'])
@@ -161,6 +177,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
                     except sqlite3.Error:
                         logger.exception('Unexpected failure to update metadata for document ID: %i', article_id)
+                        raise
 
                 else:
                     logger.error('Invalid values for article metadata. Article skipped')
