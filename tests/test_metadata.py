@@ -19,3 +19,12 @@ def test_metadata_ingestion_status(mock_metadata_response: httpx.Client,mock_dat
 
     assert len(entries) == 11
     assert all(status == 'pending' for _, status in entries)
+
+
+def test_metadata_ingestion_idempotent(mock_metadata_response: httpx.Client, mock_database: sqlite3.Cursor):
+    get_metadata(mock_metadata_response, mock_database)
+    get_metadata(mock_metadata_response, mock_database)
+    mock_database.execute('SELECT * FROM articles_status')
+    entries = mock_database.fetchall()
+
+    assert len(entries) == 11
