@@ -249,8 +249,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             filepath = DOWNLOAD_PATH / document[3]
             doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
-            extracted_count += 1
-            logger.info('Extracted chunks from file ID: %i', document[0])
+            logger.info('Extracting chunks from file ID: %i', document[0])
         except OSError:
             failed_count += 1
             logger.exception('Failed to access file ID: %i', document[0])
@@ -271,6 +270,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             logger.exception('Unexpected exception while reading file ID: %i', document[0])
 
         if doc_chunks is not None:
+            extracted_count += 1
         
             for chunk_number, chunk in enumerate(doc_chunks):
                 combined_chunks.append({
