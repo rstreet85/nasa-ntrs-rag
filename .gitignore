@@ -13,6 +13,7 @@ wheels/
 # Indexing/embedding artifacts
 *.pdf
 *.db
+*.db-journal
 *.log
 run_results.json
 ntrs_index/

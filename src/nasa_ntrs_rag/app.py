@@ -89,40 +89,35 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
         for pub in pub_list:
 
-            # Validate document metadata
+            # Validate document general metadata
             if not isinstance(pub, dict):
                 logger.error('Document metadata is not in valid JSON format')
                 continue
 
+            # Confirm that article has downloads and that download list is not empty
             if 'downloadsAvailable' not in pub or 'downloads' not in pub:
                 logger.error('Document metadata missing download information')
                 continue
 
-            if not isinstance(pub['downloads'], list):
-                logger.error('Document download metadata is not in expected format')
-                continue
-
-            # Confirm that article has downloads and that download list is not empty
             if pub['downloadsAvailable']:
-                download_list, article_id, url, filename, title = None, None, None, None, None
+                article_id, url, filename, title = None, None, None, None
 
                 # Check for empty list after checking if the service indicates downloads are available
-                try:
-                    download_list = pub.get('downloads')
-                except ValueError:
-                    logger.error('Article metadata missing list of downloads')
+                download_list = pub.get('downloads')
+                if not isinstance(download_list, list) or not download_list:
+                    logger.error('Document download metadata is not in expected format')
                     continue
 
                 # Check the format of the downloads and hyperlinks lists
-                '''first_entry = pub.get('downloads')[0]
+                first_entry = download_list[0]
                 if not isinstance(first_entry, dict):
                     logger.error('Article downloads list has unrecognized format')
-                    continue'''
+                    continue
 
-                '''links = first_entry.get('links')
+                links = first_entry.get('links')
                 if not isinstance(links, dict):
                     logger.error('Article links list has unrecognized format')
-                    continue'''
+                    continue
 
                 '''pdf_url = links.get('pdf')
                 if not isinstance(url, str) or not pdf_url.strip():
