@@ -120,7 +120,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article metadata missing field article_id')
                     continue
                 except (ValueError, TypeError):
-                    logger.error('Article ID in metadata cannot be converted to integer. Value=%s', pub['id'])
+                    logger.error('Article ID in metadata cannot be converted to integer. Value=%r', pub['id'])
                     continue
 
                 try:
@@ -133,11 +133,9 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article metadata missing field url')
                     continue
 
-                try:
-                    title = pub['title']
-                except KeyError:
-                    logger.error('Article metadata missing field title')
-                    continue
+                title = pub.get('title')
+                if not isinstance(title, str) or not title.strip():
+                    logger.error('Article title missing text')
 
                 # Add required document fields to the status table
                 if article_id and url and filename and title:
