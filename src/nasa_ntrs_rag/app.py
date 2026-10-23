@@ -136,8 +136,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     continue
 
                 try:
-                    url = download_list[0]['links']['pdf']
-                    filename = url.split('/')[-1]
+                    filename = entry_pdf_url.split('/')[-1]
                 except IndexError:
                     logger.error('Article metadata has empty downloads list')
                     continue
@@ -148,6 +147,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 title = pub.get('title')
                 if not isinstance(title, str) or not title.strip():
                     logger.error('Article title missing text')
+                    continue
 
                 # Add required document fields to the status table
                 if article_id and url and filename and title:
