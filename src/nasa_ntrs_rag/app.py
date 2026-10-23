@@ -119,6 +119,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article links list has unrecognized format')
                     continue
 
+                # TODO: Validate that the document JSON object really has a parseable string value
                 '''pdf_url = links.get('pdf')
                 if not isinstance(url, str) or not pdf_url.strip():
                     logger.error('Article PDF URL has unrecognized format')
