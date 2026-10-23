@@ -11,7 +11,9 @@ dependencies = [
     "bm25s>=0.3.11",
     "httpx>=0.28.1",
     "numpy>=2.5.3",
-    "pymupdf4llm>=1.28.2"
+    "pymupdf>=1.28",
+    "pymupdf4llm>=1.28.2",
+    "pytest>=9.1"
 ]
 
 [project.scripts]
