@@ -275,10 +275,11 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         # Add chunks and accompanying metadata to list of combined chunks
         if doc_chunks is not None:
             extracted_count += 1
+            document_chunks = []
 
             # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
             for chunk_number, chunk in enumerate(doc_chunks):
-                combined_chunks.append({
+                document_chunks.append({
                     'chunk_id': f"{document[0]}-{chunk_number}",
                     'document_id': document[0],
                     'page_number': chunk['metadata']['page_number'],
@@ -287,7 +288,8 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                     'text': chunk['text']
                 })
 
-                total_chunk_count +=1        
+                total_chunk_count += len(document_chunks)
+                combined_chunks.extend(document_chunks)
                 logger.info('Added chunks from file ID: %i', document[0])
         else:
             empty_doc_count +=1
