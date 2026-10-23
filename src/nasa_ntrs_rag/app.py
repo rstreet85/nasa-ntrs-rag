@@ -228,8 +228,7 @@ def download_pdf(client: httpx.Client, cursor: sqlite3.Cursor, article_id: int, 
 
 def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     '''Create list of downloaded PDFs from the database, extract text from each.'''
-    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?', ('downloaded',))
-    saved_docs = cursor.fetchall()
+    # Add extraction metrics here to track performance
     combined_chunks: list[Chunk] = []
     attempted_doc_count = 0
     extracted_count = 0
@@ -237,14 +236,18 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     failed_count = 0
     total_chunk_count = 0
 
-    logger.info('Extracting text from PDFs')
-    logger.info('Attempting to extract %i PDFs', len(saved_docs))
+    # Pull list of all documents where the PDF has been downloaded
+    cursor.execute('SELECT id, status, url, filename, title FROM articles_status WHERE status = ?',
+                ('downloaded',))
+    saved_docs = cursor.fetchall()
+    logger.info('Attempting to extract chunks from %i PDFs', len(saved_docs))
 
+    # Individual document extraction
     for document in saved_docs:
         attempted_doc_count += 1
         doc_chunks = None
 
-        # Add chunks and required metadata to list of combined chunks
+        # Read PDF file and pull available chunks
         try:
             filepath = DOWNLOAD_PATH / document[3]
             doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
@@ -269,9 +272,11 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             failed_count += 1
             logger.exception('Unexpected exception while reading file ID: %i', document[0])
 
+        # Add chunks and accompanying metadata to list of combined chunks
         if doc_chunks is not None:
             extracted_count += 1
-        
+
+            # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
             for chunk_number, chunk in enumerate(doc_chunks):
                 combined_chunks.append({
                     'chunk_id': f"{document[0]}-{chunk_number}",
@@ -281,8 +286,8 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                     'url': f"{NTRS_URL}{document[2]}",
                     'text': chunk['text']
                 })
-                total_chunk_count +=1
-        
+
+                total_chunk_count +=1        
                 logger.info('Added chunks from file ID: %i', document[0])
         else:
             empty_doc_count +=1
