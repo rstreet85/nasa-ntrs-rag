@@ -256,21 +256,27 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         except OSError:
             failed_count += 1
             logger.exception('Failed to access file ID: %i', document[0])
+            continue
         except pymupdf.FileNotFoundError:
             failed_count += 1
             logger.exception('Failed to find file ID: %i', document[0])
+            continue
         except pymupdf.EmptyFileError:
             failed_count += 1
             logger.exception('File ID: %i is empty', document[0])
+            continue
         except pymupdf.FileDataError:
             failed_count += 1
             logger.exception('Unable to read file ID: %i', document[0])
+            continue
         except TypeError:
             failed_count += 1
             logger.exception('Unable to read file ID: %i, it could be encrypted', document[0])
+            continue
         except Exception:
             failed_count += 1
             logger.exception('Unexpected exception while reading file ID: %i', document[0])
+            continue
 
         # Add chunks and accompanying metadata to list of combined chunks
         if doc_chunks is not None:
@@ -288,9 +294,9 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
                     'text': chunk['text']
                 })
 
-                total_chunk_count += len(document_chunks)
-                combined_chunks.extend(document_chunks)
-                logger.info('Added chunks from file ID: %i', document[0])
+            total_chunk_count += len(document_chunks)
+            combined_chunks.extend(document_chunks)
+            logger.info('Added chunks from file ID: %i', document[0])
         else:
             empty_doc_count +=1
             logger.info('No chunks added from file ID: %i', document[0])
