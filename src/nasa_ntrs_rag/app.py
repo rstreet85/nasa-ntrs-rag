@@ -118,21 +118,26 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     article_id = int(pub['id'])
                 except KeyError:
                     logger.error('Article metadata missing field article_id')
-                except ValueError:
-                    logger.error('Article ID in metadata cannot be converteed to integer. Value=%s', pub['id'])
+                    continue
+                except (ValueError, TypeError):
+                    logger.error('Article ID in metadata cannot be converted to integer. Value=%s', pub['id'])
+                    continue
 
                 try:
                     url = download_list[0]['links']['pdf']
                     filename = url.split('/')[-1]
                 except IndexError:
                     logger.error('Article metadata has empty downloads list')
+                    continue
                 except KeyError:
                     logger.error('Article metadata missing field url')
+                    continue
 
                 try:
                     title = pub['title']
                 except KeyError:
                     logger.error('Article metadata missing field title')
+                    continue
 
                 # Add required document fields to the status table
                 if article_id and url and filename and title:
@@ -284,6 +289,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             document_chunks = []
 
             # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
+            # Additonal code to validate chunks goes here
             for chunk_number, chunk in enumerate(doc_chunks):
                 document_chunks.append({
                     'chunk_id': f"{document[0]}-{chunk_number}",
