@@ -108,26 +108,26 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
                 # Check for empty list after checking if the service indicates downloads are available
                 try:
-                    download_list = pub['downloads']
+                    download_list = pub.get('downloads')
                 except ValueError:
                     logger.error('Article metadata missing list of downloads')
                     continue
 
                 # Check the format of the downloads and hyperlinks lists
-                first_entry = download_list[0]
+                '''first_entry = pub.get('downloads')[0]
                 if not isinstance(first_entry, dict):
                     logger.error('Article downloads list has unrecognized format')
-                    continue
+                    continue'''
 
-                links = first_entry.get('links')
+                '''links = first_entry.get('links')
                 if not isinstance(links, dict):
                     logger.error('Article links list has unrecognized format')
-                    continue
+                    continue'''
 
-                pdf_url = links.get('pdf')
+                '''pdf_url = links.get('pdf')
                 if not isinstance(url, str) or not pdf_url.strip():
                     logger.error('Article PDF URL has unrecognized format')
-                    continue
+                    continue'''
 
                 # Check that article has all relevant fields.
                 try:
