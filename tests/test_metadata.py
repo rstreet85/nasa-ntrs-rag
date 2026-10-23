@@ -2,7 +2,7 @@ import httpx
 import sqlite3
 import pytest
 
-from src.nasa_ntrs_rag.app import get_metadata
+from nasa_ntrs_rag.app import get_metadata
 
 def test_metadata_from_response(mock_metadata_response: httpx.Client, mock_database: sqlite3.Cursor):
     get_metadata(mock_metadata_response, mock_database)

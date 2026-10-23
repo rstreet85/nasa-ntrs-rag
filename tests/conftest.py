@@ -72,3 +72,5 @@ def mock_database():
     cursor = mock_conn.cursor()
 
     yield cursor
+
+    mock_conn.close()

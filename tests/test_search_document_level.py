@@ -1,5 +1,5 @@
 import pytest
-from src.nasa_ntrs_rag.app import doc_search_lexical
+from nasa_ntrs_rag.app import doc_search_lexical
 
 TEST_QUERIES = [
     ('Is the Morse-Lyapunov controller fuel optimal', 20250003112),

@@ -243,35 +243,14 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     for document in saved_docs:
         attempted_doc_count += 1
         doc_chunks = None
-        
-        # Extract chunks from the PDF
-        try:
-            filepath = DOWNLOAD_PATH / document[3]
-            doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
-            logger.info('Extracted chunks from file ID: %i', document[0])
-        except TypeError:
-            logger.exception('Failed to extract text from file ID: %i', document[0])
 
         # Add chunks and required metadata to list of combined chunks
         try:
-            if doc_chunks is not None:
+            filepath = DOWNLOAD_PATH / document[3]
+            doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
-                for chunk_number, chunk in enumerate(doc_chunks):
-                    combined_chunks.append({
-                        'chunk_id': f"{document[0]}-{chunk_number}",
-                        'document_id': document[0],
-                        'page_number': chunk['metadata']['page_number'],
-                        'title': document[4],
-                        'url': f"{NTRS_URL}{document[2]}",
-                        'text': chunk['text']
-                    })
-                    total_chunk_count +=1
-
-                extracted_count += 1
-                logger.info('Added chunks from file ID: %i', document[0])
-            else:
-                empty_doc_count +=1
-                logger.info('No chunks added from file ID: %i', document[0])
+            extracted_count += 1
+            logger.info('Extracted chunks from file ID: %i', document[0])
         except OSError:
             failed_count += 1
             logger.exception('Failed to access file ID: %i', document[0])
@@ -290,6 +269,24 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         except Exception:
             failed_count += 1
             logger.exception('Unexpected exception while reading file ID: %i', document[0])
+
+        if doc_chunks is not None:
+        
+            for chunk_number, chunk in enumerate(doc_chunks):
+                combined_chunks.append({
+                    'chunk_id': f"{document[0]}-{chunk_number}",
+                    'document_id': document[0],
+                    'page_number': chunk['metadata']['page_number'],
+                    'title': document[4],
+                    'url': f"{NTRS_URL}{document[2]}",
+                    'text': chunk['text']
+                })
+                total_chunk_count +=1
+        
+                logger.info('Added chunks from file ID: %i', document[0])
+        else:
+            empty_doc_count +=1
+            logger.info('No chunks added from file ID: %i', document[0])
 
     logger.info('Attempted to extract text from %i documents', attempted_doc_count)
     logger.info('Extracted text from %i documents, %i documents were blank, %i documents failed extraction',
