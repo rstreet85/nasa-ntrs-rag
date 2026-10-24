@@ -9,6 +9,7 @@ import bm25s
 import httpx
 import numpy as np
 import pymupdf
+import pymupdf.layout
 import pymupdf4llm
 
 LOG_FILENAME = Path('test.log')
@@ -132,17 +133,12 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     logger.error('Article metadata missing field article_id')
                     continue
                 except (ValueError, TypeError):
-                    logger.error('Article ID in metadata cannot be converted to integer. Value=%r', pub['id'])
+                    logger.error('Article ID in metadata cannot be converted to integer. Value = %r', pub['id'])
                     continue
 
-                try:
-                    filename = entry_pdf_url.split('/')[-1]
-                except IndexError:
-                    logger.error('Article metadata has empty downloads list')
-                    continue
-                except KeyError:
-                    logger.error('Article metadata missing field url')
-                    continue
+                filename = entry_pdf_url.split('/')[-1]
+                if not filename:
+                    logger.error('Article metadata has empty PDF URL')
 
                 title = pub.get('title')
                 if not isinstance(title, str) or not title.strip():
