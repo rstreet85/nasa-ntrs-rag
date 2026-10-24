@@ -296,6 +296,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
 
         # Add chunks and accompanying metadata to list of combined chunks
         if doc_chunks is None:
+            empty_doc_count +=1
             logger.error('No chunks returned for document ID: %i', document[0])
             continue
 
