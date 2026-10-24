@@ -150,7 +150,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                     continue
 
                 # Add required document fields to the status table
-                if article_id and url and filename and title:
+                if article_id and entry_pdf_url and filename and title:
                     try: 
                         cursor.execute('''
                             INSERT INTO articles_status (
@@ -162,7 +162,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                             )
                             VALUES (?, ?, ?, ?, ?)
                             ON CONFLICT(id) DO NOTHING;''',
-                            (article_id, 'pending', url, filename, title))
+                            (article_id, 'pending', entry_pdf_url, filename, title))
 
                         if cursor.rowcount == 1:
                             insert_count += 1
@@ -268,55 +268,62 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             filepath = DOWNLOAD_PATH / document[3]
             doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
-            logger.info('Extracting chunks from file ID: %i', document[0])
+            logger.info('Extracting chunks from document ID: %i', document[0])
         except OSError:
             failed_count += 1
-            logger.exception('Failed to access file ID: %i', document[0])
+            logger.exception('Failed to access document ID: %i', document[0])
             continue
         except pymupdf.FileNotFoundError:
             failed_count += 1
-            logger.exception('Failed to find file ID: %i', document[0])
+            logger.exception('Failed to find document ID: %i', document[0])
             continue
         except pymupdf.EmptyFileError:
             failed_count += 1
-            logger.exception('File ID: %i is empty', document[0])
+            logger.exception('Document ID: %i is empty', document[0])
             continue
         except pymupdf.FileDataError:
             failed_count += 1
-            logger.exception('Unable to read file ID: %i', document[0])
+            logger.exception('Unable to read document ID: %i', document[0])
             continue
         except TypeError:
             failed_count += 1
-            logger.exception('Unable to read file ID: %i, it could be encrypted', document[0])
+            logger.exception('Unable to read document ID: %i, it could be encrypted', document[0])
             continue
         except Exception:
             failed_count += 1
-            logger.exception('Unexpected exception while reading file ID: %i', document[0])
+            logger.exception('Unexpected exception while reading document ID: %i', document[0])
             continue
 
         # Add chunks and accompanying metadata to list of combined chunks
-        if doc_chunks is not None:
+        if doc_chunks is None:
+            logger.error('No chunks returned for document ID: %i', document[0])
+            continue
+
+        document_chunks = []
+
+        # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
+        # Additonal code to validate chunks goes here
+        for chunk_number, chunk in enumerate(doc_chunks):
+            document_chunks.append({
+                'chunk_id': f"{document[0]}-{chunk_number}",
+                'document_id': document[0],
+                'page_number': chunk['metadata']['page_number'],
+                'title': document[4],
+                'url': f"{NTRS_URL}{document[2]}",
+                'text': chunk['text']
+            })
+
+        if document_chunks:
             extracted_count += 1
-            document_chunks = []
-
-            # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
-            # Additonal code to validate chunks goes here
-            for chunk_number, chunk in enumerate(doc_chunks):
-                document_chunks.append({
-                    'chunk_id': f"{document[0]}-{chunk_number}",
-                    'document_id': document[0],
-                    'page_number': chunk['metadata']['page_number'],
-                    'title': document[4],
-                    'url': f"{NTRS_URL}{document[2]}",
-                    'text': chunk['text']
-                })
-
             total_chunk_count += len(document_chunks)
             combined_chunks.extend(document_chunks)
-            logger.info('Added chunks from file ID: %i', document[0])
+
+            logger.info('Added chunks from document ID: %i', document[0])
         else:
             empty_doc_count +=1
-            logger.info('No chunks added from file ID: %i', document[0])
+            logger.error('Unable to add chunks from document ID: %i', document[0])
+    else:
+        logger.info('No chunks added from document')
 
     logger.info('Attempted to extract text from %i documents', attempted_doc_count)
     logger.info('Extracted text from %i documents, %i documents were blank, %i documents failed extraction',
