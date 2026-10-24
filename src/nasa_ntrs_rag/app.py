@@ -322,8 +322,6 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         else:
             empty_doc_count +=1
             logger.error('Unable to add chunks from document ID: %i', document[0])
-    else:
-        logger.info('No chunks added from document')
 
     logger.info('Attempted to extract text from %i documents', attempted_doc_count)
     logger.info('Extracted text from %i documents, %i documents were blank, %i documents failed extraction',
