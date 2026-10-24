@@ -301,18 +301,21 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             continue
 
         document_chunks = []
-
-        # May want to set start=1 as the chunk number is used to create ID. Will also need to update pytest files
-        # Additonal code to validate chunks goes here
-        for chunk_number, chunk in enumerate(doc_chunks):
-            document_chunks.append({
-                'chunk_id': f"{document[0]}-{chunk_number}",
-                'document_id': document[0],
-                'page_number': chunk['metadata']['page_number'],
-                'title': document[4],
-                'url': f"{NTRS_URL}{document[2]}",
-                'text': chunk['text']
-            })
+        # Additional code to validate chunks goes here
+        try:
+            for chunk_number, chunk in enumerate(doc_chunks):
+                document_chunks.append({
+                    'chunk_id': f"{document[0]}-{chunk_number}",
+                    'document_id': document[0],
+                    'page_number': chunk['metadata']['page_number'],
+                    'title': document[4],
+                    'url': f"{NTRS_URL}{document[2]}",
+                    'text': chunk['text']
+                })
+        except KeyError:
+            failed_count += 1
+            logger.error('Missing metadata key for document ID: %i', document[0])
+            continue
 
         if document_chunks:
             extracted_count += 1
