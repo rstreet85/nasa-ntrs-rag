@@ -139,6 +139,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 filename = entry_pdf_url.split('/')[-1]
                 if not filename:
                     logger.error('Article metadata has empty PDF URL')
+                    continue
 
                 title = pub.get('title')
                 if not isinstance(title, str) or not title.strip():
@@ -257,12 +258,12 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     # Individual document extraction
     for document in saved_docs:
         attempted_doc_count += 1
-        doc_chunks = None
+        #doc_chunks = None
 
         # Read PDF file and pull available chunks
         try:
             filepath = DOWNLOAD_PATH / document[3]
-            doc_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+            raw_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
 
             logger.info('Extracting chunks from document ID: %i', document[0])
         except OSError:
@@ -291,23 +292,26 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             continue
 
         # Add chunks and accompanying metadata to list of combined chunks
-        if doc_chunks is None:
+        #if doc_chunks is None:
+        if not raw_chunks:
             empty_doc_count +=1
             logger.error('No chunks returned for document ID: %i', document[0])
             continue
 
         document_chunks = []
-        # Additional code to validate chunks goes here
         try:
-            for chunk_number, chunk in enumerate(doc_chunks):
-                document_chunks.append({
-                    'chunk_id': f"{document[0]}-{chunk_number}",
-                    'document_id': document[0],
-                    'page_number': chunk['metadata']['page_number'],
-                    'title': document[4],
-                    'url': f"{NTRS_URL}{document[2]}",
-                    'text': chunk['text']
-                })
+            for chunk_number, chunk in enumerate(raw_chunks):
+                # Additional chunk validation logic goes here
+                if isinstance(chunk['text'], str) and chunk['text'].strip():
+                    document_chunks.append({
+                        'chunk_id': f"{document[0]}-{chunk_number}",
+                        'document_id': document[0],
+                        'page_number': chunk['metadata']['page_number'],
+                        'title': document[4],
+                        'url': f"{NTRS_URL}{document[2]}",
+                        'text': chunk['text']
+                    })
+
         except KeyError:
             failed_count += 1
             logger.error('Missing metadata key for document ID: %i', document[0])
