@@ -302,15 +302,31 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         try:
             for chunk_number, chunk in enumerate(raw_chunks):
                 # Additional chunk validation logic goes here
+                raw_chunk_id = f"{document[0]}-{chunk_number}"
+
+                if not isinstance(chunk, dict) or not chunk:
+                    logger.error('Chunk ID: %s is blank or malformed', raw_chunk_id)
+                    continue
+
+                if not isinstance(chunk['metadata'], dict) or not chunk['metadata']:
+                    logger.error('Chunk ID: %s has blank or malformed metadata', raw_chunk_id)
+                    continue
+
+                if not isinstance(chunk['metadata']['page_number'], int) or not chunk['metadata']['page_number']:
+                    logger.error('Chunk ID: %s metadata missing page number', raw_chunk_id)
+                    continue
+
                 if isinstance(chunk['text'], str) and chunk['text'].strip():
                     document_chunks.append({
-                        'chunk_id': f"{document[0]}-{chunk_number}",
+                        'chunk_id': raw_chunk_id,
                         'document_id': document[0],
                         'page_number': chunk['metadata']['page_number'],
                         'title': document[4],
                         'url': f"{NTRS_URL}{document[2]}",
                         'text': chunk['text']
                     })
+                else:
+                    logger.error('Chunk ID: %s has blank or unusable text.', raw_chunk_id)
 
         except KeyError:
             failed_count += 1
