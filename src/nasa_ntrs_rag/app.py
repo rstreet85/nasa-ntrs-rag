@@ -138,7 +138,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
 
                 filename = entry_pdf_url.split('/')[-1]
                 if not filename:
-                    logger.error('Article metadata has empty PDF URL')
+                    logger.error('Article metadata has empty PDF filename')
                     continue
 
                 title = pub.get('title')
