@@ -101,7 +101,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
                 continue
 
             if pub['downloadsAvailable']:
-                article_id, url, filename, title = None, None, None, None
+                article_id, filename, title = None, None, None
 
                 # Check for empty list after checking if the service indicates downloads are available
                 download_list = pub.get('downloads')
@@ -258,7 +258,6 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
     # Individual document extraction
     for document in saved_docs:
         attempted_doc_count += 1
-        #doc_chunks = None
 
         # Read PDF file and pull available chunks
         try:
@@ -292,46 +291,43 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
             continue
 
         # Add chunks and accompanying metadata to list of combined chunks
-        #if doc_chunks is None:
         if not raw_chunks:
             empty_doc_count +=1
             logger.error('No chunks returned for document ID: %i', document[0])
             continue
 
         document_chunks = []
-        try:
-            for chunk_number, chunk in enumerate(raw_chunks):
-                # Additional chunk validation logic goes here
-                raw_chunk_id = f"{document[0]}-{chunk_number}"
+        for chunk_number, chunk in enumerate(raw_chunks):
+            # Additional chunk validation logic goes here
+            raw_chunk_id = f"{document[0]}-{chunk_number}"
 
-                if not isinstance(chunk, dict) or not chunk:
-                    logger.error('Chunk ID: %s is blank or malformed', raw_chunk_id)
-                    continue
+            if not isinstance(chunk, dict) or not chunk:
+                logger.error('Chunk ID: %s is blank or malformed', raw_chunk_id)
+                continue
 
-                if not isinstance(chunk['metadata'], dict) or not chunk['metadata']:
-                    logger.error('Chunk ID: %s has blank or malformed metadata', raw_chunk_id)
-                    continue
+            if not isinstance(chunk.get('metadata'), dict):
+                logger.error('Chunk ID: %s has blank or malformed metadata', raw_chunk_id)
+                continue
 
-                if not isinstance(chunk['metadata']['page_number'], int) or not chunk['metadata']['page_number']:
-                    logger.error('Chunk ID: %s metadata missing page number', raw_chunk_id)
-                    continue
+            chunk_metadata = chunk.get('metadata')
 
-                if isinstance(chunk['text'], str) and chunk['text'].strip():
-                    document_chunks.append({
-                        'chunk_id': raw_chunk_id,
-                        'document_id': document[0],
-                        'page_number': chunk['metadata']['page_number'],
-                        'title': document[4],
-                        'url': f"{NTRS_URL}{document[2]}",
-                        'text': chunk['text']
-                    })
-                else:
-                    logger.error('Chunk ID: %s has blank or unusable text.', raw_chunk_id)
+            if not isinstance(chunk_metadata.get('page_number'), int):
+                logger.error('Chunk ID: %s metadata missing page number', raw_chunk_id)
+                continue
 
-        except KeyError:
-            failed_count += 1
-            logger.error('Missing metadata key for document ID: %i', document[0])
-            continue
+            chunk_text = chunk.get('text')
+
+            if isinstance(chunk_text, str) and chunk_text.strip():
+                document_chunks.append({
+                    'chunk_id': raw_chunk_id,
+                    'document_id': document[0],
+                    'page_number': chunk_metadata.get('page_number'),
+                    'title': document[4],
+                    'url': f"{NTRS_URL}{document[2]}",
+                    'text': chunk_text
+                })
+            else:
+                logger.error('Chunk ID: %s has blank or unusable text.', raw_chunk_id)
 
         if document_chunks:
             extracted_count += 1
