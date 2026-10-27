@@ -1,1 +1,320 @@
-{"k": 5, "queries": [{"query": "Is the Morse-Lyapunov controller fuel optimal", "results": [{"rank": 1, "score": 8.152741432189941, "chunk_id": "20250003112-13", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 14}, {"rank": 2, "score": 7.837249755859375, "chunk_id": "20250003112-9", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 10}, {"rank": 3, "score": 7.664882659912109, "chunk_id": "20250003112-3", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 4}, {"rank": 4, "score": 5.591883182525635, "chunk_id": "20250003112-12", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 13}, {"rank": 5, "score": 5.038774490356445, "chunk_id": "20250003112-0", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 1}]}, {"query": "What are the parameters of TIRS-2", "results": [{"rank": 1, "score": 3.200352191925049, "chunk_id": "20210012997-0", "document_id": 20210012997, "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2", "page_number": 1}, {"rank": 2, "score": 3.1777405738830566, "chunk_id": "20210012997-4", "document_id": 20210012997, "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2", "page_number": 5}, {"rank": 3, "score": 2.852126359939575, "chunk_id": "20210012997-9", "document_id": 20210012997, "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2", "page_number": 10}, {"rank": 4, "score": 2.6496970653533936, "chunk_id": "20250003112-25", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 26}, {"rank": 5, "score": 2.33396315574646, "chunk_id": "20210012997-1", "document_id": 20210012997, "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2", "page_number": 2}]}, {"query": "What class receivers are DORIS satellites equipped with", "results": [{"rank": 1, "score": 7.139871120452881, "chunk_id": "20230014981-17", "document_id": 20230014981, "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination", "page_number": 18}, {"rank": 2, "score": 3.475957155227661, "chunk_id": "20240014692-0", "document_id": 20240014692, "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures", "page_number": 1}, {"rank": 3, "score": 3.146188735961914, "chunk_id": "20230014981-21", "document_id": 20230014981, "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination", "page_number": 22}, {"rank": 4, "score": 2.6496970653533936, "chunk_id": "20250003112-25", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 26}, {"rank": 5, "score": 2.527053117752075, "chunk_id": "20230007643-0", "document_id": 20230007643, "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks", "page_number": 1}]}, {"query": "What is a Luby transform", "results": [{"rank": 1, "score": 3.4918644428253174, "chunk_id": "20230007643-3", "document_id": 20230007643, "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks", "page_number": 4}, {"rank": 2, "score": 2.6496970653533936, "chunk_id": "20250003112-25", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 26}, {"rank": 3, "score": 1.664034128189087, "chunk_id": "20250003112-24", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 25}, {"rank": 4, "score": 1.5726549625396729, "chunk_id": "20250003112-13", "document_id": 20250003112, "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties", "page_number": 14}, {"rank": 5, "score": 1.2730474472045898, "chunk_id": "20230007643-4", "document_id": 20230007643, "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks", "page_number": 5}]}, {"query": "What is the best performing centrality measure of node clusters", "results": [{"rank": 1, "score": 8.444927215576172, "chunk_id": "20240014692-1", "document_id": 20240014692, "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures", "page_number": 2}, {"rank": 2, "score": 6.892739772796631, "chunk_id": "20240014692-2", "document_id": 20240014692, "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures", "page_number": 3}, {"rank": 3, "score": 5.048134803771973, "chunk_id": "20240007403-11", "document_id": 20240007403, "document_title": "Deeper Dive into Interoperability and Its Implications for LunaNet Communications and Navigation Services", "page_number": 12}, {"rank": 4, "score": 5.000778675079346, "chunk_id": "20240014692-6", "document_id": 20240014692, "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures", "page_number": 7}, {"rank": 5, "score": 4.587244987487793, "chunk_id": "20240014692-0", "document_id": 20240014692, "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures", "page_number": 1}]}, {"query": "Where is the DSS-25 station located", "results": [{"rank": 1, "score": 3.299370765686035, "chunk_id": "20230010185-5", "document_id": 20230010185, "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios", "page_number": 6}, {"rank": 2, "score": 2.8029961585998535, "chunk_id": "20230010185-6", "document_id": 20230010185, "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios", "page_number": 7}, {"rank": 3, "score": 2.6554512977600098, "chunk_id": "20230010185-7", "document_id": 20230010185, "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios", "page_number": 8}, {"rank": 4, "score": 2.5314993858337402, "chunk_id": "19650068530-7", "document_id": 19650068530, "document_title": "Microlock-  a minimum weight radio instrumentation system for a satellite", "page_number": 8}, {"rank": 5, "score": 2.4734058380126953, "chunk_id": "20230014981-11", "document_id": 20230014981, "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination", "page_number": 12}]}, {"query": "What is the role of polyvinyl alcohol in Bi electroplating", "results": [{"rank": 1, "score": 7.441502571105957, "chunk_id": "20260002377-2", "document_id": 20260002377, "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU", "page_number": 3}, {"rank": 2, "score": 6.923761367797852, "chunk_id": "20260002377-1", "document_id": 20260002377, "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU", "page_number": 2}, {"rank": 3, "score": 4.736105918884277, "chunk_id": "20260002377-4", "document_id": 20260002377, "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU", "page_number": 5}, {"rank": 4, "score": 4.664083957672119, "chunk_id": "20260002377-0", "document_id": 20260002377, "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU", "page_number": 1}, {"rank": 5, "score": 2.711249828338623, "chunk_id": "20260002377-3", "document_id": 20260002377, "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU", "page_number": 4}]}]}
+{
+    "k": 5,
+    "queries": [
+        {
+            "query": "Is the Morse-Lyapunov controller fuel optimal",
+            "results": [
+                {
+                    "chunk_id": "20250003112-13",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 14,
+                    "rank": 1,
+                    "score": 8.17874717712402
+                },
+                {
+                    "chunk_id": "20250003112-9",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 10,
+                    "rank": 2,
+                    "score": 7.70800161361694
+                },
+                {
+                    "chunk_id": "20250003112-3",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 4,
+                    "rank": 3,
+                    "score": 7.69281005859375
+                },
+                {
+                    "chunk_id": "20250003112-12",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 13,
+                    "rank": 4,
+                    "score": 5.32691192626953
+                },
+                {
+                    "chunk_id": "20250003112-0",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 1,
+                    "rank": 5,
+                    "score": 5.05871677398682
+                }
+            ]
+        },
+        {
+            "query": "What are the parameters of TIRS-2",
+            "results": [
+                {
+                    "chunk_id": "20210012997-4",
+                    "document_id": 20210012997,
+                    "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2",
+                    "page_number": 5,
+                    "rank": 1,
+                    "score": 3.28821873664856
+                },
+                {
+                    "chunk_id": "20210012997-0",
+                    "document_id": 20210012997,
+                    "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2",
+                    "page_number": 1,
+                    "rank": 2,
+                    "score": 3.20765852928162
+                },
+                {
+                    "chunk_id": "20210012997-9",
+                    "document_id": 20210012997,
+                    "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2",
+                    "page_number": 10,
+                    "rank": 3,
+                    "score": 2.86093401908875
+                },
+                {
+                    "chunk_id": "20250003112-25",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 26,
+                    "rank": 4,
+                    "score": 2.65620541572571
+                },
+                {
+                    "chunk_id": "20210012997-1",
+                    "document_id": 20210012997,
+                    "document_title": "Prelaunch Radiometric Calibration and Uncertainty Analysis of Landsat Thermal Infrared Sensor 2",
+                    "page_number": 2,
+                    "rank": 5,
+                    "score": 2.33731007575989
+                }
+            ]
+        },
+        {
+            "query": "What class receivers are DORIS satellites equipped with",
+            "results": [
+                {
+                    "chunk_id": "20230014981-17",
+                    "document_id": 20230014981,
+                    "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination",
+                    "page_number": 18,
+                    "rank": 1,
+                    "score": 7.16797637939453
+                },
+                {
+                    "chunk_id": "20240014692-0",
+                    "document_id": 20240014692,
+                    "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+                    "page_number": 1,
+                    "rank": 2,
+                    "score": 3.48794603347778
+                },
+                {
+                    "chunk_id": "20230014981-21",
+                    "document_id": 20230014981,
+                    "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination",
+                    "page_number": 22,
+                    "rank": 3,
+                    "score": 3.15788221359253
+                },
+                {
+                    "chunk_id": "20250003112-25",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 26,
+                    "rank": 4,
+                    "score": 2.65620541572571
+                },
+                {
+                    "chunk_id": "20230007643-0",
+                    "document_id": 20230007643,
+                    "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks",
+                    "page_number": 1,
+                    "rank": 5,
+                    "score": 2.53863120079041
+                }
+            ]
+        },
+        {
+            "query": "What is a Luby transform",
+            "results": [
+                {
+                    "chunk_id": "20230007643-3",
+                    "document_id": 20230007643,
+                    "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks",
+                    "page_number": 4,
+                    "rank": 1,
+                    "score": 3.51093769073486
+                },
+                {
+                    "chunk_id": "20250003112-25",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 26,
+                    "rank": 2,
+                    "score": 2.65620541572571
+                },
+                {
+                    "chunk_id": "20250003112-24",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 25,
+                    "rank": 3,
+                    "score": 1.67208755016327
+                },
+                {
+                    "chunk_id": "20250003112-13",
+                    "document_id": 20250003112,
+                    "document_title": "Autonomous Constrained Control of Arbitrarily-Configured Spacecraft with Broad Uncertainties",
+                    "page_number": 14,
+                    "rank": 4,
+                    "score": 1.5808162689209
+                },
+                {
+                    "chunk_id": "20230007643-4",
+                    "document_id": 20230007643,
+                    "document_title": "Application of Fountain Code to High-Rate Delay Tolerant Networks",
+                    "page_number": 5,
+                    "rank": 5,
+                    "score": 1.25339317321777
+                }
+            ]
+        },
+        {
+            "query": "What is the best performing centrality measure of node clusters",
+            "results": [
+                {
+                    "chunk_id": "20240014692-1",
+                    "document_id": 20240014692,
+                    "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+                    "page_number": 2,
+                    "rank": 1,
+                    "score": 8.44034767150879
+                },
+                {
+                    "chunk_id": "20240014692-2",
+                    "document_id": 20240014692,
+                    "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+                    "page_number": 3,
+                    "rank": 2,
+                    "score": 6.77963638305664
+                },
+                {
+                    "chunk_id": "20240007403-11",
+                    "document_id": 20240007403,
+                    "document_title": "Deeper Dive into Interoperability and Its Implications for LunaNet Communications and Navigation Services",
+                    "page_number": 12,
+                    "rank": 3,
+                    "score": 5.06786441802979
+                },
+                {
+                    "chunk_id": "20240014692-6",
+                    "document_id": 20240014692,
+                    "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+                    "page_number": 7,
+                    "rank": 4,
+                    "score": 4.74286651611328
+                },
+                {
+                    "chunk_id": "20240014692-0",
+                    "document_id": 20240014692,
+                    "document_title": "Generating Dominating Sets Using Locally Defined Centrality Measures",
+                    "page_number": 1,
+                    "rank": 5,
+                    "score": 4.60368728637695
+                }
+            ]
+        },
+        {
+            "query": "Where is the DSS-25 station located",
+            "results": [
+                {
+                    "chunk_id": "20230010185-5",
+                    "document_id": 20230010185,
+                    "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios",
+                    "page_number": 6,
+                    "rank": 1,
+                    "score": 3.27622532844543
+                },
+                {
+                    "chunk_id": "20230010185-6",
+                    "document_id": 20230010185,
+                    "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios",
+                    "page_number": 7,
+                    "rank": 2,
+                    "score": 2.80822944641113
+                },
+                {
+                    "chunk_id": "20230010185-7",
+                    "document_id": 20230010185,
+                    "document_title": "Precision of Spacecraft Doppler Tracking at Low Signal-to-Noise Ratios",
+                    "page_number": 8,
+                    "rank": 3,
+                    "score": 2.65843224525452
+                },
+                {
+                    "chunk_id": "19650068530-7",
+                    "document_id": 19650068530,
+                    "document_title": "Microlock-  a minimum weight radio instrumentation system for a satellite",
+                    "page_number": 8,
+                    "rank": 4,
+                    "score": 2.53651142120361
+                },
+                {
+                    "chunk_id": "20230014981-11",
+                    "document_id": 20230014981,
+                    "document_title": "DPOD2020: A DORIS Extension of the ITRF2020 for Precise Orbit Determination",
+                    "page_number": 12,
+                    "rank": 5,
+                    "score": 2.47614526748657
+                }
+            ]
+        },
+        {
+            "query": "What is the role of polyvinyl alcohol in Bi electroplating",
+            "results": [
+                {
+                    "chunk_id": "20260002377-2",
+                    "document_id": 20260002377,
+                    "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+                    "page_number": 3,
+                    "rank": 1,
+                    "score": 7.47231864929199
+                },
+                {
+                    "chunk_id": "20260002377-1",
+                    "document_id": 20260002377,
+                    "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+                    "page_number": 2,
+                    "rank": 2,
+                    "score": 6.95397615432739
+                },
+                {
+                    "chunk_id": "20260002377-4",
+                    "document_id": 20260002377,
+                    "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+                    "page_number": 5,
+                    "rank": 3,
+                    "score": 4.74842119216919
+                },
+                {
+                    "chunk_id": "20260002377-0",
+                    "document_id": 20260002377,
+                    "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+                    "page_number": 1,
+                    "rank": 4,
+                    "score": 4.67915439605713
+                },
+                {
+                    "chunk_id": "20260002377-3",
+                    "document_id": 20260002377,
+                    "document_title": "Optimization of X-ray Absorbers for High-Resolution TES Detectors in NewATHENA X-IFU",
+                    "page_number": 4,
+                    "rank": 5,
+                    "score": 2.71487212181091
+                }
+            ]
+        }
+    ]
+}
