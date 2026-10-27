@@ -44,6 +44,7 @@ def test_queries() -> list:
 #TODO: Replace this with a factory that returns variations of the expected response
 @pytest.fixture
 def mock_metadata_response():
+    '''Fixture to return the expected JSON response. NOTE: This will be replaced by a fixture factory'''
     # Reading saved response body JSON from file
     response_path = Path(__file__).parent / 'fixtures' / 'ntrs_metadata_response.json'
     response_json = None
@@ -67,6 +68,7 @@ def mock_metadata_response():
 
 @pytest.fixture
 def mock_database():
+    '''Fixture for in-memory database for article download status'''
     mock_conn = sqlite3.connect(':memory:')
     create_database(mock_conn)
     cursor = mock_conn.cursor()

@@ -13,7 +13,7 @@ def test_metadata_from_response(mock_metadata_response: httpx.Client, mock_datab
     assert len(entries) == 11
 
 
-def test_metadata_ingestion_status(mock_metadata_response: httpx.Client,mock_database: sqlite3.Cursor):
+def test_metadata_ingestion_status_on_first_ingestion(mock_metadata_response: httpx.Client,mock_database: sqlite3.Cursor):
     '''Test that metadata ingestion works for the expected response and returns the expected status after first update'''
     get_metadata(mock_metadata_response, mock_database)
     mock_database.execute('SELECT id, status FROM articles_status;')

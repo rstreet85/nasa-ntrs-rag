@@ -81,7 +81,7 @@ def get_metadata(client: httpx.Client, cursor: sqlite3.Cursor) -> None:
         if not isinstance(metadata_payload, dict):
             raise RuntimeError('Metadata request is not JSON')
 
-        if 'results' not in metadata_payload or not isinstance(metadata_payload['results'], list):
+        if 'results' not in metadata_payload or not isinstance(metadata_payload.get('results'), list):
             raise RuntimeError('Metadata response is missing valid results list')
 
         # Parse results if valid JSON is received
@@ -262,7 +262,7 @@ def extract_pdfs(cursor: sqlite3.Cursor) -> list[Chunk]:
         # Read PDF file and pull available chunks
         try:
             filepath = DOWNLOAD_PATH / document[3]
-            raw_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True)
+            raw_chunks = pymupdf4llm.to_markdown(filepath, page_chunks=True, use_ocr=False)
 
             logger.info('Extracting chunks from document ID: %i', document[0])
         except OSError:
