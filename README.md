@@ -50,12 +50,12 @@ Recall@K results for a limited dataset of 11 PDFs with the subject code 'Space C
 | Query | Relevant Chunk IDs | Recall@1 | Recall@3 | Recall@5 |
 | :---- | :-------------------- | :------: | :------: | :------: |
 | Is the Morse-Lyapunov controller fuel optimal | 20250003112-9| 0.0 | 1.0 | 1.0 |
-| What are the parameters of TIRS-2 | 20210012997-0 | 1.0 | 1.0 | 1.0 |
+| What are the parameters of TIRS-2 | 20210012997-0 | 0.0 | 1.0 | 1.0 |
 | What class receivers are DORIS satellites equipped with | 20230014981-17 | 1.0 | 1.0 | 1.0 |
-| What is a Luby transform | 20230007643-3, 20230007643-4, 20230007643-9 | 0.33 | 0.33 | 0.67 |
-| What is the best performing centrality measure of node clusters | 20240014692-0, 20240014692-1 | 0.5 | 0.5 | 1.0 |
+| What is a Luby transform | 20230007643-3, 20230007643-4 | 0.5 | 0.5 | 1.0 |
+| What is the best performing centrality measure of node clusters | 20240014692-1 | 1.0 | 1.0 | 1.0 |
 | Where is the DSS-25 station located | 20230010185-5, 20230010185-10 |  0.5 | 0.5 | 0.5 |
-| What is the role of polyvinyl alcohol in Bi electroplating | 20260002377-1, 20260002377-2 | 0.5 | 1.0 | 1.0 |
+| What is the role of polyvinyl alcohol in Bi electroplating | 20260002377-1, 20260002377-2, 20260002377-4 | 0.5 | 1.0 | 1.0 |
 
 # Current Status
 
